@@ -15,8 +15,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('home2');
+})->name('home');
+
+Route::get('/about', function () {
+    return view('about');
+})->name('about');
+
+Route::get('/posts/create', function(){
+    return view('create');
+})->name('posts.create');
+
+Route::post('/posts', function(){
+    return redirect()
+            ->route('posts.create');
+})->name('posts.store');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
