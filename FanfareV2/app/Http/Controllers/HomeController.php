@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Post;
 
 class HomeController extends Controller
 {
     //controller methods= actions
     public function home() {
-        return view('home2');
+        $posts=Post::all();
+        return view('home',['posts'=>$posts]);
     }
 
     public function about() {

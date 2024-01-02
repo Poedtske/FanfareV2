@@ -1,23 +1,17 @@
-@extends('layouts.app')
+@extends('layout')
+
+@section('title', 'Home')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
-                </div>
-            </div>
-        </div>
+@foreach($posts as $post)
+<div class="post-item">
+    <div class="post-content">
+        <h2>{{ $post->title }}</h2>
+        <p>{{ $post->description }}</p>
     </div>
 </div>
+@endforeach
+<h1>Home page </h1>
+<p>This is the home page.</p>
 @endsection
