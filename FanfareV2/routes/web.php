@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+use Illuminate\Http\Request;
 
 Route::get('/', function () {
     return view('home2');
@@ -26,9 +27,16 @@ Route::get('/posts/create', function(){
     return view('create');
 })->name('posts.create');
 
-Route::post('/posts', function(){
+Route::post('/posts', function(Request $request){
+    $request->validate([
+        'title'=>'required',
+        'description'=>['required','min:10'],
+    ]);
     return redirect()
-            ->route('posts.create');
+            ->route('posts.create')
+            ->with('success', 'Post is submitted! Title: '.
+            $request->input('title').' Description: '.
+            $request->input('description'));
 })->name('posts.store');
 
 Route::get('/dashboard', function () {
