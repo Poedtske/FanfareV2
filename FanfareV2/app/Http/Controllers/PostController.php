@@ -23,8 +23,9 @@ class PostController extends Controller
     public function store(PostFormRequest $request)
     {
         $validated=$request->validated();
+        $post=$request->user()->posts()->create($validated);
         //validated returns something similar as below
-        $post=Post::create($validated);
+        //$post=Post::create($validated);
         //this is done by create, Mass Assignment
         //$post=new Post();
         //$post->title=$request->input('title');

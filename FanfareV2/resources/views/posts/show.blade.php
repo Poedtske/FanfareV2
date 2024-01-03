@@ -14,6 +14,12 @@
             @method('DELETE')
             <button class="delete" type="submit">Delete post</button>
         </form>
+        <small>Posted by <b>{{ $post->user->name }}</b></small>
+        <small>Created: <b>{{ $post->created_at }}</b></small>
+        @if ($post->updated_at!=$post->created_at )
+        <small>Updated: <b>{{ $post->updated_at }}</b></small>
+        @endif
+
     </div>
 </div>
 
