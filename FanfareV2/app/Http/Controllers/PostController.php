@@ -53,6 +53,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+        $this->authorize('update',$post);
         return view('posts.edit',['post'=>$post]);
     }
 
@@ -61,6 +62,7 @@ class PostController extends Controller
      */
     public function update(PostFormRequest $request, Post $post)
     {
+        $this->authorize('update',$post);
         $validated=$request->validated();
         //$post=Post::findOrFail($id); is called by post itself
         $post->update($validated);
@@ -79,6 +81,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        $this->authorize('delete',$post);
         $post->delete();
         return redirect()
         ->route('home2')
