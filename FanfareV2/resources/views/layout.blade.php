@@ -17,8 +17,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/mainFanfare.css')}}">
-    <link rel="stylesheet" href="{{ asset('css/' . (trim($__env->yieldContent('customscript')) ?? '') . '.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/' . (trim($__env->yieldContent('customstyle','main')) ?? '') . '.css') }}">
     <script src="{{ asset('js/main.js') }}" type="module"></script>
+    <script src="{{ asset('js/' . (trim($__env->yieldContent('customstyle')) ?? '') . '.js') }}" type="module"></script>
+
 </head>
 <body>
 

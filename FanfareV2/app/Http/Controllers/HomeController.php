@@ -17,6 +17,42 @@ class HomeController extends Controller
         return view('about');
     }
 
+    public function sponsors() {
+        return view('sponsors');
+    }
+
+    public function jeugd() {
+        return view('jeugd');
+    }
+
+    public function kalender() {
+        return view('kalender');
+    }
+
+    public function bestuur(){
+        return view('fanfare.bestuur');
+    }
+
+    public function dirigent(){
+        return view('fanfare.dirigent');
+    }
+
+    public function geschiedenis(){
+        return view('fanfare.geschiedenis');
+    }
+
+    public function instrumenten(){
+        return view('fanfare.instrumenten');
+    }
+
+    public function belangrijkeDocumenten(){
+        return view('praktischeInfo.belangrijkeDocumenten');
+    }
+
+    public function privacyverklaring(){
+        return view('praktischeInfo.privacyverklaring');
+    }
+
 }
 /**
      * Create a new controller instance.

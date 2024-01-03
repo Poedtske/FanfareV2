@@ -24,6 +24,31 @@ Route::get('/', [HomeController::class, 'home'])->name('home2');
 
 Route::get('/about',[HomeController::class, 'about'])->name('about');
 
+Route::get('/sponsors',[HomeController::class, 'sponsors'])->name('sponsors');
+
+Route::get('/kalender',[HomeController::class, 'kalender'])->name('kalender');
+
+Route::get('/jeugd',[HomeController::class, 'jeugd'])->name('jeugd');
+
+// Route::get('fanfare/bestuur',[HomeController::class, 'bestuur'])->name('bestuur');
+// Route::get('fanfare/dirigent',[HomeController::class, 'dirigent'])->name('dirigent');
+// Route::get('fanfare/geschiedenis',[HomeController::class, 'geschiedenis'])->name('geschiedenis');
+// Route::get('fanfare/instrumenten',[HomeController::class, 'instrumenten'])->name('instrumenten');
+
+// Route::get('praktischeInfo/belangrijkeDocumenten',[HomeController::class, 'belangrijkeDocumenten'])->name('belangrijkeDocumenten');
+//     Route::get('praktischeInfo/privacyverklaring',[HomeController::class, 'privacyverklaring'])->name('privacyverklaring');
+Route::name('fanfare.')->prefix('fanfare')->group(function(){
+    Route::get('/bestuur',[HomeController::class, 'bestuur'])->name('bestuur');
+    Route::get('/dirigent',[HomeController::class, 'dirigent'])->name('dirigent');
+    Route::get('/geschiedenis',[HomeController::class, 'geschiedenis'])->name('geschiedenis');
+    Route::get('/instrumenten',[HomeController::class, 'instrumenten'])->name('instrumenten');
+});
+
+Route::name('praktischeInfo.')->group(function(){
+    Route::get('praktischeInfo/belangrijkeDocumenten',[HomeController::class, 'belangrijkeDocumenten'])->name('belangrijkeDocumenten');
+    Route::get('praktischeInfo/privacyverklaring',[HomeController::class, 'privacyverklaring'])->name('privacyverklaring');
+});
+
 Route::resource('posts',PostController::class)
 ->except(['index'])
 ->middleware(('auth'));

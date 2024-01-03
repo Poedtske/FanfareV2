@@ -1,6 +1,6 @@
 <footer>
     <button >
-      <a href="https://www.benvansande.be/" target="_blank"><img class="fotos" src="../hoofdsponsor/ben van sande.png" alt="Hoofdsponsor" /></a>
+      <a href="https://www.benvansande.be/" target="_blank"><img class="fotos" src="{{ asset('images/hoofdSponsor/ben van sande.png') }}" alt="Hoofdsponsor" /></a>
     </button>
     <div id="mail">
       k.f.demoedigevrienden@gmail.com
