@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Models\Post;
 
 class PostFormRequest extends FormRequest
 {
@@ -12,6 +13,8 @@ class PostFormRequest extends FormRequest
     public function authorize(): bool//contains logic for authorization
     {
         return true;
+        // $post=Post::find($this->route('post'));
+        // return $post&&$this->user()->can('update',$post);
     }
 
     /**
