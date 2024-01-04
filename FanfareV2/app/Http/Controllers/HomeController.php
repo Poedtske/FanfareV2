@@ -53,6 +53,10 @@ class HomeController extends Controller
         return view('praktischeInfo.privacyverklaring');
     }
 
+    public function profile(){
+        return view('profile');
+    }
+
 }
 /**
      * Create a new controller instance.
