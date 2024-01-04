@@ -7,6 +7,9 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
+
 use Illuminate\View\View;
 
 class ProfileController extends Controller
@@ -30,12 +33,19 @@ class ProfileController extends Controller
 
         if($request->has('avatar')){
             $avataruploaded= $request->file('avatar');
-            $avatarname=time().'.'.$avataruploaded->getClientOriginalExtension();
+            $avatarname=$request->user()->id.'.'.$avataruploaded->getClientOriginalExtension();
+            $avatarpath=public_path(('\\images\\avatars\\'));
+            if($avatarpath.$avatarname!=null){
+                File::delete($avatarpath.$avatarname);
+            }
 
-            $avatarpath=public_path(('\\images\\'));
-            $request->user()->avatar='/images/'.$avatarname;
+            $request->user()->avatar='/images/avatars/'.$avatarname;
             $avataruploaded->move($avatarpath,$avatarname);
         }
+
+        //$path = $request->file('avatar')->store('avatars');
+        // Storage::disk('avatars')->url($request->user()->avatar);
+        //$request->user()->avatar=$path;
 
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;
