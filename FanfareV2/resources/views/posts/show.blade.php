@@ -9,7 +9,9 @@
         <h2>{{ $post->title }}</h2>
         <p>{{ $post->description }}</p>
         @can('update',$post)
-        <a href="{{ route('posts.edit',[$post]) }}">Edit post</a>
+        <br>
+        <button class="update"><a href="{{ route('posts.edit',[$post]) }}">Edit post</a></button>
+
         @endcan
         @can('delete',$post)
         <form method="POST" action="{{ route('posts.destroy',[$post]) }}">

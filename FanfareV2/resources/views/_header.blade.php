@@ -30,7 +30,7 @@
       @auth
       <a class="{{request()->routeIs('posts.create') ? 'active' : ''}}" href="{{route('posts.create')}}">Create Post</a>
       <a class="{{request()->routeIs('logout') ? 'active' : ''}}" href="{{route('logout')}}">Logout</a>
-      <a class="{{request()->routeIs('profile') ? 'active' : ''}}" href="{{route('profile.edit')}}">Logged in as <b>{{ Auth::user()->name }}</b></a>
+      <a class="{{request()->routeIs('profile') ? 'active' : ''}}" href="{{route('profile.edit')}}">Profile</a>
       @else
       <a class="{{request()->routeIs('register') ? 'active' : ''}}" href="{{route('register')}}">Register</a>
       <a class="{{request()->routeIs('login') ? 'active' : ''}}" href="{{route('login')}}">Login</a>

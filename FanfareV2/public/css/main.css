@@ -1,13 +1,13 @@
 /* Main container*/
 
-.main {
+/* .main {
     margin-left: 20px;
-  }
+  } */
 
 
   /* Navigation */
 
-  ul.nav {
+  /* ul.nav {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -25,7 +25,7 @@
 
   .nav li a {
     display: block;
-    color: white;
+    color: red;
     text-align: center;
     padding: 16px 18px;
     text-decoration: none;
@@ -141,7 +141,7 @@ ul li .dropdown:hover .dropdown-content {
     .dropdown:hover .dropdown-content {
         display: block;
     }
-}
+} */
 
   /* Forms */
 
@@ -171,7 +171,7 @@ ul li .dropdown:hover .dropdown-content {
     resize: none;
   }
 
-  button {
+  .post-item button {
     background-color: #fa6908;
     color: white;
     padding: 12px 20px;
@@ -181,8 +181,12 @@ ul li .dropdown:hover .dropdown-content {
     margin: 18px 2px;
   }
 
-  .delete {
+  .post-item .delete {
     background-color: #fa0808;
+  }
+
+  .post-item .update {
+    background-color: green;
   }
 
 
