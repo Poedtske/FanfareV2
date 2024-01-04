@@ -1,8 +1,9 @@
-@extends('layout')
+{{-- @extends('layout')
 
 @section('title', 'Home')
 
-@section('content')
+@section('content') --}}
+<x-guest-layout>
     <form method="POST" action="{{ route('register') }}">
         @csrf
 
@@ -53,4 +54,5 @@
             </x-primary-button>
         </div>
     </form>
-    @endsection
+</x-guest-layout>
+    {{-- @endsection --}}

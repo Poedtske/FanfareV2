@@ -1,10 +1,10 @@
-
+{{--
 @extends('layout')
 
 @section('title', 'Login')
 
-@section('content')
-
+@section('content') --}}
+<x-guest-layout>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
@@ -50,4 +50,5 @@
             </x-primary-button>
         </div>
     </form>
-    @endsection
+</x-guest-layout>
+    {{-- @endsection --}}
