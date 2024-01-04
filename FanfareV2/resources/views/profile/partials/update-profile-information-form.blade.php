@@ -53,11 +53,15 @@
             <x-input-error class="mt-2" :messages="$errors->get('birthday')" />
         </div>
 
-        <div>
+        {{-- <div>
             <x-input-label for="avatar" :value="__('Avatar')" />
             <x-text-input id="avatar" name="avatar" type="file" class="block w-full mt-1" :value="old('avatar', $user->avatar)" required autofocus autocomplete="avatar" />
+
+            @if(Auth::user()->avatar!=null)
+            <img src="/avatars/{{Auth::user()->avatar}}" style="width:80px;margin-top: 10px;">
+            @endif
             <x-input-error class="mt-2" :messages="$errors->get('avatar')" />
-        </div>
+        </div> --}}
 
         <div>
             <x-input-label for="aboutme" :value="__('Aboutme')" />
