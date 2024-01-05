@@ -23,7 +23,7 @@ class PostController extends Controller
     public function store(PostFormRequest $request)
     {
         $validated=$request->validated();
-
+        // $this->authorize('store',$request);
 
         $post=$request->user()->posts()->create($validated);
 

@@ -17,6 +17,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
@@ -44,6 +46,14 @@ Route::name('praktischeInfo.')->group(function(){
 });
 
 Route::resource('posts',PostController::class)
+->except(['index'])
+->middleware(('auth'));
+
+Route::resource('categories',CategoryController::class)
+->except(['index'])
+->middleware(('auth'));
+
+Route::resource('questions',QuestionController::class)
 ->except(['index'])
 ->middleware(('auth'));
 

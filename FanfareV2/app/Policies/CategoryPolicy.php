@@ -2,19 +2,15 @@
 
 namespace App\Policies;
 
+use App\Models\Category;
 use App\Models\User;
-use App\Models\Post;
-use Illuminate\Auth\Access\HandlesAuthorization;
 
-class PostPolicy
+class CategoryPolicy
 {
     /**
      * Create a new policy instance.
      */
-
-     use HandlesAuthorization;
-
-     public function create(User $user)
+    public function create(User $user)
      {
         return $user->role=='admin';
      }
@@ -23,13 +19,13 @@ class PostPolicy
         return $user->role=='admin';
     }
 
-    public function update(User $user)
+    public function update(User $user,Category $category)
     {
         // return $user->id === $post->user_id;
         return $user->role=='admin';
     }
 
-    public function delete(User $user)
+    public function delete(User $user,Category $category)
     {
         // return $user->id === $post->user_id;
         return $user->role=='admin';
