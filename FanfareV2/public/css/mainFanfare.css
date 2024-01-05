@@ -28,7 +28,7 @@ body {
     display: grid;
 
     min-height: 100vh;
-    padding-top: var(--header-height);
+    /* padding-top: var(--header-height); */
 }
 header {
     --auto-columns: 1;
