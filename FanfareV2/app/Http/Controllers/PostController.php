@@ -111,7 +111,9 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         $this->authorize('delete',$post);
+        File::delete(public_path(($post->cover)));
         $post->delete();
+
         return redirect()
         ->route('home2')
         ->with('success','Post has been deleted!');
