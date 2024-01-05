@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Http\Requests\PostFormRequest;
-
+use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 
 
@@ -23,7 +23,20 @@ class PostController extends Controller
     public function store(PostFormRequest $request)
     {
         $validated=$request->validated();
+
+
         $post=$request->user()->posts()->create($validated);
+
+        if($request->file('cover')!=null){
+            $postCoverUploaded= $request->file('cover');
+        $postCoverName=$post->id.'.'.$request->cover->extension();
+        $postCoverPath=public_path(('\\images\\covers\\'));
+
+
+        $post->cover='/images/covers/'.$postCoverName;
+        $post->save();
+        $postCoverUploaded->move($postCoverPath,$postCoverName);
+        }
         //validated returns something similar as below
         //$post=Post::create($validated);
         //this is done by create, Mass Assignment
@@ -62,10 +75,26 @@ class PostController extends Controller
      */
     public function update(PostFormRequest $request, Post $post)
     {
+        //cover($request);
+
         $this->authorize('update',$post);
+
         $validated=$request->validated();
-        //$post=Post::findOrFail($id); is called by post itself
         $post->update($validated);
+        if($request->file('cover')!=null){
+            $postCoverUploaded= $request->file('cover');
+            $postCoverName=$post->id.'.'.$request->cover->extension();
+            $postCoverPath=public_path(('\\images\\covers\\'));
+            if($postCoverPath.$postCoverName!=null){
+                File::delete($postCoverPath.$postCoverName);
+            }
+
+        $post->cover='/images/covers/'.$postCoverName;
+        $post->save();
+        $postCoverUploaded->move($postCoverPath,$postCoverName);
+        }
+        //$post=Post::findOrFail($id); is called by post itself
+        //// $post->update($validated);
         // $post->title=$request->input('title');
         // $post->description=$request->input('description');
         // $post->save();

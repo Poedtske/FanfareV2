@@ -43,9 +43,9 @@ class ProfileController extends Controller
             $avataruploaded->move($avatarpath,$avatarname);
         }
 
-        //$path = $request->file('avatar')->store('avatars');
+        //doesn't work because VSC doesn't see the url method, no idea how to fix it.
         // Storage::disk('avatars')->url($request->user()->avatar);
-        //$request->user()->avatar=$path;
+
 
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;

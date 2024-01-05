@@ -1,13 +1,13 @@
 @extends('layout')
 
 @section('title', 'About us')
-@section('customstyle','home')
+@section('customstyle', 'home')
 
 
 @section('content')
 <h1>About page </h1>
 <p>This is the about page.</p>
-<section style="background-color: gray;">
+<section style="background-color: gray; color: white;">
     <p>
         <a href="https://app.pluralsight.com/library/courses/laravel-9-fundamentals/table-of-contents" style="font-size: 100%; text-decoration: underline;">Laravel 9 Fundementals</a>
         <br>
@@ -22,6 +22,22 @@
     In the 'Jeugd' page you'll find a list of members, the last one is me, Robbe.
     </p>
 </section>
-https://medium.com/@laraveltuts/how-to-upload-avatar-in-laravel-a-step-by-step-guide-77557ce2a45#id_token=eyJhbGciOiJSUzI1NiIsImtpZCI6IjkxNDEzY2Y0ZmEwY2I5MmEzYzNmNWEwNTQ1MDkxMzJjNDc2NjA5MzciLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiIyMTYyOTYwMzU4MzQtazFrNnFlMDYwczJ0cDJhMmphbTRsamRjbXMwMHN0dGcuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiIyMTYyOTYwMzU4MzQtazFrNnFlMDYwczJ0cDJhMmphbTRsamRjbXMwMHN0dGcuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDA3MDkyMzAwMzU2NTk2NDUyMjEiLCJlbWFpbCI6InJvYmJlcG9lZHRzMzA5QGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJuYmYiOjE3MDQzOTY3NTEsIm5hbWUiOiJ0aGUgcm9iYmVyIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FDZzhvY0p1eUh6aE1WYnNkYjE4Sl8wTWlRUFo2Z1VlY085TFVxX2VST1M1dWlMMnh3PXM5Ni1jIiwiZ2l2ZW5fbmFtZSI6InRoZSIsImZhbWlseV9uYW1lIjoicm9iYmVyIiwibG9jYWxlIjoiZW4tR0IiLCJpYXQiOjE3MDQzOTcwNTEsImV4cCI6MTcwNDQwMDY1MSwianRpIjoiZDBmNjY2NTRiNTFkZGU5ZmQ3Y2VjMTQyZjNmMzE0OTU5Mjg2MDYwMyJ9.IxP1zKlE7-Ti6MG7XypFa064daExYoqIezjOjpiekmDrV5PSigNOzrn2zDa7h62k1dlhMLar5FcjgGa04KrAumyvhxbjHWs0YZEcKuZXaA7wdZuKM4ddRcuyjJHIexk8JwQHs1BboMLIdEjnuXX1KvyuQNIU21fyAjNgU_ZQMjAIdypha9TF02ZS96U8sGJzJ7aBBUbaLKst8OXbTXyK6dJzlUrOf84dQzo-kTq8vhLx8cqvu8xh8fXotep3HZMZN1x1R0HDYjS6qwFqDH_5_edy15zrN1z5AGajJVw4qJtsZQ7PSFlBm56LAYJrUNFGVWiZwtdxbroId3_cUoXC3w
+<section style=" background-color: black; color: white;">
+    <p>
+        <a href="https://www.youtube.com/watch?v=SWVFDe0AThw&t=3s" style="font-size: 100%; text-decoration: underline;">Image upload with Laravel 6 - User profile image upload</a>
+    <br>
+    Save Image section(14:57-18:17) was used as base to store user avatar and post image.
+    </p>
+</section>
+
+<section style=" background-color: grey; color: white;">
+    <p>
+        <a href="https://stackoverflow.com/questions/21320304/laravel-image-upload-creating-folder-instead-of-file" style="font-size: 100%; text-decoration: underline;">Laravel image upload creating folder instead of file</a>
+    <br>
+    Took way to long for me to find the issue(+1 hour), this fixed it and deserves its place here
+    </p>
+</section>
+
+
 
 @endsection

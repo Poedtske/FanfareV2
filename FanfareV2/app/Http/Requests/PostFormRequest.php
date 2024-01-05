@@ -26,7 +26,8 @@ class PostFormRequest extends FormRequest
     {
         return [
             'title'=>'required',
-            'description'=>['required','min:10']
+            'description'=>['required','min:10'],
+            'cover'=>['nullable','image',],
         ];
     }
 }

@@ -13,19 +13,6 @@ a {
     font-size: 125%;
 }
 
-button {
-    cursor: pointer;
-}
-
-img {
-    display: block;
-    width: 100%;
-}
-
-html {
-    color-scheme: dark;
-}
-
 /*Post layout*/
 .post-item {
     box-shadow: 5px 10px 8px 0 rgba(0, 0, 0, 0.3);

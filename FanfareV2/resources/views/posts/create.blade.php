@@ -4,7 +4,7 @@
 
 @section('content')
 <h1>Create a New Blog Post</h1>
-<form method="POST" action="{{ route('posts.store') }}">
+<form method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data">
     @csrf
 
     <label>Title</label>
@@ -22,6 +22,22 @@
         {{ $message }}
     </div>
     @enderror
+    <div>
+        <x-input-label for="cover" :value="__('cover')" />
+        <x-text-input id="cover" name="cover" type="file" class="block w-full mt-1" autofocus autocomplete="cover" />
+
+
+        <x-input-error class="mt-2" :messages="$errors->get('cover')" />
+    </div>
+    {{-- <div>
+        <label>Cover</label>
+        <input id="cover" name="cover" type="file" class="@error('cover') error-border @enderror" :value="old('cover')"/>
+        @error('description')
+        <div class="error">
+            {{ $message }}
+        </div>
+        @enderror
+    </div> --}}
 
     <button type="submit">Submit</button>
 </form>
