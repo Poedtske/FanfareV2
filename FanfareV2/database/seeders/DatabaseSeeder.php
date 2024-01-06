@@ -30,6 +30,13 @@ class DatabaseSeeder extends Seeder
             'aboutme'=>"i'm a dev",
             'role'=>'admin',
         ]);
+        \App\Models\User::factory()->create([
+            'name' => 'test',
+            'email' => 'test.user@hotmail.be',
+            'password'=>'111111111',
+            'birthday'=>'1111-11-11',
+            'aboutme'=>"i'm a pleb",
+        ]);
 
 
 

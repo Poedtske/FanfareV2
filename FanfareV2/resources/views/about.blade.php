@@ -38,6 +38,15 @@
     </p>
 </section>
 
+<section style=" background-color: white; color: black;">
+    <p>
+        <a href="https://www.appfinz.com/blogs/laravel-middleware-for-auth-admin-users-roles/" style="font-size: 100%; text-decoration: underline;">Laravel Middleware for Auth Admin Users Roles</a>
+    <br>
+    I followed this as a base to protect routes only admins are allowed to use
+    </p>
+</section>
+
+
 
 
 @endsection

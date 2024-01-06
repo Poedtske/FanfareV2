@@ -47,15 +47,15 @@ Route::name('praktischeInfo.')->group(function(){
 
 Route::resource('posts',PostController::class)
 ->except(['index'])
-->middleware(('auth'));
+->middleware(('admin'));
 
 Route::resource('categories',CategoryController::class)
 ->except(['index'])
-->middleware(('auth'));
+->middleware(('admin'));
 
 Route::resource('questions',QuestionController::class)
 ->except(['index'])
-->middleware(('auth'));
+->middleware(('admin'));
 
 Route::match(['get','post'],'/register',[RegisterController::class,'register'])->name('register')
 ->middleware(('guest'));
