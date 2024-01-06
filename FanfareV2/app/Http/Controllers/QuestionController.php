@@ -28,10 +28,9 @@ class QuestionController extends Controller
     public function store(QuestionFormRequest $request)
     {
         $validated=$request->validated();
-        //$validated->category_id=$request->input('category_id');
+        $category=Category::findOrFail($request->input('category_id'));
 
-        $question=$request->user()->questions()->create($validated);
-        $question->category_id=$request->input('category_id');
+        $question=$request->user()->questions()->create($validated)->category()->associate($category);
         $question->save();
 
         // $category->question_id=$question->id;
@@ -60,7 +59,8 @@ class QuestionController extends Controller
     public function edit(Question $question)
     {
         $this->authorize('update',$question);
-        return view('questions.edit',['question'=>$question]);
+        $categories=Category::all();
+        return view('questions.edit',['question'=>$question,'categories'=>$categories]);
     }
 
     /**
@@ -71,7 +71,11 @@ class QuestionController extends Controller
         $this->authorize('update',$question);
 
         $validated=$request->validated();
-        $question->update($validated);
+
+        $category=Category::findOrFail($request->input('category_id'));
+        $question->category()->associate($category)->update($validated);
+        // $question->category()->associate($category);
+        $question->save();
 
 
         return redirect()

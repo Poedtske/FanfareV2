@@ -1,12 +1,12 @@
 @extends('layout')
 
-@section('title', $category->category)
+@section('title', $category->name)
 
 @section('content')
 
 <div class="post-item">
     <div class="post-content">
-        <h2>{{ $category->category }}</h2>
+        <h2>{{ $category->name }}</h2>
         @can('update',$category)
         <br>
         <button class="update"><a href="{{ route('categories.edit',[$category]) }}">Edit post</a></button>
@@ -25,6 +25,12 @@
         <small>Updated: <b>{{ $category->updated_at }}</b></small>
         @endif
 
+        @foreach ($category->questions as $question)
+            <div>
+                {{ $question->title }}
+                <!-- Display other question details as needed -->
+            </div>
+        @endforeach
     </div>
 </div>
 

@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -46,14 +48,17 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function posts(){
+    public function posts():HasMany
+    {
         return $this->hasMany(Post::class);
     }
 
-    public function categories(){
+    public function categories():HasMany
+    {
         return $this->hasMany(Category::class);
     }
-    public function questions(){
+    public function questions():HasMany
+    {
         return $this->hasMany(Question::class);
     }
 }
