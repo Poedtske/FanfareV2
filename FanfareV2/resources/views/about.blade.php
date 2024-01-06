@@ -76,13 +76,13 @@
     <h1><a href="https://chat.openai.com/">chatGPT</a></h1>
     <br>
     <p class="about">
-    was used for finding sytaxes or small codes like the factories, the seeders background cover post,...
+    was used for finding sytaxes or small codes like the factories, the seeders, background cover post,...
     </p>
 </section>
 
 <section style=" background-color:black ; color:white ;">
 
-    <h1><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/time"><input type="time"></a></h1>
+    <h1><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/time">time input</a></h1>
     <br>
     <p class="about">
     for form input time
