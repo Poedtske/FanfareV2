@@ -62,8 +62,71 @@
     </p>
 </section>
 
+<section style=" background-color:grey ; color:white ;">
+
+    <h1><a href="https://github.com/Poedtske/FanfareV2">Git Directory</a></h1>
+    <br>
+    <p class="about">
+    This my Git directory
+    </p>
+</section>
+
+<section style=" background-color:white ; color:black ;">
+
+    <h1><a href="https://chat.openai.com/">chatGPT</a></h1>
+    <br>
+    <p class="about">
+    was used for finding sytaxes or small codes like the factories, the seeders background cover post,...
+    </p>
+</section>
+
+<section style=" background-color:black ; color:white ;">
+
+    <h1><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/time"><input type="time"></a></h1>
+    <br>
+    <p class="about">
+    for form input time
+    </p>
+</section>
+
+<section style=" background-color:grey ; color:white ;">
+
+    <h1><a href="https://laravel.com/docs/10.x/eloquent-factories">eloquent-factories</a></h1>
+    <br>
+    <p class="about">
+    documentation factories
+    </p>
+</section>
+
+<section style=" background-color:white ; color:black ;">
+
+    <h1><a href="https://laravel.com/docs/master/eloquent-relationships">eloquent-relationships</a></h1>
+    <br>
+    <p class="about">
+    documentation relationships database
+    </p>
+</section>
+
+<section style=" background-color:black ; color:white;">
+
+    <h1><a href="https://laravel.com/docs/5.7/validation">validation</a></h1>
+    <br>
+    <p class="about">
+    documentation validation
+    </p>
+</section>
+{{-- <section style=" background-color: ; color: ;">
+
+    <h1><a href=""></a></h1>
+    <br>
+    <p class="about">
+
+    </p>
+</section> --}}
 
 
 
 
+
+https://laravel.com/docs/5.7/validation
 @endsection
