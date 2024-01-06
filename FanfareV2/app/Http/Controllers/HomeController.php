@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Post;
 
@@ -11,6 +12,11 @@ class HomeController extends Controller
     public function home() {
         $posts=Post::all();
         return view('home',['posts'=>$posts]);
+    }
+
+    public function faq() {
+        $categories=Category::all();
+        return view('praktischeInfo.faq',['categories'=>$categories]);
     }
 
     public function about() {

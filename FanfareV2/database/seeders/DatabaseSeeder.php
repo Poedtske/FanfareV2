@@ -41,8 +41,11 @@ class DatabaseSeeder extends Seeder
 
 
         \App\Models\Post::factory()->create([
-            'title' => 'Concert 11/11/2023',
-            'description' => 'The concert was very successful',
+            'title' => 'Groot Concert',
+            'description' => 'The concert is in xxxx location',
+            'cover'=>'images/covers/1.jpg',
+            'date'=>'2024-03-24',
+            'time'=>'19:00',
         ]);
 
         \App\Models\Post::factory()->create([

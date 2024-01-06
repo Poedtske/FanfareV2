@@ -13,6 +13,13 @@ a {
     font-size: 125%;
 }
 
+h1 {
+    text-align: center;
+}
+.about {
+    text-align: center;
+}
+
 /*Post layout*/
 .post-item {
     box-shadow: 5px 10px 8px 0 rgba(0, 0, 0, 0.3);
@@ -63,6 +70,7 @@ main section {
 
 main section p {
     padding-inline: 2em;
+    /* text-align: justify; */
 }
 
 @media (min-width: calc(60rem)) {

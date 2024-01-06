@@ -16,7 +16,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+    @auth
+    @admin
+    <link rel="stylesheet" href="{{asset('css/mainAdmin.css')}}">
+    @else
     <link rel="stylesheet" href="{{asset('css/mainFanfare.css')}}">
+    @endadmin
+    @else
+    <link rel="stylesheet" href="{{asset('css/mainFanfare.css')}}">
+    @endauth
     <link rel="stylesheet" href="{{ asset('css/' . (trim($__env->yieldContent('customstyle','main')) ?? '') . '.css') }}">
     <script src="{{ asset('js/main.js') }}" type="module"></script>
     <script src="{{ asset('js/' . (trim($__env->yieldContent('customstyle')) ?? '') . '.js') }}" type="module"></script>

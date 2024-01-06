@@ -25,6 +25,8 @@ class PostFactory extends Factory
             'title' => $this->faker->name(),
             'description' => $this->faker->paragraph(),
             'user_id' => $this->faker->numberBetween(1, 12),
+            'date' => $this->faker->date('Y-m-d'),
+            'time' => $this->faker->time('H:i'),
         ];
     }
 }

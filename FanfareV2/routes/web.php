@@ -33,6 +33,8 @@ Route::get('/kalender',[HomeController::class, 'kalender'])->name('kalender');
 
 Route::get('/jeugd',[HomeController::class, 'jeugd'])->name('jeugd');
 
+
+
 Route::name('fanfare.')->prefix('fanfare')->group(function(){
     Route::get('/bestuur',[HomeController::class, 'bestuur'])->name('bestuur');
     Route::get('/dirigent',[HomeController::class, 'dirigent'])->name('dirigent');
@@ -43,6 +45,7 @@ Route::name('fanfare.')->prefix('fanfare')->group(function(){
 Route::name('praktischeInfo.')->group(function(){
     Route::get('praktischeInfo/belangrijkeDocumenten',[HomeController::class, 'belangrijkeDocumenten'])->name('belangrijkeDocumenten');
     Route::get('praktischeInfo/privacyverklaring',[HomeController::class, 'privacyverklaring'])->name('privacyverklaring');
+    Route::get('praktischeInfo/faq',[HomeController::class, 'faq'])->name('faq');
 });
 
 Route::resource('posts',PostController::class)

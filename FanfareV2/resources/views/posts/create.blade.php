@@ -22,6 +22,7 @@
         {{ $message }}
     </div>
     @enderror
+
     <div>
         <x-input-label for="cover" :value="__('cover')" />
         <x-text-input id="cover" name="cover" type="file" class="block w-full mt-1" autofocus autocomplete="cover" />
@@ -29,6 +30,22 @@
 
         <x-input-error class="mt-2" :messages="$errors->get('cover')" />
     </div>
+
+    <label>Date</label>
+    <input class="@error('date') error-border @enderror" name="date" type="date" value="{{ old('date') }}">
+    @error('date')
+    <div class="error">
+        {{ $message }}
+    </div>
+    @enderror
+
+    <label>Time</label>
+    <input class="@error('time') error-border @enderror" name="time" type="time" value="{{ old('time') }}">
+    @error('time')
+    <div class="error">
+        {{ $message }}
+    </div>
+    @enderror
     {{-- <div>
         <label>Cover</label>
         <input id="cover" name="cover" type="file" class="@error('cover') error-border @enderror" :value="old('cover')"/>

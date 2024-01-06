@@ -4,7 +4,7 @@
 
 @section('content')
 
-<div class="post-item">
+<div class="post-item" style="background-image: url('{{ asset($post->cover) }}');background-size: cover;">
     <div class="post-content">
         <h2>{{ $post->title }}</h2>
         <p>{{ $post->description }}</p>

@@ -15,6 +15,14 @@ a {
 button {
     cursor: pointer;
 }
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50em;
+    margin-left:auto;
+    margin-right:auto;
+}
 .create{
     padding:1em;
     border:solid white 1px;
@@ -45,7 +53,7 @@ header {
     inset: 0 0 auto 0;
     height: var(--header-height);
 
-    background-color: black;
+    background-color: rgb(164,55,65);
 }
 
 header nav {
@@ -151,7 +159,7 @@ header nav {
         z-index: 99;
         inset: 0;
 
-        background-color: black;
+        background-color: rgb(164,55,65);
         transition: 0.3s;
     }
 
@@ -246,7 +254,7 @@ header nav .dropdown .dropdown-content {
     display: none;
     position: absolute;
     right: 0;
-    background-color: black;
+    background-color: rgb(164,55,65);
     padding: var(--padding-dropdown);
     border-radius: 10%;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
@@ -341,7 +349,7 @@ footer {
     margin-top: auto;
     padding-block: 1rem;
 
-    background-color: black;
+    background-color: rgb(164,55,65);
 }
 
 footer nav {
@@ -420,10 +428,32 @@ footer img {
     }
 }
 
-.item {
+  .adminFunction.delete {
+    background-color: #fa0808;
+  }
+
+  .adminFunction.update {
+    background-color: green;
+  }
+
+  .adminFunction {
+    background-color: #fa6908;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 18px 2px;
+  }
+  .item {
     box-shadow: 5px 10px 8px 0 rgba(0, 0, 0, 0.3);
     /* width: 50%; */
     margin: 30px auto;
     color: black;
     background-color:white;
   }
+
+
+
+/* Optional: Additional styling for the items */
+

@@ -28,10 +28,7 @@ class User extends Authenticatable
         'aboutme',
     ];
 
-    public function isAdmin()
-{
-    return $this->role == 'admin';
-}
+
 
     /**
      * The attributes that should be hidden for serialization.
@@ -65,5 +62,9 @@ class User extends Authenticatable
     public function questions():HasMany
     {
         return $this->hasMany(Question::class);
+    }
+    public function isAdmin()
+    {
+        return $this->role === 'admin';
     }
 }

@@ -28,6 +28,8 @@ class PostFormRequest extends FormRequest
             'title'=>'required',
             'description'=>['required','min:10'],
             'cover'=>['nullable','image',],
+            'date'=>['required','date'],
+            'time'=>['required','string'],
         ];
     }
 }

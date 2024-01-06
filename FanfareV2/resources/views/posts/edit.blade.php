@@ -33,6 +33,22 @@
         <x-input-error class="mt-2" :messages="$errors->get('cover')" />
     </div>
 
+    <label>Date</label>
+    <input class="@error('date') error-border @enderror" name="date" type="date" value="{{ old('date',$post->date) }}">
+    @error('date')
+    <div class="error">
+        {{ $message }}
+    </div>
+    @enderror
+
+    <label>Time</label>
+    <input class="@error('time') error-border @enderror" name="time" type="time" value="{{ old('time',$post->time) }}">
+    @error('time')
+    <div class="error">
+        {{ $message }}
+    </div>
+    @enderror
+
     <button type="submit">Update</button>
 </form>
 @endsection

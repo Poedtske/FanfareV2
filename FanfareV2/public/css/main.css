@@ -193,10 +193,11 @@ ul li .dropdown:hover .dropdown-content {
   /* Flash messages */
 
   .flash-success {
+
     padding: 20px;
     background-color: #33a43a;
     color: white;
-    margin: 20px 0px;
+    margin: 5rem 0px;
     border-radius: 4px;
   }
 
@@ -204,7 +205,7 @@ ul li .dropdown:hover .dropdown-content {
     padding: 20px;
     background-color: rgb(235, 47, 47);
     color: white;
-    margin: 20px 0px;
+    margin: 5rem 0px;
     border-radius: 4px;
   }
 
