@@ -34,10 +34,10 @@ header {
     --auto-columns: 1;
     display: grid;
     grid-template-columns: repeat(var(--auto-columns), auto) auto;
+    grid-template-rows: var(--header-height);
     width: 100%;
     position: fixed;
     inset: 0 0 auto 0;
-
     height: var(--header-height);
 
     background-color: black;
@@ -185,6 +185,11 @@ header nav a {
     padding: 0.5rem;
 }
 
+/* header nav a:hover {
+    background: grey;
+    transition: 0.3s;
+} */
+
 @media (max-width: calc(1333px)) {
     header nav a {
         border-radius: 100vmax;
@@ -202,12 +207,14 @@ header nav .dropdown {
     text-align: center;
     background-color: none;
     position: relative;
-    padding: 1rem;
+    padding: 0.5rem;
+    transition: 0.3s;
 }
 
 header nav .dropdown .dropbtn {
     --padding-dropdown: 0.5rem;
     padding: var(--padding-dropdown);
+    margin-top: 0.25rem;
     padding: 1rem;
     color: white;
     font-size: 125%;
@@ -215,7 +222,12 @@ header nav .dropdown .dropbtn {
     border-radius: 100vmax;
     cursor: pointer;
     background: none;
+    transition: 0.3s;
 }
+/* header nav .dropdown .dropbtn:hover {
+    background: grey;
+    transition: 0.3s;
+} */
 
 header nav .dropdown .dropdown-content {
     display: none;
@@ -226,8 +238,13 @@ header nav .dropdown .dropdown-content {
     border-radius: 10%;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
-    //transition: 0.3s;
+    transition: 0.3s;
 }
+
+/* header nav .dropdown .dropdown-content a:hover {
+    background: grey;
+    transition: 0.3s;
+} */
 
 header nav .dropdown .dropdown-content a {
     margin: 1em;
