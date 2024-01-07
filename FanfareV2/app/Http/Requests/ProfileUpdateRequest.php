@@ -21,6 +21,7 @@ class ProfileUpdateRequest extends FormRequest
             'birthday'=>['nullable','date',],
             'avatar'=>['nullable','image',],
             'aboutme'=>['nullable','string',"max:500"],
+            'role'=>['prohibited'], //when using the form, you can't sneak the role admin in it
         ];
     }
 }

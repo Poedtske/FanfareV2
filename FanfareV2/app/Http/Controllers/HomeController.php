@@ -32,7 +32,8 @@ class HomeController extends Controller
     }
 
     public function kalender() {
-        return view('kalender');
+        $posts=Post::all();
+        return view('kalender',['posts'=>$posts]);
     }
 
     public function bestuur(){

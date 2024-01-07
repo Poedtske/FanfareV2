@@ -78,6 +78,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+Route::get('/profile/{user_id}', [ProfileController::class, 'showProfile'])->name('profile.show');
 
 Route::controller(ImageController::class)->group(function(){
     Route::get('/image-upload', 'index')->name('image.form');
