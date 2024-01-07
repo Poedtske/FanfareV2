@@ -9,8 +9,8 @@
 @admin
 <br>
 <div class=".container">
-    <button class="create flex-item"><a class="" href="{{route('categories.create')}}">Create Category</a></button>
-    <button class="create flex-item"><a class="" href="{{route('questions.create')}}">Create Question</a></button>
+    <a class="" href="{{route('categories.create')}}"><button class="create flex-item">Create Category</button></a>
+    <a class="" href="{{route('questions.create')}}"><button class="create flex-item">Create Question</button></a>
 </div>
 
 
@@ -20,7 +20,7 @@
 @foreach ($categories as $category)
         <h1 style="scale:150%; margin-top:6rem; z-index:-5; overflow:hidden;">{{ $category->name }}</h1>
         @can('update',$category)
-            <button class="update adminFunction"><a href="{{ route('categories.edit',[$category]) }}">Edit category</a></button>
+            <a href="{{ route('categories.edit',[$category]) }}"><button class="update adminFunction">Edit category</button></a>
         @endcan
         @can('delete',$category)
             <form method="POST" action="{{ route('categories.destroy',[$category]) }}">
@@ -38,7 +38,7 @@
             </section>
             @can('update',$question)
             <br>
-            <button class="update adminFunction"><a href="{{ route('questions.edit',[$question]) }}">Edit question</a></button>
+            <a href="{{ route('questions.edit',[$question]) }}"><button class="update adminFunction">Edit question</button></a>
 
             @endcan
             @can('delete',$question)

@@ -10,7 +10,7 @@
         <p>{{ $post->description }}</p>
         @can('update',$post)
         <br>
-        <button class="update"><a href="{{ route('posts.edit',[$post]) }}">Edit post</a></button>
+        <a href="{{ route('posts.edit',[$post]) }}"><button class="update">Edit post</button></a>
 
         @endcan
         @can('delete',$post)

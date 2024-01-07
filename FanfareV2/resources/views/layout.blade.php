@@ -47,6 +47,9 @@
     @endauth
 </ul> --}}
 
+
+
+<main>
 @includeWhen($errors->any(),'_errors')
 
 @if (session('success'))
@@ -55,8 +58,7 @@
 </div>
 @endif
 
-<main>
-    @yield('content')
+@yield('content')
 </main>
 
 @include('_footer')

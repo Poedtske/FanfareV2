@@ -9,7 +9,7 @@
         <h2>{{ $category->name }}</h2>
         @can('update',$category)
         <br>
-        <button class="update"><a href="{{ route('categories.edit',[$category]) }}">Edit post</a></button>
+        <a href="{{ route('categories.edit',[$category]) }}"><button class="update">Edit post</button></a>
 
         @endcan
         @can('delete',$category)

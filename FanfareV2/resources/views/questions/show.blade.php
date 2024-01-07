@@ -11,7 +11,7 @@
         <p>{{ $question->anwser }}</p>
         @can('update',$question)
         <br>
-        <button class="update"><a href="{{ route('questions.edit',[$question]) }}">Edit question</a></button>
+        <a href="{{ route('questions.edit',[$question]) }}"><button class="update">Edit question</button></a>
 
         @endcan
         @can('delete',$question)

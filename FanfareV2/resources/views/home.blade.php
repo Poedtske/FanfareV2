@@ -57,7 +57,7 @@
 
       @auth
       @admin
-      <button class="create"><a class="" href="{{route('posts.create')}}">Create Post</a></button>
+      <a href="{{route('posts.create')}}"><button class="create">Create Post</button></a>
       @forelse($posts as $post)
         <div class="post-item">
             <div class="post-content">
