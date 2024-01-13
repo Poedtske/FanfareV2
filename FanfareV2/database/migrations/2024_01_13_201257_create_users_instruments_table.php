@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users_instruments', function (Blueprint $table) {
-            $table->id();
+
             $table->unsignedBiginteger('users_id')->unsigned();
             $table->unsignedBiginteger('instruments_id')->unsigned();
 
@@ -20,7 +20,7 @@ return new class extends Migration
                  ->on('users')->onDelete('cascade');
             $table->foreign('instruments_id')->references('id')
                 ->on('instruments')->onDelete('cascade');
-            $table->timestamps();
+
         });
     }
 

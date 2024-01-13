@@ -17,9 +17,9 @@ class Instrument extends Model
 
     public function category(): HasOne
     {
-        return $this->hasOne(InstrumentCategorie::class);
+        return $this->hasOne(InstrumentCategory::class);
     }
-    public function user():BelongsToMany
+    public function users():BelongsToMany
     {
         return $this->belongsToMany(User::class);
     }

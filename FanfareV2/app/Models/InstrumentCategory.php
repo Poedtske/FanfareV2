@@ -13,7 +13,7 @@ class InstrumentCategory extends Model
         'name',
     ];
 
-    public function instruments():BelongsTo
+    public function instrument():BelongsTo
     {
         return $this->belongsTo(Instrument::class);
     }

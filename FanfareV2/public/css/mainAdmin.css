@@ -278,7 +278,16 @@ header nav .dropdown .dropdown-content a {
     border-radius: 100vmax;
     padding-inline: 1rem;
     border-color: white;
+    background-color:rgb(128, 21, 21);
     border: none;
+}
+
+.active{
+    color:black;
+}
+
+.active header nav .dropdown .dropdown-content a {
+    color:black;
 }
 
 .dropdown:hover .dropdown-content {
@@ -300,7 +309,7 @@ header nav .dropdown .dropdown-content a {
     }
 
     header nav .dropdown .dropbtn {
-        background-color: hsl(rgb(20, 20, 20));
+        background-color: hsl(rgb(128, 21, 21));
         border-radius: 100vmax;
         padding-top: 0rem;
         padding-bottom: 0.5rem;
@@ -313,7 +322,7 @@ header nav .dropdown .dropdown-content a {
     }
 
     header nav .dropdown .dropdown-content {
-        background-color: hsl(257, 15%, 9%);
+        background-color: rgba(164,55,65)
         border-radius: 10%;
         padding: var(--padding-dropdown);
         box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
@@ -325,10 +334,10 @@ header nav .dropdown .dropdown-content a {
         border: none;
         border-radius: 100vmax;
         padding-inline: 1rem;
-        background-color: hsl(255, 17%, 5%);
+        background-color: rgb(128, 21, 21);
     }
     header nav .dropdown .dropdown-content {
-        background-color: hsl(257, 15%, 9%);
+        background-color: rgb(164,55,65);
         border-radius: 10%;
         padding: var(--padding-dropdown);
         box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);

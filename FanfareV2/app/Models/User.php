@@ -81,7 +81,7 @@ class User extends Authenticatable
         return $this->role === 'admin';
     }
 
-    public function instrument():BelongsToMany
+    public function instruments():BelongsToMany
     {
         return $this->belongsToMany(Instrument::class);
     }
