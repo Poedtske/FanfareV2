@@ -12,7 +12,7 @@ class Instrument extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
+        'name','img',
     ];
 
     public function category(): HasOne
