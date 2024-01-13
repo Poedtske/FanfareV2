@@ -42,7 +42,7 @@ class AuthController extends Controller
 
         if(Auth::attempt($credentials)){
             return redirect()
-                ->route('home2')
+                ->route('dashboard')
                 ->with('success','You have successfully logged in');
         }
 

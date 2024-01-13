@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+use App\Models\Contact;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
@@ -22,6 +24,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\ContactController;
 
 Route::get('/', [HomeController::class, 'home'])->name('home2');
 
@@ -42,10 +45,10 @@ Route::name('fanfare.')->prefix('fanfare')->group(function(){
     Route::get('/instrumenten',[HomeController::class, 'instrumenten'])->name('instrumenten');
 });
 
-Route::name('praktischeInfo.')->group(function(){
-    Route::get('praktischeInfo/belangrijkeDocumenten',[HomeController::class, 'belangrijkeDocumenten'])->name('belangrijkeDocumenten');
-    Route::get('praktischeInfo/privacyverklaring',[HomeController::class, 'privacyverklaring'])->name('privacyverklaring');
-    Route::get('praktischeInfo/faq',[HomeController::class, 'faq'])->name('faq');
+Route::name('praktischeInfo.')->prefix('praktischeInfo')->group(function(){
+    Route::get('/belangrijkeDocumenten',[HomeController::class, 'belangrijkeDocumenten'])->name('belangrijkeDocumenten');
+    Route::get('/privacyverklaring',[HomeController::class, 'privacyverklaring'])->name('privacyverklaring');
+    Route::get('/faq',[HomeController::class, 'faq'])->name('faq');
 });
 
 Route::resource('posts',PostController::class)
@@ -60,6 +63,10 @@ Route::resource('questions',QuestionController::class)
 ->except(['index'])
 ->middleware(('admin'));
 
+Route::get('contact/create',[ContactController::class,'create'])->name('contact.create')->middleware(('guest'));
+Route::post('contact/store',[ContactController::class,'store'])->name('contact.store')->middleware(('guest'));
+Route::delete('contact/{contact}',[ContactController::class,'destroy'])->name('contact.destroy')->middleware(('admin'));
+
 Route::match(['get','post'],'/register',[RegisterController::class,'register'])->name('register')
 ->middleware(('guest'));
 
@@ -70,8 +77,10 @@ Route::get('/logout',[AuthenticatedSessionController::class, 'destroy'])->name('
 ->middleware(('auth'));
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    $messages=Contact::all();
+    return view('dashboard',['messages'=>$messages]);
 })->middleware(['auth', 'verified'])->name('dashboard');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

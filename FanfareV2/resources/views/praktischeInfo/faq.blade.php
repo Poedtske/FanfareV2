@@ -16,6 +16,11 @@
 
 
 @endadmin
+@else
+<br>
+<div class=".container">
+    <a class="" href="{{route('contact.create')}}"><button class="create flex-item">Ask a Question via de contactpage</button></a>
+</div>
 @endauth
 @foreach ($categories as $category)
         <h1 style="scale:150%; margin-top:6rem; z-index:-5; overflow:hidden;">{{ $category->name }}</h1>

@@ -51,6 +51,13 @@
       </div>
 
     </div>
+    @auth
+    @else
+    <br>
+    <div class=".container">
+        <a class="" href="{{route('contact.create')}}"><button style="background-color: black" class="create flex-item">Contact us</button></a>
+    </div>
+@endauth
   </section>
 
 @endsection
