@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users_instruments', function (Blueprint $table) {
+        Schema::create('instrument_user', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBiginteger('user_id')->unsigned();
+            $table->unsignedBiginteger('instrument_id')->unsigned();
 
-            $table->unsignedBiginteger('users_id')->unsigned();
-            $table->unsignedBiginteger('instruments_id')->unsigned();
-
-            $table->foreign('users_id')->references('id')
+            $table->foreign('user_id')->references('id')
                  ->on('users')->onDelete('cascade');
-            $table->foreign('instruments_id')->references('id')
+            $table->foreign('instrument_id')->references('id')
                 ->on('instruments')->onDelete('cascade');
 
         });
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users_instruments');
+        Schema::dropIfExists('instrument_user');
     }
 };

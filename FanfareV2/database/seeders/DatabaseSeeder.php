@@ -12,7 +12,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\User::factory(10)->create();
+        \App\Models\User::factory(37)->create();
 
         \App\Models\User::factory()->create([
             'name' => 'admin',
@@ -76,11 +76,11 @@ class DatabaseSeeder extends Seeder
             ['name' => 'Houtblazers'],
             ['name' => 'Slagwerk'],
         ];
-        $instruments=[];
+        $instrumentsArray=[];
         \App\Models\InstrumentCategory::factory()->createMany(
             $instrumentCategories
         );
-        $instruments=[
+        $instrumentsArray=[
             [
                 'name' => 'Mib Cornet',
                 'img' => 'path/to/cornet.png',
@@ -179,9 +179,15 @@ class DatabaseSeeder extends Seeder
         ];
 
         \App\Models\Instrument::factory()->createMany(
-            $instruments
+            $instrumentsArray
         );
 
+        \App\Models\User::all()->each(function($user){
+            $instruments=\App\Models\Instrument::all()->random(rand(1,4))->pluck('id');
+            $user->instruments()->attach($instruments);
+        });
+
+//kud tinder tiran
 
 
 
