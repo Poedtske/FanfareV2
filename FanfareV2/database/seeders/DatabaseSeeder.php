@@ -12,7 +12,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\User::factory(10)->create();
+        \App\Models\User::factory(37)->create();
 
         \App\Models\User::factory()->create([
             'name' => 'admin',
@@ -68,7 +68,130 @@ class DatabaseSeeder extends Seeder
             'category_id'=>1,
         ]);
 
+        \App\Models\Contact::factory(5)->create();
+
         \App\Models\Question::factory(20)->create();
+        $instrumentCategories = [
+            ['name' => 'Koperblazers'],
+            ['name' => 'Houtblazers'],
+            ['name' => 'Slagwerk'],
+        ];
+        $instrumentsArray=[];
+        \App\Models\InstrumentCategory::factory()->createMany(
+            $instrumentCategories
+        );
+        $instrumentsArray=[
+            [
+                'name' => 'Mib Cornet',
+                'img' => 'path/to/cornet.png',
+                'instrument_category_id' =>1, // Koperblazers
+            ],
+            [
+                'name' => 'Trompet',
+                'img' => 'path/to/trompet.png',
+                'instrument_category_id' => 1, // Koperblazers
+            ],
+            [
+                'name' => 'Bugel',
+                'img' => 'path/to/bugel.png',
+                'instrument_category_id' => 1, // Koperblazers
+            ],
+            [
+                'name' => 'Altohoorn',
+                'img' => 'path/to/altohoorn.png',
+                'instrument_category_id' => 1, // Koperblazers
+            ],
+            [
+                'name' => 'Franse Hoorn',
+                'img' => 'path/to/franse hoorn.png',
+                'instrument_category_id' => 1, // Koperblazers
+            ],
+            [
+                'name' => 'Trombone',
+                'img' => 'path/to/trombone.png',
+                'instrument_category_id' => 1, // Koperblazers
+            ],
+            [
+                'name' => 'Bastrombone',
+                'img' => 'path/to/bastrombone.png',
+                'instrument_category_id' => 1, // Koperblazers
+            ],
+            [
+                'name' => 'Bariton',
+                'img' => 'path/to/bariton.png',
+                'instrument_category_id' => 1, // Koperblazers
+            ],
+            [
+                'name' => 'Euphonium',
+                'img' => 'path/to/euphonium.png',
+                'instrument_category_id' => 1, // Koperblazers
+            ],
+            [
+                'name' => 'Mib Bas',
+                'img' => 'path/to/Mib bas.png',
+                'instrument_category_id' => 1, // Koperblazers
+            ],
+            [
+                'name' => 'Sib Bas',
+                'img' => 'path/to/Sib bas.png',
+                'instrument_category_id' => 1, // Koperblazers
+            ],
+            [
+                'name' => 'Sax Sopraan',
+                'img' => 'path/to/sopraansax.png',
+                'instrument_category_id' => 2, // Houtblazers
+            ],
+            [
+                'name' => 'Sax Alto',
+                'img' => 'path/to/altsax.png',
+                'instrument_category_id' => 2, // Houtblazers
+            ],
+            [
+                'name' => 'Sax Tenor',
+                'img' => 'path/to/tenorsax.png',
+                'instrument_category_id' => 2, // Houtblazers
+            ],
+            [
+                'name' => 'Sax Bariton',
+                'img' => 'path/to/saxbariton.png',
+                'instrument_category_id' => 2, // Houtblazers
+            ],
+            [
+                'name' => 'Drumstel',
+                'img' => 'path/to/drumstel.png',
+                'instrument_category_id' => 3, // Slagwerk
+            ],
+            [
+                'name' => 'Melodisch Slagwerk',
+                'img' => 'path/to/melodisch slagwerk.png',
+                'instrument_category_id' => 3, // Slagwerk
+            ],
+            [
+                'name' => 'Pauken',
+                'img' => 'path/to/pauken.png',
+                'instrument_category_id' => 3, // Slagwerk
+            ],
+            [
+                'name' => 'Percussie',
+                'img' => 'path/to/percussie.png',
+                'instrument_category_id' => 3, // Slagwerk
+            ],
+        ];
+
+        \App\Models\Instrument::factory()->createMany(
+            $instrumentsArray
+        );
+
+        \App\Models\User::all()->each(function($user){
+            $instruments=\App\Models\Instrument::all()->random(rand(1,4))->pluck('id');
+            $user->instruments()->attach($instruments);
+        });
+
+//kud tinder tiran
+
+
+
+
 
     }
 }

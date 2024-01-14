@@ -27,7 +27,7 @@
         <x-input-label for="cover" :value="__('cover')" />
         <x-text-input id="cover" name="cover" type="file" class="block w-full mt-1" autofocus autocomplete="cover" />
         @if($post->cover!=null)
-        <img src="{{$post->cover}}" style="width:80px;margin-top: 10px;">
+        <img src="{{asset($post->cover)}}" style="width:80px;margin-top: 10px;">
         @endif
 
         <x-input-error class="mt-2" :messages="$errors->get('cover')" />

@@ -47,7 +47,13 @@ header {
 
     background-color: black;
 }
+.active{
+    color:orange;
+}
 
+.active header nav .dropdown .dropdown-content a {
+    color:orange;
+}
 header nav {
     padding-right: 1em;
 }
