@@ -7,11 +7,29 @@
 @section('content')
 <h1>About page </h1>
 <p>This is the about page.</p>
+<section style="background-color: rgb(1, 133, 1)">
+    <p class="about">
+        Deployment
+        <br>
+    I would like to deploy this site on the site of the fanfare, I would greatly appreciate it if you could point out the musts
+    before deployent.
+    </p>
+
+</section>
 <section style="background-color: red">
     <p class="about">
         potential error: Auth guard [admin] is not defined
         <br>
     --> composer remove open-admin-org/open-admin
+    </p>
+
+</section>
+<section style="background-color: rgb(255, 94, 0)">
+    <p class="about">
+        potential error: database not starting
+        <br>
+        I always need to delete the aria_log.#######, idlogfile0 and id_logfile1 until i can start the database
+    -->
     </p>
 
 </section>
@@ -124,6 +142,14 @@
     <br>
     <p class="about">
     documentation validation
+    </p>
+</section>
+<section style=" background-color:grey ; color:white ;">
+
+    <h1><a href="https://medium.com/@prevailexcellent/laravel-many-to-many-relationship-complete-tutorial-16025acd5450">Laravel Many To Many Relationship: Complete Tutorial</a></h1>
+    <br>
+    <p class="about">
+        Helped during many to many relation between instruments and users
     </p>
 </section>
 {{-- <section style=" background-color: ; color: ;">

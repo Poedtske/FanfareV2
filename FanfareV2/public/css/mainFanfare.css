@@ -50,9 +50,15 @@ header {
 .active{
     color:orange;
 }
+nav a:hover{
+    color:red;
+}
 
-.active header nav .dropdown .dropdown-content a {
+header nav .dropdown .dropdown-content a .active  {
     color:orange;
+}
+header nav .dropdown .dropdown-content a:hover {
+    color:red;
 }
 header nav {
     padding-right: 1em;
