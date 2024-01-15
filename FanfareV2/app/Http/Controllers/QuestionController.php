@@ -30,13 +30,8 @@ class QuestionController extends Controller
         $validated=$request->validated();
         $category=Category::findOrFail($request->input('category_id'));
 
-        $question=$request->user()->questions()->create($validated)->category()->associate($category);
+        $question=$request->user()->questions()->create($validated)->category()->associate($category->id);
         $question->save();
-
-        // $category->question_id=$question->id;
-        // Category::create([$category]);
-        // $category->save();
-        // $question=$request->categories()->questions()->create($validated);
 
 
         return redirect()

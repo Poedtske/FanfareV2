@@ -83,97 +83,97 @@ class DatabaseSeeder extends Seeder
         $instrumentsArray=[
             [
                 'name' => 'Mib Cornet',
-                'img' => 'path/to/cornet.png',
+                'img' => 'images/instrumentFotos/cornet.png',
                 'instrument_category_id' =>1, // Koperblazers
             ],
             [
                 'name' => 'Trompet',
-                'img' => 'path/to/trompet.png',
+                'img' => 'images/instrumentFotos/trompet.png',
                 'instrument_category_id' => 1, // Koperblazers
             ],
             [
                 'name' => 'Bugel',
-                'img' => 'path/to/bugel.png',
+                'img' => 'images/instrumentFotos/bugel.png',
                 'instrument_category_id' => 1, // Koperblazers
             ],
             [
                 'name' => 'Altohoorn',
-                'img' => 'path/to/altohoorn.png',
+                'img' => 'images/instrumentFotos/altohoorn.png',
                 'instrument_category_id' => 1, // Koperblazers
             ],
             [
                 'name' => 'Franse Hoorn',
-                'img' => 'path/to/franse hoorn.png',
+                'img' => 'images/instrumentFotos/franse hoorn.png',
                 'instrument_category_id' => 1, // Koperblazers
             ],
             [
                 'name' => 'Trombone',
-                'img' => 'path/to/trombone.png',
+                'img' => 'images/instrumentFotos/trombone.png',
                 'instrument_category_id' => 1, // Koperblazers
             ],
             [
                 'name' => 'Bastrombone',
-                'img' => 'path/to/bastrombone.png',
+                'img' => 'images/instrumentFotos/bastrombone.png',
                 'instrument_category_id' => 1, // Koperblazers
             ],
             [
                 'name' => 'Bariton',
-                'img' => 'path/to/bariton.png',
+                'img' => 'images/instrumentFotos/bariton.png',
                 'instrument_category_id' => 1, // Koperblazers
             ],
             [
                 'name' => 'Euphonium',
-                'img' => 'path/to/euphonium.png',
+                'img' => 'images/instrumentFotos/euphonium.png',
                 'instrument_category_id' => 1, // Koperblazers
             ],
             [
                 'name' => 'Mib Bas',
-                'img' => 'path/to/Mib bas.png',
+                'img' => 'images/instrumentFotos/Mib bas.png',
                 'instrument_category_id' => 1, // Koperblazers
             ],
             [
                 'name' => 'Sib Bas',
-                'img' => 'path/to/Sib bas.png',
+                'img' => 'images/instrumentFotos/Sib bas.png',
                 'instrument_category_id' => 1, // Koperblazers
             ],
             [
                 'name' => 'Sax Sopraan',
-                'img' => 'path/to/sopraansax.png',
+                'img' => 'images/instrumentFotos/sopraansax.png',
                 'instrument_category_id' => 2, // Houtblazers
             ],
             [
                 'name' => 'Sax Alto',
-                'img' => 'path/to/altsax.png',
+                'img' => 'images/instrumentFotos/altsax.png',
                 'instrument_category_id' => 2, // Houtblazers
             ],
             [
                 'name' => 'Sax Tenor',
-                'img' => 'path/to/tenorsax.png',
+                'img' => 'images/instrumentFotos/tenorsax.png',
                 'instrument_category_id' => 2, // Houtblazers
             ],
             [
                 'name' => 'Sax Bariton',
-                'img' => 'path/to/saxbariton.png',
+                'img' => 'images/instrumentFotos/saxbariton.png',
                 'instrument_category_id' => 2, // Houtblazers
             ],
             [
                 'name' => 'Drumstel',
-                'img' => 'path/to/drumstel.png',
+                'img' => 'images/instrumentFotos/drumstel.png',
                 'instrument_category_id' => 3, // Slagwerk
             ],
             [
                 'name' => 'Melodisch Slagwerk',
-                'img' => 'path/to/melodisch slagwerk.png',
+                'img' => 'images/instrumentFotos/melodisch slagwerk.png',
                 'instrument_category_id' => 3, // Slagwerk
             ],
             [
                 'name' => 'Pauken',
-                'img' => 'path/to/pauken.png',
+                'img' => 'images/instrumentFotos/pauken.png',
                 'instrument_category_id' => 3, // Slagwerk
             ],
             [
                 'name' => 'Percussie',
-                'img' => 'path/to/percussie.png',
+                'img' => 'images/instrumentFotos/percussie.png',
                 'instrument_category_id' => 3, // Slagwerk
             ],
         ];

@@ -51,6 +51,8 @@ Route::name('praktischeInfo.')->prefix('praktischeInfo')->group(function(){
     Route::get('/faq',[HomeController::class, 'faq'])->name('faq');
 });
 
+Route::get('/members', [HomeController::class, 'members'])->name('members');
+
 Route::resource('posts',PostController::class)
 ->except(['index'])
 ->middleware(('admin'));
@@ -83,11 +85,13 @@ Route::get('/dashboard', function () {
 
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit')->middleware(['auth']);
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update')->middleware(['auth']);
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy')->middleware(['auth']);
 });
 Route::get('/profile/{user_id}', [ProfileController::class, 'showProfile'])->name('profile.show');
+Route::post('/profile/pro{user_id}', [ProfileController::class, 'promote'])->name('profile.promote')->middleware(['admin']);
+Route::post('/profile/dem{user_id}', [ProfileController::class, 'demote'])->name('profile.demote')->middleware(['admin']);
 
 Route::controller(ImageController::class)->group(function(){
     Route::get('/image-upload', 'index')->name('image.form');

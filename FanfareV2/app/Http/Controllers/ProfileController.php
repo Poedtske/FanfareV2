@@ -25,6 +25,22 @@ class ProfileController extends Controller
         ]);
     }
 
+    public function promote(Request $request){
+        $newAdmin=User::find($request->input('id'));
+        $newAdmin->role='admin';
+
+        $newAdmin->save();
+        return Redirect::route('profile.show',$newAdmin->id)->with('status', 'profile-updated');
+    }
+
+    public function demote(Request $request){
+        $newAdmin=User::find($request->input('id'));
+        $newAdmin->role='user';
+
+        $newAdmin->save();
+        return Redirect::route('profile.show',$newAdmin->id)->with('status', 'profile-updated');
+    }
+
     public function showProfile(int $id)
     {
 

@@ -37,8 +37,9 @@ class HomeController extends Controller
         return view('kalender',['posts'=>$posts]);
     }
 
-    public function leden(){
+    public function members(){
         $users=User::all();
+        return view('members',['users'=>$users]);
     }
 
     public function bestuur(){

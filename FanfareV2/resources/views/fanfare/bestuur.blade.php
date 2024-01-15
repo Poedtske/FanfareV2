@@ -58,6 +58,9 @@
         <a class="" href="{{route('contact.create')}}"><button style="background-color: black" class="create flex-item">Contact us</button></a>
     </div>
 @endauth
+<div class=".container">
+    <a class="" href="{{route('members')}}"><button style="background-color: black" class="create flex-item">Member List</button></a>
+</div>
   </section>
 
 @endsection
