@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\User;
 
 class HomeController extends Controller
 {
@@ -34,6 +35,10 @@ class HomeController extends Controller
     public function kalender() {
         $posts=Post::all();
         return view('kalender',['posts'=>$posts]);
+    }
+
+    public function leden(){
+        $users=User::all();
     }
 
     public function bestuur(){
