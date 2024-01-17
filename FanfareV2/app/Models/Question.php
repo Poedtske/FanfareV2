@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Question extends Model
 {
     use HasFactory;
-    protected $fillable=['title','question','anwser'];
+    protected $fillable=['title','question','anwser','category_id'];
 
     public function user():BelongsTo
     {
