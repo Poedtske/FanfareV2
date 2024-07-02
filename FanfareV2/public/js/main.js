@@ -6,10 +6,10 @@ window.onload = () => {
   hamburgerBtn.setAttribute("aria-expanded", "false");
 };
 const invertAria = (el, attr) => {
-  console.log(el, attr);
-  console.log("el.attribute: " + el.getAttribute(`aria-${attr}`));
+//   console.log(el, attr);
+//   console.log("el.attribute: " + el.getAttribute(`aria-${attr}`));
   el.setAttribute(`aria-${attr}`, el.getAttribute(`aria-${attr}`) !== "true");
-  console.log("el.attribute: " + el.getAttribute(`aria-${attr}`));
+//   console.log("el.attribute: " + el.getAttribute(`aria-${attr}`));
 };
 
 let convertRemToPixels=(rem) =>{
@@ -22,15 +22,15 @@ const isMobile = /Mobi|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera 
 const eventToUse = isMobile ? "touchend" : "click";
 
 if (isMobile) {
-  console.log("Mobile device detected");
+//   console.log("Mobile device detected");
 } else {
-  console.log("Desktop device detected");
+//   console.log("Desktop device detected");
 }
 
 hamburgerBtn.addEventListener(
   eventToUse,
   () => {
-    console.log(eventToUse);
+    // console.log(eventToUse);
     [hamburgerBtn, nav].forEach((el) => invertAria(el, "expanded"));
   },
   { passive: true }

@@ -1,7 +1,18 @@
 <footer>
-    <button >
-      <a href="https://www.benvansande.be/" target="_blank"><img class="fotos" src="{{ asset('images/hoofdSponsor/ben van sande.png') }}" alt="Hoofdsponsor" /></a>
-    </button>
+    <?php
+        use App\Models\Sponsor;
+        $sponsor=Sponsor::orderBy('sponsored','desc')->first();
+    ?>
+    @if ($sponsor->url)
+        <button >
+            <a href={{ $sponsor->url }} target="_blank"><img class="fotos" src="{{ $sponsor->logo }}" alt="Hoofdsponsor" /></a>
+        </button>
+    @else
+        <button id="noUrl">
+            <img class="fotos" src="{{ $sponsor->logo }}" alt="Hoofdsponsor" />
+        </button>
+    @endif
+
     <div id="mail">
       k.f.demoedigevrienden@gmail.com
     </div>
@@ -9,12 +20,12 @@
       <a href="https://www.facebook.com/groups/284633908275549" target="_blank">
         <i class="fab fa-facebook"></i>
       </a>
-      <a href="#" target="_blank">
-        <i class="fab fa-youtube"></i>
+      <a href="https://spond.com/client/groups/4B54CE00ED8F4936840114345105B38C" target="_blank">
+        <img id="Spond" src="{{ asset('images/logos/spond.png') }}" alt="Spond-logo">
       </a>
       <a href="https://www.instagram.com/instaporkestdmv/" target="_blank">
         <i class="fab fa-instagram"></i>
       </a>
     </nav>
 
-  </footer>
+</footer>

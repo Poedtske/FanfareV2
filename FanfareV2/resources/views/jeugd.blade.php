@@ -8,7 +8,7 @@
 
 @section('content')
 <section style="background-color: black;">
-    <img id="logoJeugd" src="{{ asset('images/logoJeugd.png') }}" alt="logoJeugd">
+    <img id="logoJeugd" src="{{ asset('images/logos/logosFanfare/logoJeugd.png') }}" alt="logoJeugd">
   </section>
 
   <section style="background-color: gray;">

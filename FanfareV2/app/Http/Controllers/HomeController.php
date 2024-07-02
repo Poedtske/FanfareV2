@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Event;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\User;
@@ -11,8 +12,9 @@ class HomeController extends Controller
 {
     //controller methods= actions
     public function home() {
-        $posts=Post::all();
-        return view('home',['posts'=>$posts]);
+        // $events=Event::all();
+        $events=Event::orderBy('date')->get();
+        return view('home',['events'=>$events]);
     }
 
     public function faq() {

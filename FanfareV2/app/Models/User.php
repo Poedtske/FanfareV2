@@ -85,4 +85,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Instrument::class);
     }
+
+    public function sponsors():HasMany
+    {
+        return $this->hasMany(Sponsor::class);
+    }
 }

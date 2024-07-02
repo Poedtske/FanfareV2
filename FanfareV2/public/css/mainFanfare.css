@@ -48,17 +48,16 @@ header {
     background-color: black;
 }
 .active{
-    color:orange;
+    /* color:orange; */
 }
 nav a:hover{
-    color:red;
+    /* color:red; */
 }
-
 header nav .dropdown .dropdown-content a .active  {
-    color:orange;
+    /* color:orange; */
 }
 header nav .dropdown .dropdown-content a:hover {
-    color:red;
+    /* color:red; */
 }
 header nav {
     padding-right: 1em;
@@ -262,7 +261,7 @@ header nav .dropdown .dropdown-content {
     padding: var(--padding-dropdown);
     border-radius: 10%;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
+    z-index: 100;
     transition: 0.3s;
 }
 
@@ -282,6 +281,7 @@ header nav .dropdown .dropdown-content a {
     border-radius: 100vmax;
     padding-inline: 1rem;
     border-color: white;
+
     border: none;
 }
 
@@ -321,7 +321,7 @@ header nav .dropdown .dropdown-content a {
         border-radius: 10%;
         padding: var(--padding-dropdown);
         box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-        z-index: 1;
+        z-index: 100;
         //transition: 0.3s;
     }
     header nav .dropdown .dropdown-content a {
@@ -336,7 +336,7 @@ header nav .dropdown .dropdown-content a {
         border-radius: 10%;
         padding: var(--padding-dropdown);
         box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-        z-index: 1;
+        z-index: 100;
         //transition: 0.3s;
     }
     .dropdown:hover .dropdown-content {
@@ -352,7 +352,7 @@ footer {
     gap: 0.5rem;
     margin-top: auto;
     padding-block: 1rem;
-
+    z-index: -10;
     background-color: black;
 }
 
@@ -361,11 +361,12 @@ footer nav {
     gap: 0.25rem;
     font-size: var(--icon-size);
     justify-content: center;
+    z-index:inherit;
 }
 
 footer nav a {
     padding: 0.4rem 1rem;
-
+    z-index:inherit;
     margin-top: auto;
     margin-bottom: auto;
 }
@@ -389,6 +390,20 @@ footer button {
     margin-top: auto;
     margin-bottom: auto;
     transition: 0.3s;
+    z-index:inherit;
+    /* background-color:#6e6e6e; */
+    background-color:transparent;
+}
+footer img{
+    border-radius: 10%;
+}
+footer button a{
+    height:inherit;
+}
+
+#noUrl:hover{
+    scale:1;
+    cursor: auto;
 }
 
 #mail {
@@ -396,18 +411,37 @@ footer button {
     object-fit: cover;
 }
 
-footer nav a {
+/* footer nav a {
     width: 100%;
     object-fit: cover;
     object-position: center;
-}
+} */
 
 footer :is(a, button):hover {
     scale: 1.15;
+    /* transition: 0.3s; */
+    z-index:inherit;
+}
+footer, a{
+    transition: 0.3s;
+    z-index:inherit;
 }
 
 footer img {
     margin: auto;
+    z-index:inherit;
+}
+
+#Spond{
+    --Spond-weight: 42px;
+    --Spond-height:40px;
+    width: var(--Spond-weight);
+    height:var(--Spond-height);
+    max-width: var(--Spond-weight);
+    max-height:var(--Spond-height);
+    min-width: var(--Spond-weight);
+    min-height:var(--Spond-height);
+    /* margin:0; */
 }
 @media (max-width: 680px) {
     footer {

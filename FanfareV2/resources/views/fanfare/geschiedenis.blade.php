@@ -23,6 +23,7 @@
       Zo werd de "tweeling" geboren, want de fanfare in Grimbergen en Borgt kreeg de naam "De Moedige Vrienden." Ze vroegen de heer Jozef Backx, een hoofdonderwijzer en muziekleraar aan de gemeenteschool in Vilvoorde, om dirigent te worden. De eerste repetitie met 18 muzikanten vond plaats in zaal Henri Sapon. De heer Van Dessel, een houtkoopman langs het kanaal, werd voorzitter en verschillende vooraanstaande personen traden toe tot het bestuur.
     </p>
   </section>
+  <img style="border-radius: 7vmax;" class="pictures" src="{{ asset('images/geschiedenis/oude-foto.jpeg') }}" alt="oude-foto">
   <section>
     <p>
       In augustus 1907 verfraaide de fanfare de dorpsprocessie en in november gaf het jonge gezelschap met veel succes haar eerste Ceciliaconcert in de parochiekerk van Borgt. In 1908 maakte de fanfare haar eerste uitstapje naar de geboorteplaats van de heer Van Dessel. Het aantal muzikanten en ereleden groeide gestaag, mede dankzij financiële steun van de gemeente Grimbergen, waardoor ze nieuwe instrumenten konden aanschaffen.
@@ -65,6 +66,7 @@
 
     </p>
   </section>
+  <img style="border-radius: 7vmax;" class="pictures" src="{{ asset('images/geschiedenis/nieuwere-foto.jpeg') }}" alt="nieuwere-foto">
   <section>
     <p>
       In 2014 bereikte onze fanfare een dieptepunt. Het bestuur was al jaren onderbezet en dat eiste zijn tol. Roger De Vos, 42 jaar bestuurslid, waarvan 32 jaar als voorzitter, diende zijn ontslag in en riep iedereen bijeen voor een Buitengewone Algemene Vergadering.

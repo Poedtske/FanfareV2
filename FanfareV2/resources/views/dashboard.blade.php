@@ -36,7 +36,7 @@
         </div>
     </a>
 
-    @auth
+    {{-- @auth
         @admin
         @foreach ($messages as $message)
         <div class="py-12">
@@ -58,5 +58,5 @@
         </div>
         @endforeach
         @endadmin
-    @endauth
+    @endauth --}}
 </x-app-layout>

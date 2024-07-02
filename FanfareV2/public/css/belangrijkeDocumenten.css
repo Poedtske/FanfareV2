@@ -2,25 +2,25 @@
     --header-height: 5rem;
 }
 
-* {
+/* * {
     padding: 0;
     margin: 0;
-}
+} */
 
-a {
+/* a {
     text-decoration: none;
     color: inherit;
     font-size: 125%;
-}
+} */
 
 button {
     cursor: pointer;
 }
 
-img {
+/* img {
     display: block;
     max-width: 100%;
-}
+} */
 
 html {
     color-scheme: dark;

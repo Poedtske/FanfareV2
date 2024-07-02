@@ -172,13 +172,19 @@ ul li .dropdown:hover .dropdown-content {
   }
 
   .post-item button {
-    background-color: #fa6908;
+    /* background-color: #fa6908; */
+    background-color:transparent;
     color: white;
     padding: 12px 20px;
-    border: none;
+    border: solid white 1px;
     border-radius: 4px;
     cursor: pointer;
     margin: 18px 2px;
+    transition:0.3s
+  }
+
+  .post-item button:hover{
+    scale:1.25;
   }
 
   .post-item .delete {
@@ -186,7 +192,7 @@ ul li .dropdown:hover .dropdown-content {
   }
 
   .post-item .update {
-    background-color: green;
+    background-color: #fa6908;
   }
 
 
@@ -197,7 +203,6 @@ ul li .dropdown:hover .dropdown-content {
     padding: 20px;
     background-color: #33a43a;
     color: white;
-    margin: 5rem 0px;
     border-radius: 4px;
   }
 
@@ -205,7 +210,6 @@ ul li .dropdown:hover .dropdown-content {
     padding: 20px;
     background-color: rgb(235, 47, 47);
     color: white;
-    margin: 5rem 0px;
     border-radius: 4px;
   }
 

@@ -51,48 +51,63 @@
 
       <section style="width: 80%; max-width: 600px;">
         <button>
-          <a href="https://www.trooper.be/nl/trooperverenigingen/kfdemoedigevrienden" target="_blank"><img class="fotos" src="{{ asset('images/trooper_logo.png') }}" alt="Hoofdsponsor" /></a>
+          <a href="https://www.trooper.be/nl/trooperverenigingen/kfdemoedigevrienden" target="_blank"><img class="fotos" src="{{ asset('images/logos/sponsors/trooper_logo.png') }}" alt="Hoofdsponsor" /></a>
         </button>
       </section>
-
       @auth
       @admin
-      <a href="{{route('posts.create')}}"><button class="create">Create Post</button></a>
-      @forelse($posts as $post)
+      @forelse($events as $event)
         <div class="post-item">
             <div class="post-content">
-                <h2><a href="{{ route('posts.show',[$post]) }}">{{ $post->title }}</a></h2>
-                <p>{{ $post->description }}</p>
-                <small>Posted by <b>{{ $post->user->name }}</b></small>
+                <h2><a href="{{ route('events.show',[$event]) }}">{{ $event->title }}</a></h2>
+                <p>datum: {{ \Carbon\Carbon::parse($event->date)->format('d/m/Y') }}</p>
+                @if ($event->description)
+                    <p>beschrijving: {{ $event->description }}</p>
+                @endif
+                <p>begin: {{ $event->start_time }}</p>
+                <p>einde: {{ $event->end_time }}</p>
+                <p>locatie: {{ $event->location }}</p>
+
             </div>
         </div>
         @empty
-            <b>There are no posts yet</b>
+            <b>Er zijn nog geen evenementen</b>
         @endforelse
       @else
-      @forelse($posts as $post)
+      @forelse($events as $event)
       <div class="post-item">
           <div class="post-content">
-              <h2>{{ $post->title }}</h2>
-              <p>{{ $post->description }}</p>
-              <small>Posted by <b>{{ $post->user->name }}</b></small>
+              <h2>{{ $event->title }}</h2>
+              <p>datum: {{ \Carbon\Carbon::parse($event->date)->format('d/m/Y') }}</p>
+              @if ($event->description)
+                  <p>beschrijving: {{ $event->description }}</p>
+              @endif
+              <p>begin: {{ $event->start_time }}</p>
+              <p>einde: {{ $event->end_time }}</p>
+              <p>locatie: {{ $event->location }}</p>
           </div>
       </div>
       @empty
-          <b>There are no posts yet</b>
+          <b>Er zijn nog geen evenementen</b>
       @endforelse
       @endadmin
       @else
-      @forelse($posts as $post)
+      @forelse($events as $event)
       <div class="post-item">
-          <div class="post-content">
-              <h2>{{ $post->title }}</h2>
-              <p>{{ $post->description }}</p>
-              <small>Posted by <b>{{ $post->user->name }}</b></small>
-          </div>
+        <div class="post-content">
+            <h2>{{ $event->title }}</h2>
+            <p>datum: {{ \Carbon\Carbon::parse($event->date)->format('d/m/Y') }}</p>
+            @if ($event->description)
+                <p>beschrijving: {{ $event->description }}</p>
+            @endif
+            <p>begin: {{ $event->start_time }}</p>
+            <p>einde: {{ $event->end_time }}</p>
+            <p>locatie: {{ $event->location }}</p>
+        </div>
+
       </div>
       @empty
-          <b>There are no posts yet</b>
+          <b>Er zijn nog geen evenementen</b>
       @endforelse
       @endauth
 

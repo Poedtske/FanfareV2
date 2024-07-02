@@ -1,324 +1,370 @@
-[ 
+[
   {
     "naam":"vishandelanemoontje logo",
     "link":"http://www.vishandelanemoontje.be/",
-    "logo":"logo's/'tAnemoontje.jpg",
-    "rang":2
+    "logo":"'tAnemoontje.jpg",
+    "rang":2,
+    "geld":100
   },
-  
+
   {
   "naam":"Al_kopie logo",
   "link":"https://www.alkopie.com/",
-  "logo":"logo's/alKopie.png",
-  "rang":4
+  "logo":"alKopie.png",
+  "rang":4,
+  "geld":25
   },
-  
+
   {
     "naam":"autocenter Mertens logo",
     "link":"http://www.autocentermertens.be/nlbe/start.aspx",
-    "logo":"logo's/autocenterMertens.jpg",
-    "rang":4
+    "logo":"autocenterMertens.jpg",
+    "rang":4,
+    "geld":25
   },
-    
+
   {
     "naam":"B_K Getinte Ruiten logo",
     "link":"https://www.bkgetinteruiten.be/",
-    "logo":"logo's/B&KGetinteRuiten.png",
-    "rang":3
+    "logo":"B&KGetinteRuiten.png",
+    "rang":3,
+    "geld":50
   },
-   
+
   {
     "naam":"Bakkerij TImmermans logo",
     "link":"https://bakkersonline.be/be-nl/timmermans/category/9352",
-    "logo":"logo's/bakkerijTimmermans.png",
-    "rang":4
+    "logo":"bakkerijTimmermans.png",
+    "rang":4,
+    "geld":25
   },
-      
+
   {
     "naam":"Bart Laeremans logo",
     "link":"https://nl.wikipedia.org/wiki/Bart_Laeremans_(politicus)",
-    "logo":"logo's/bartLaeremans.png",
-    "rang":2
+    "logo":"bartLaeremans.png",
+    "rang":2,
+    "geld":100
   },
-          
+
   {
     "naam":"Bike Center Mertens logo",
     "link":"https://www.bikecentermertens.be/",
-    "logo":"logo's/BikeCenterMertens.png",
-    "rang":3
+    "logo":"bikeCenterMertens.png",
+    "rang":3,
+    "geld":50
   },
-  
+
   {
     "naam":"Ben Van Sande logo",
     "link":"https://www.benvansande.be/",
-    "logo":"logo's/benVanSande.png",
-    "rang":1
+    "logo":"benVanSande.png",
+    "rang":1,
+    "geld":400
   },
-          
+
   {
     "naam":"Cafe Galoiske logo",
     "link":"https://zekaa.com/galoiske-t",
-    "logo":"logo's/cafeGaloiske.png",
-    "rang":3
+    "logo":"cafeGaloiske.png",
+    "rang":3,
+    "geld":50
   },
-          
+
   {
     "naam":"Cafe in de Veldkant logo",
-    "link":"#",
-    "logo":"logo's/cafeInDeVeldkant.png",
-    "rang":4
+    "link":null,
+    "logo":"cafeInDeVeldkant.png",
+    "rang":4,
+    "geld":25
   },
-          
+
   {
     "naam":"Immo DEWAELE logo",
     "link":"https://www.dewaele.com/nl/cbi-immo-is-nu-dewaele",
-    "logo":"logo's/ImmoDewaele.png",
-    "rang":3
+    "logo":"immoDewaele.png",
+    "rang":3,
+    "geld":50
   },
-          
+
   {
     "naam":"Chris Selleslagh logo",
     "link":"https://nl.wikipedia.org/wiki/Chris_Selleslagh",
-    "logo":"logo's/chrisSelleslagh.png",
-    "rang":3
+    "logo":"chrisSelleslagh.png",
+    "rang":3,
+    "geld":50
   },
-          
+
   {
     "naam":"Colora logo",
     "link":"https://www.colora.be/nl/",
-    "logo":"logo's/colora.png",
-    "rang":2
+    "logo":"colora.png",
+    "rang":2,
+    "geld":100
   },
-          
+
   {
     "naam":"Cornelissen logo",
     "link":"https://www.beenhouwerijcornelissen.be/",
-    "logo":"logo's/cornelissen.png",
-    "rang":3
+    "logo":"cornelissen.png",
+    "rang":3,
+    "geld":50
   },
-          
+
   {
     "naam":"Crelan logo",
     "link":"https://www.crelan.be/nl/particulieren",
-    "logo":"logo's/crelan.png",
-    "rang":3
+    "logo":"crelan.png",
+    "rang":3,
+    "geld":50
   },
-          
+
   {
     "naam":"De Herberg van Grimbergen logo",
     "link":"https://herbergvangrimbergen.be/",
-    "logo":"logo's/deHerbergVanGrimbergen.png",
-    "rang":4
+    "logo":"deHerbergVanGrimbergen.png",
+    "rang":4,
+    "geld":25
   },
-          
+
   {
     "naam":"De Kantine van het Bos logo",
     "link":"http://www.wazzaah.be/kantine/",
-    "logo":"logo's/deKantineVanHetBos.png",
-    "rang":4
+    "logo":"deKantineVanHetBos.png",
+    "rang":4,
+    "geld":25
   },
-          
+
   {
     "naam":"Dranken Van Campenhout logo",
     "link":"https://grimbergsehandelaars.be/drankencentrale-van-campenhout/",
-    "logo":"logo's/drankenVanCampenhout.png",
-    "rang":3
+    "logo":"drankenVanCampenhout.png",
+    "rang":3,
+    "geld":50
   },
-          
+
   {
     "naam":"Enigma logo",
     "link":"https://enigma.be/",
-    "logo":"logo's/enigma.png",
-    "rang":3
+    "logo":"enigma.png",
+    "rang":3,
+    "geld":50
   },
-          
+
   {
     "naam":"EVN Pharma logo",
     "link":"https://www.apotheekborgt.be/",
-    "logo":"logo's/EVNPharma.png",
-    "rang":3
+    "logo":"EVNPharma.png",
+    "rang":3,
+    "geld":75
   },
-          
+
   {
     "naam":"Fleur Louise logo",
     "link":"https://fleurlouise.com/index.php/16-2/",
-    "logo":"logo's/fleurLouise.png",
-    "rang":3
+    "logo":"fleurLouise.png",
+    "rang":3,
+    "geld":50
   },
-          
+
   {
     "naam":"Forrier logo",
     "link":"https://forrier.sereni.be/nl/",
-    "logo":"logo's/forrier.png",
-    "rang":3
+    "logo":"forrier.png",
+    "rang":3,
+    "geld":50
   },
-          
+
   {
     "naam":"Fort verzekeringen logo",
     "link":"https://fort.be/nl/home/",
-    "logo":"logo's/fortVerzekeringen.png",
-    "rang":3
+    "logo":"fortVerzekeringen.png",
+    "rang":3,
+    "geld":50
   },
-          
+
   {
     "naam":"Frituur _t Pleintje Borgt logo",
     "link":"https://www.tpleintjeborgt.be/",
-    "logo":"logo's/frituur'tPleintjeBorgt.jpg",
-    "rang":2
+    "logo":"frituur'tPleintjeBorgt.jpg",
+    "rang":2,
+    "geld":100
   },
-          
+
   {
     "naam":"Gammatex logo",
     "link":"https://www.gammatec.be/nl/home/",
-    "logo":"logo's/gammatec.png",
-    "rang":3
+    "logo":"gammatec.png",
+    "rang":3,
+    "geld":50
   },
-          
+
   {
     "naam":"Hygge vakantiewoning logo",
     "link":"https://www.hygge-vakantiewoning.be/",
-    "logo":"logo's/hyggeVakantiewoning.png",
-    "rang":4
+    "logo":"hyggeVakantiewoning.png",
+    "rang":4,
+    "geld":25
   },
-          
+
   {
     "naam":"JoVelo zwart logo",
     "link":"https://www.fietsreparateur.be/",
-    "logo":"logo's/joVelo.png",
-    "rang":4
+    "logo":"joVelo.png",
+    "rang":4,
+    "geld":25
   },
-          
+
   {
     "naam":"Kapsalon Ann logo",
     "link":"https://www.openingsurengids.be/kapsalon-ann/grimbergen/1",
-    "logo":"logo's/kapsalonAnn.png",
-    "rang":4
+    "logo":"kapsalonAnn.png",
+    "rang":4,
+    "geld":25
   },
-          
+
   {
     "naam":"Karakter Invest logo",
     "link":"http://www.karakterinvest.be/",
-    "logo":"logo's/karakterInvest.png",
-    "rang":4
+    "logo":"karakterInvest.png",
+    "rang":4,
+    "geld":25
   },
-          
+
   {
     "naam":"Keurslager VanDamme logo",
     "link":"https://keurslagervandamme.be/",
-    "logo":"logo's/vanDammeKeurslager.jpg",
-    "rang":4
+    "logo":"vanDammeKeurslager.jpg",
+    "rang":4,
+    "geld":25
   },
-          
+
   {
     "naam":"ROLLVOLET logo",
     "link":"https://www.rollvolet.be/",
-    "logo":"logo's/rollvolet.jpg",
-    "rang":3
+    "logo":"rollvolet.jpg",
+    "rang":3,
+    "geld":50
   },
 
   {
     "naam":"Lombaerts-Van Laer logo",
     "link":"https://www.juweliervanlaergrimbergen.be/",
-    "logo":"logo's/lombaertsVanLaer.png",
-    "rang":4
+    "logo":"lombaertsVanLaer.png",
+    "rang":4,
+    "geld":25
   },
-          
+
   {
     "naam":"MGMS logo",
-    "link":"#",
-    "logo":"logo's/MGMS.png",
-    "rang":2
+    "link":null,
+    "logo":"MGMS.png",
+    "rang":2,
+    "geld":100
   },
-          
+
   {
     "naam":"Music Company logo",
     "link":"https://www.music-company.be/",
-    "logo":"logo's/musicCompany.png",
-    "rang":2
+    "logo":"musicCompany.png",
+    "rang":2,
+    "geld":100
   },
-          
+
   {
     "naam":"Optiek De Temmerman logo",
     "link":"https://optiek-detemmerman.be/",
-    "logo":"logo's/optiekDeTemmerman.png",
-    "rang":3
+    "logo":"optiekDeTemmerman.png",
+    "rang":3,
+    "geld":50
   },
-          
+
   {
     "naam":"Orchis logo",
     "link":"https://www.orchisraes.be/",
-    "logo":"logo's/orchis.png",
-    "rang":4
+    "logo":"orchis.png",
+    "rang":4,
+    "geld":25
   },
-          
+
   {
     "naam":"Read All logo",
     "link":"https://www.openingsuren.vlaanderen/read-all/1800-vilvoorde/grimbergsesteenweg-90",
-    "logo":"logo's/readAll.png",
-    "rang":4
+    "logo":"readAll.png",
+    "rang":4,
+    "geld":25
   },
-          
+
   {
     "naam":"Spira logo",
     "link":"https://www.spira.be/",
-    "logo":"logo's/spira.png",
-    "rang":2
+    "logo":"spira.png",
+    "rang":2,
+    "geld":100
   },
-          
+
   {
     "naam":"Toyota De Bruyn logo",
     "link":"https://www.toyotadebruyn.be/about/vilvoorde",
-    "logo":"logo's/toyotaDeBruyn.png",
-    "rang":3
+    "logo":"toyotaDeBruyn.png",
+    "rang":3,
+    "geld":50
   },
-          
+
   {
     "naam":"Veranda Thomas logo",
     "link":"https://verandathomas.be/",
-    "logo":"logo's/verandaThomas.jpg",
-    "rang":2
+    "logo":"verandaThomas.jpg",
+    "rang":2,
+    "geld":100
   },
 
   {
     "naam":"Vince Verspecht logo",
     "link":"https://www.vincebvba.be/",
-    "logo":"logo's/vinceVerspecht.png",
-    "rang":3
+    "logo":"vinceVerspecht.png",
+    "rang":3,
+    "geld":50
   },
-          
+
   {
     "naam":"Wim Rondas - Fintro logo",
     "link":"https://www.fintro.be/fr/public/particuliers",
-    "logo":"logo's/wimRondasFintro.png",
-    "rang":3
+    "logo":"wimRondasFintro.png",
+    "rang":3,
+    "geld":50
   },
 
   {
     "naam":"EVE dakwerken logo",
-    "link":"#",
-    "logo":"logo's/EVEDakwerken.jpg",
-    "rang":2
+    "link":null,
+    "logo":"EVEDakwerken.jpg",
+    "rang":2,
+    "geld":150
   },
 
   {
     "naam":"Leen De Cock logo",
     "link":"https://www.leendecock.be/",
-    "logo":"logo's/leenDeCock.jpg",
-    "rang":4
+    "logo":"leenDeCock.jpg",
+    "rang":4,
+    "geld":25
   },
 
   {
     "naam":"Seduti logo",
     "link":"https://www.seduti.be/",
-    "logo":"logo's/seduti.png",
-    "rang":2
+    "logo":"seduti.png",
+    "rang":2,
+    "geld":100
   },
 
   {
     "naam":"Studio Dermaux logo",
-    "link":"#",
-    "logo":"logo's/studioDermaux.png",
-    "rang":4
+    "link":null,
+    "logo":"studioDermaux.png",
+    "rang":4,
+    "geld":25
   }
 
 ]

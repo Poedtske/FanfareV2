@@ -1,5 +1,5 @@
 'use strict'
-console.log("Connected");
+// console.log("Connected");
 
 
 {{  }}
@@ -58,7 +58,7 @@ let assignValues=()=>{
 // }
 assignValues();
 let nextActivity= () => {
-  console.log("next");
+//   console.log("next");
 
 
   if(currentImageIndex==activityList.length-1){
@@ -72,7 +72,7 @@ let nextActivity= () => {
 }
 
 let prevActivity= () => {
-  console.log("prev");
+//   console.log("prev");
 
 
   if(currentImageIndex==0){
@@ -88,13 +88,13 @@ let prevActivity= () => {
 
 let clicked=()=>{
   hasBeenClicked=true;
-  console.log("clicked");
+//   console.log("clicked");
   clearInterval(slideInterval);
 }
 
 const next=document.getElementById("next");
 const prev=document.getElementById("prev");
-console.log(next);
+// console.log(next);
 
 slideInterval=setInterval(nextActivity, 5000);
 next.addEventListener("click", nextActivity, clicked);

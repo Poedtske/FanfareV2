@@ -11,8 +11,18 @@
     <div class="flexbox-container">
       <div class="flexbox-item">
         <img src="{{ asset('images/icoonManBestuur.png') }}" alt="Bart">
-        <p>Bart Poedts</p>
-        <p>Voorzitter</p>
+        <p>Ruben Fransen</p>
+        <p>Bestuurslid</p>
+      </div>
+      <div class="flexbox-item">
+        <img src="{{ asset('images/icoonManBestuur.png') }}" alt="Bart">
+        <p>Lance Wauters</p>
+        <p>Bestuurslid</p>
+      </div>
+      <div class="flexbox-item">
+        <img src="{{ asset('images/icoonManBestuur.png') }}" alt="Bart">
+        <p>Seppe Mariën</p>
+        <p>Bestuurslid</p>
       </div>
       <div class="flexbox-item">
         <img src="{{ asset('images/icoonVrouwBestuur.png') }}" alt="Ilse">
@@ -32,12 +42,12 @@
       <div class="flexbox-item">
         <img src="{{ asset('images/icoonVrouwBestuur.png') }}" alt="Pascale">
         <p>Pascale Gysenbergs</p>
-        <p>Jeugd-Patrimonium</p>
+        <p>Bestuurslid</p>
       </div>
       <div class="flexbox-item">
         <img src="{{ asset('images/icoonManBestuur.png') }}" alt="Wim">
         <p>Wim Mariën</p>
-        <p>Feestbestuur-Logistiek</p>
+        <p>Bestuurslid</p>
       </div>
       <div class="flexbox-item">
         <img src="{{ asset('images/icoonManBestuur.png') }}" alt="Chris">
@@ -46,21 +56,19 @@
       </div>
       <div class="flexbox-item">
         <img src="{{ asset('images/icoonManBestuur.png') }}" alt="Mark">
-        <p>Mark de Wael</p>
+        <p>Marc De Wael</p>
         <p>Bestuurslid</p>
       </div>
-
     </div>
-    @auth
+    {{-- @auth
     @else
     <br>
     <div class=".container">
         <a class="" href="{{route('contact.create')}}"><button style="background-color: black" class="create flex-item">Contact us</button></a>
     </div>
-@endauth
-<div class=".container">
+    @endauth
+    <div class=".container">
     <a class="" href="{{route('members')}}"><button style="background-color: black" class="create flex-item">Member List</button></a>
-</div>
-  </section>
-
+    </div>
+  </section> --}}
 @endsection

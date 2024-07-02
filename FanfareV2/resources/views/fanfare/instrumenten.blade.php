@@ -76,14 +76,20 @@
         <p>Sax Tenor</p>
         <img src="{{ asset('images/instrumentFotos/tenorsax.png') }}" alt="TenorSax" width="400px">
       </section>
-      <div class="hidden hidden2"></div>
       <section>
         <p>Sax Bariton</p>
         <img src="{{ asset('images/instrumentFotos/saxbariton.png') }}" alt="SaxBariton" width="400px">
       </section>
       <div class="hidden"></div>
+      <section>
+        <p>Sax Bas</p>
+        <img src="{{ asset('images/instrumentFotos/SaxBas.png') }}" alt="SaxBass" width="400px">
+      </section>
+      <div class="hidden2"></div>
+      <div class="hidden2"></div>
       <div class="hidden"></div>
       <h1>Slagwerk</h1>
+      <div class="hidden"></div>
       <div class="hidden"></div>
       <section>
         <p>Drumstel</p>

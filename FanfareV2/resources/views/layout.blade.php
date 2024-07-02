@@ -18,6 +18,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
     @auth
     @admin
+    <link rel="stylesheet" href="{{asset('css/mainFanfare.css')}}">
     <link rel="stylesheet" href="{{asset('css/mainAdmin.css')}}">
     @else
     <link rel="stylesheet" href="{{asset('css/mainFanfare.css')}}">

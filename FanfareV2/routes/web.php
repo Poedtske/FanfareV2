@@ -18,9 +18,10 @@ use App\Models\Contact;
 use Illuminate\Http\Request;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\ImageController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\SponsorController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
@@ -28,9 +29,9 @@ use App\Http\Controllers\ContactController;
 
 Route::get('/', [HomeController::class, 'home'])->name('home2');
 
-Route::get('/about',[HomeController::class, 'about'])->name('about');
+// Route::get('/about',[HomeController::class, 'about'])->name('about');
 
-Route::get('/sponsors',[HomeController::class, 'sponsors'])->name('sponsors');
+// Route::get('/sponsors',[HomeController::class, 'sponsors'])->name('sponsors');
 
 Route::get('/kalender',[HomeController::class, 'kalender'])->name('kalender');
 
@@ -51,7 +52,7 @@ Route::name('praktischeInfo.')->prefix('praktischeInfo')->group(function(){
     Route::get('/faq',[HomeController::class, 'faq'])->name('faq');
 });
 
-Route::get('/members', [HomeController::class, 'members'])->name('members');
+// Route::get('/members', [HomeController::class, 'members'])->name('members');
 
 Route::resource('posts',PostController::class)
 ->except(['index'])
@@ -65,12 +66,12 @@ Route::resource('questions',QuestionController::class)
 ->except(['index'])
 ->middleware(('admin'));
 
-Route::get('contact/create',[ContactController::class,'create'])->name('contact.create')->middleware(('guest'));
-Route::post('contact/store',[ContactController::class,'store'])->name('contact.store')->middleware(('guest'));
-Route::delete('contact/{contact}',[ContactController::class,'destroy'])->name('contact.destroy')->middleware(('admin'));
+// Route::get('contact/create',[ContactController::class,'create'])->name('contact.create')->middleware(('guest'));
+// Route::post('contact/store',[ContactController::class,'store'])->name('contact.store')->middleware(('guest'));
+// Route::delete('contact/{contact}',[ContactController::class,'destroy'])->name('contact.destroy')->middleware(('admin'));
 
-Route::match(['get','post'],'/register',[RegisterController::class,'register'])->name('register')
-->middleware(('guest'));
+// Route::match(['get','post'],'/register',[RegisterController::class,'register'])->name('register')
+// ->middleware(('guest'));
 
 Route::match(['get','post'],'/login',[LoginController::class,'login'])->name('login')
 ->middleware(('guest'));
@@ -89,6 +90,34 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update')->middleware(['auth']);
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy')->middleware(['auth']);
 });
+
+
+Route::resource('events',EventController::class)
+->except(['index'])
+->middleware(('admin'));
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit')->middleware(['auth']);
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update')->middleware(['auth']);
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy')->middleware(['auth']);
+});
+
+Route::name('sponsors.')->prefix('sponsors')->group(function(){
+    Route::get('/',[SponsorController::class, 'index'])->name('index');
+    Route::get('/show/{sponsor}',[SponsorController::class, 'show'])->name('show');
+    Route::delete('/destroy/{sponsor}',[SponsorController::class, 'destroy'])->name('destroy')->middleware(('admin'));
+    Route::get('/create',[SponsorController::class, 'create'])->name('create')->middleware(('admin'));
+    Route::get('/edit/{sponsor}',[SponsorController::class, 'edit'])->name('edit')->middleware(('admin'));
+    Route::put('/update/{sponsor}',[SponsorController::class, 'update'])->name('update')->middleware(('admin'));
+    Route::post('/store',[SponsorController::class, 'store'])->name('store')->middleware(('admin'));
+
+});
+
+// Route::resource('sponsors',SponsorController::class)
+// ->except(['index'])
+// ->except(['show'])
+// ->middleware(('admin'));
+
 Route::get('/profile/{user_id}', [ProfileController::class, 'showProfile'])->name('profile.show');
 Route::post('/profile/pro{user_id}', [ProfileController::class, 'promote'])->name('profile.promote')->middleware(['admin']);
 Route::post('/profile/dem{user_id}', [ProfileController::class, 'demote'])->name('profile.demote')->middleware(['admin']);
