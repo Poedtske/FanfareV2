@@ -28,20 +28,69 @@ class SponsorController extends Controller
         return view('sponsors.create');
     }
 
-    private function rankFilter($number){
-        $hoofdSponsor = Sponsor::orderBy('sponsored', 'desc')->first();
-        if($number<50)
-            return 4;
-        elseif($number<100)
-            return 3;
-        elseif($number<$hoofdSponsor->sponsored)
-            return 2;
-        else{
-            $hoofdSponsor->rank = 2;
-            $hoofdSponsor->save();
+    private function rankFilter($sponsor) {
+        $number = $sponsor->sponsored;
+
+        // Retrieve the current sponsor with rank 1
+        $hoofdSponsor = Sponsor::where('rank', 1)->first();
+
+        // If there's no sponsor with rank 1, this means we can proceed without demotion
+        if ($hoofdSponsor === null) {
+            $sponsor->rank = 1;
+            $sponsor->save();
             return 1;
         }
+
+        // If the sponsor has the highest 'sponsored' value
+        if ($number > $hoofdSponsor->sponsored) {
+            // Demote the current rank 1 sponsor to rank 2 if it's not the same sponsor
+            if ($sponsor->id != $hoofdSponsor->id) {
+                $hoofdSponsor->rank = 2;
+                $hoofdSponsor->save();
+            }
+
+            // Promote the new sponsor to rank 1
+            $sponsor->rank = 1;
+            $sponsor->save();
+            return 1;
+        } else {
+            // If the sponsor doesn't have the highest value, rank accordingly
+            if ($number < 50) {
+                return 4;
+            } elseif ($number < 100) {
+                return 3;
+            } elseif ($number < $hoofdSponsor->sponsored) {
+                return 2;
+            } else {
+                // Default case should not happen because it covers all possibilities
+                return 1;
+            }
+        }
     }
+
+    private function firstRankChecker() {
+        // Retrieve the current sponsor with rank 1
+        $hoofdSponsor = Sponsor::where('rank', 1)->first();
+
+        // Retrieve the sponsor with the highest 'sponsored' value
+        $highestSponsored = Sponsor::orderBy('sponsored', 'desc')->first();
+
+        // Check if there is a sponsor with rank 1 and if the highest sponsored sponsor should be promoted
+        if ($hoofdSponsor && $highestSponsored && $highestSponsored->sponsored > $hoofdSponsor->sponsored) {
+            // Demote the current rank 1 sponsor to rank 2
+            $hoofdSponsor->rank = 2;
+            $hoofdSponsor->save();
+
+            // Promote the sponsor with the highest sponsored value to rank 1
+            $highestSponsored->rank = 1;
+            $highestSponsored->save();
+        } elseif ($highestSponsored && !$hoofdSponsor) {
+            // If there is no sponsor currently with rank 1, promote the highest sponsored sponsor
+            $highestSponsored->rank = 1;
+            $highestSponsored->save();
+        }
+    }
+
 
     private function camelcaseTransformer($name){
         // Remove special characters, replace spaces with underscores, and convert to lowercase
@@ -80,12 +129,12 @@ class SponsorController extends Controller
         $file = $request->file('logo');
         $fileName = self::camelcaseTransformer($file->getClientOriginalName());
         $path = $file->storeAs('images/sponsorLogos', $fileName, 'public');
-        $sponsor->rank=self::rankFilter($sponsor->sponsored);
+        $sponsor->rank=self::rankFilter($sponsor);
         // Update validated data with the file path
         $sponsor['logo'] = '/storage/' . $path;
 
         $sponsor->save();
-
+        self::firstRankChecker();
 
 
         return redirect()
@@ -145,10 +194,11 @@ class SponsorController extends Controller
         $sponsor->update($validated);
 
         // Update the sponsor's rank
-        $sponsor->rank = self::rankFilter($sponsor->sponsored);
+        $sponsor->rank = self::rankFilter($sponsor);
 
         // Save the sponsor
         $sponsor->save();
+        self::firstRankChecker();
 
         // Redirect with success message
         return redirect()

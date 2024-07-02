@@ -61,19 +61,6 @@ main button {
     cursor: auto;
 }
 
-.createBtn {
-    background-color: green;
-    padding: 1em;
-}
-.deleteBtn {
-    background-color: red;
-    padding: 1em;
-}
-.updateBtn {
-    background-color: #fa6908;
-    padding: 1em;
-}
-
 main :is(a, button):hover {
     scale: 1.15;
 }

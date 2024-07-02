@@ -27,7 +27,7 @@ class HomeController extends Controller
     }
 
     public function sponsors() {
-        return view('sponsors');
+        return view('sponsors.index');
     }
 
     public function jeugd() {
@@ -35,8 +35,8 @@ class HomeController extends Controller
     }
 
     public function kalender() {
-        $posts=Post::all();
-        return view('kalender',['posts'=>$posts]);
+        $events=Event::orderBy('date')->get();
+        return view('kalender',['events'=>$events]);
     }
 
     public function members(){

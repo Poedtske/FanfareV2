@@ -22,15 +22,15 @@
         {{ $message }}
     </div>
     @enderror
-
-    <label>Logo*</label>
-    <input class="@error('logo') error-border @enderror" name="logo" type="file">
+    <br><br>
+    <label for="file-upload" class="custom-file-upload">Selecteer Logo*</label>
+    <input id="file-upload" class="@error('logo') error-border @enderror" name="logo" type="file">
     @error('logo')
     <div class="error">
         {{ $message }}
     </div>
     @enderror
-
+    <br><br>
     <label>Gesponsord (€)*</label>
     <input type="number" step="any" class="@error('sponsored') error-border @enderror" name="sponsored">{{ old('sponsored') }}</input>
     @error('sponsored')
@@ -48,6 +48,6 @@
     </div>
     @enderror
 
-    <button type="submit">Submit</button>
+    <button class="createBtn" type="submit">Submit</button>
 </form>
 @endsection

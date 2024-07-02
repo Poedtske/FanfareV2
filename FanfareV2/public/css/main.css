@@ -189,10 +189,12 @@ ul li .dropdown:hover .dropdown-content {
 
   .post-item .delete {
     background-color: #fa0808;
+    border:none;
   }
 
   .post-item .update {
     background-color: #fa6908;
+    border:none;
   }
 
 

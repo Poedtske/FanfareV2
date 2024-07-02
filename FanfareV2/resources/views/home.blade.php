@@ -64,8 +64,8 @@
                 @if ($event->description)
                     <p>beschrijving: {{ $event->description }}</p>
                 @endif
-                <p>begin: {{ $event->start_time }}</p>
-                <p>einde: {{ $event->end_time }}</p>
+                <p>begin: {{ substr($event->start_time,0,-3) }}</p>
+                <p>einde: {{ substr($event->end_time,0,-3) }}</p>
                 <p>locatie: {{ $event->location }}</p>
 
             </div>

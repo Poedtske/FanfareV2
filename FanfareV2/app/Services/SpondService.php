@@ -127,7 +127,7 @@ class SpondService{
         $time->modify('+2 hours');
 
         // Format the time part to 'H:i:s' (hours, minutes, seconds)
-        $adjustedTime = $time->format('H:i:s');
+        $adjustedTime = $time->format('H:i');
 
         // Combine the adjusted date and time parts back
         $adjustedDateTime = [$datePart,$adjustedTime];
