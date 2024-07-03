@@ -3,10 +3,10 @@
 @section('title', 'Create new sponsor')
 
 @section('content')
-<h1>Create a Sponsor</h1>
-<form method="POST" action="{{ route('sponsors.store') }}" enctype="multipart/form-data">
-    @csrf
 
+<form class="crud-form" method="POST" action="{{ route('sponsors.store') }}" enctype="multipart/form-data">
+    @csrf
+    <h1>Create a Sponsor</h1>
     <label>Naam*</label>
     <input class="@error('title') error-border @enderror" type="text" name="title" value="{{ old('title') }}">
     @error('title')
@@ -48,6 +48,6 @@
     </div>
     @enderror
 
-    <button class="createBtn" type="submit">Submit</button>
+    <button class="createBtn" type="submit">Maak Aan</button>
 </form>
 @endsection

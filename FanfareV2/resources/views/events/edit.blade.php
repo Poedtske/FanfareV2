@@ -3,10 +3,11 @@
 @section('title', 'Update Event'.$event->title)
 
 @section('content')
-<h1>Pas Evenement {{ $event->title }} aan</h1>
-<form method="POST" action="{{ route('events.update',[$event]) }}" enctype="multipart/form-data">
+
+<form class="crud-form" method="POST" action="{{ route('events.update',[$event]) }}" enctype="multipart/form-data">
     @csrf
     @method('PUT')
+    <h1>Pas Evenement {{ $event->title }} aan</h1>
     <label>Titel</label>
     <input class="@error('title') error-border @enderror" type="text" name="title" value="{{ old('title',$event->title) }}">
     @error('title')
@@ -55,6 +56,6 @@
     </div>
     @enderror
 
-    <button class="updateBtn" type="submit">Update</button>
+    <button class="updateBtn" type="submit">Pas Aan</button>
 </form>
 @endsection

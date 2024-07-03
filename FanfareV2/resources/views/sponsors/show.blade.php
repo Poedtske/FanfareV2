@@ -28,11 +28,16 @@
 
         @endcan
         @can('delete',$sponsor)
-        <form method="POST" action="{{ route('sponsors.destroy',[$sponsor]) }}">
+        <form method="POST" action="{{ route('sponsors.destroy', [$sponsor]) }}" onsubmit="return confirmDelete()">
             @csrf
             @method('DELETE')
             <button class="delete" type="submit">Verwijderen</button>
         </form>
+        <script>
+            function confirmDelete() {
+                return confirm("Ben je zeker dat je deze sponsor wilt verwijderen?");
+            }
+        </script>
         @endcan
         @auth
         @admin

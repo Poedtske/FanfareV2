@@ -11,6 +11,7 @@
         <style>
             main{
                 grid-template-columns:1fr;
+                justify-items: right;
             }
         </style>
         <div>
@@ -60,6 +61,9 @@
                     table.appendChild(row);
                 });
             }
+            function confirmDelete() {
+                                    return confirm("Ben je zeker dat je deze sponsor wilt verwijderen?");
+                                }
         </script>
 
         <style>
@@ -98,10 +102,10 @@
                         <td>{{ $sponsor->user->name }}</td>
                         <td><a href="{{ route('sponsors.edit',[$sponsor]) }}"><button class="updateBtn">aanpassen</button></a></td>
                         <td>
-                            <form method="POST" action="{{ route('sponsors.destroy',[$sponsor]) }}">
+                            <form method="POST" action="{{ route('sponsors.destroy', [$sponsor]) }}" onsubmit="return confirmDelete()">
                                 @csrf
                                 @method('DELETE')
-                                <button class="deleteBtn" type="submit">verwijderen</button>
+                                <button class="deleteBtn" type="submit">Verwijderen</button>
                             </form>
                         </td>
                     </tr>
@@ -114,100 +118,114 @@
 
         @elseauth
             @if ($sponsors)
-                <script>
-                    let main = document.querySelector("body main");
-                    const shuffle = (array) => {
-                        for (let i = array.length - 1; i > 0; i--) {
-                            const j = Math.floor(Math.random() * (i + 1));
-                            [array[i], array[j]] = [array[j], array[i]];
+            <script>
+                let main = document.querySelector("body main");
+                const shuffle = (array) => {
+                    for (let i = array.length - 1; i > 0; i--) {
+                        const j = Math.floor(Math.random() * (i + 1));
+                        [array[i], array[j]] = [array[j], array[i]];
+                    }
+                };
+
+                async function asyncCall() {
+                    try {
+                        let sponsors = @json($sponsors);
+
+                        // Initialize an empty array to hold the transformed sponsors
+                        let transformedSponsors = [];
+
+                        // Loop through each sponsor and transform the data
+                        for (let sponsor of sponsors) {
+                            let item = {
+                                "naam": sponsor.title,
+                                "link": sponsor.url,
+                                "logo": sponsor.logo, // Assuming there is a logo field
+                                "rang": sponsor.rank,
+                                "geld": sponsor.sponsored,
+                                "description":sponsor.description,
+                                "id":sponsor.id
+                            };
+                            transformedSponsors.push(item);
                         }
-                    };
 
-                    async function asyncCall() {
-                        try {
-                            let sponsors = @json($sponsors);
+                        sponsors = transformedSponsors;
 
-                            // Initialize an empty array to hold the transformed sponsors
-                            let transformedSponsors = [];
+                        let sponsorsLength = sponsors.length;
 
-                            // Loop through each sponsor and transform the data
-                            for (let sponsor of sponsors) {
-                                let item = {
-                                    "naam": sponsor.title,
-                                    "link": sponsor.url,
-                                    "logo": sponsor.logo, // Assuming there is a logo field
-                                    "rang": sponsor.rank,
-                                    "geld": sponsor.sponsored
-                                };
-                                transformedSponsors.push(item);
+                        const ranking = (array, rang) => {
+                            for (let i = 0; i < sponsors.length; i++) {
+                                if (sponsors[i].rang == rang) {
+                                    array.push(sponsors[i]);
+                                    sponsors.splice(i, 1);
+                                    i--;
+                                }
+                            }
+                        };
+
+                        let rang2 = [];
+                        let rang3 = [];
+                        let rang4 = [];
+
+                        ranking(rang2, 2);
+                        ranking(rang3, 3);
+                        ranking(rang4, 4);
+
+                        shuffle(rang2);
+                        shuffle(rang3);
+                        shuffle(rang4);
+
+                        sponsors = [...sponsors, ...rang2, ...rang3, ...rang4];
+                        sponsors.length = sponsorsLength;
+
+                        const placingImage = (sponsor) => {
+                            if (sponsor.naam == null || sponsor.logo == null || sponsor.rang == null) {
+                                throw new Error('Incomplete sponsor data');
                             }
 
-                            sponsors = transformedSponsors;
+                            let width = 200;
 
-                            let sponsorsLength = sponsors.length;
+                            if (sponsor.rang == 1) {
+                                width = 290;
+                            } else if (sponsor.rang == 2) {
+                                width = 250;
+                            } else if (sponsor.rang == 3) {
+                                width = 220;
+                            }
+                            let sponsorShowUrl = "{{ route('sponsors.show', ['sponsor' => ':id']) }}";
 
-                            const ranking = (array, rang) => {
-                                for (let i = 0; i < sponsors.length; i++) {
-                                    if (sponsors[i].rang == rang) {
-                                        array.push(sponsors[i]);
-                                        sponsors.splice(i, 1);
-                                        i--;
-                                    }
-                                }
-                            };
-
-                            let rang2 = [];
-                            let rang3 = [];
-                            let rang4 = [];
-
-                            ranking(rang2, 2);
-                            ranking(rang3, 3);
-                            ranking(rang4, 4);
-
-                            shuffle(rang2);
-                            shuffle(rang3);
-                            shuffle(rang4);
-
-                            sponsors = [...sponsors, ...rang2, ...rang3, ...rang4];
-                            sponsors.length = sponsorsLength;
-
-                            const placingImage = (sponsor) => {
-                                if (sponsor.naam == null || sponsor.logo == null || sponsor.rang == null) {
-                                    throw new Error('Incomplete sponsor data');
-                                }
-
-                                let width = 200;
-
-                                if (sponsor.rang == 1) {
-                                    width = 290;
-                                } else if (sponsor.rang == 2) {
-                                    width = 250;
-                                } else if (sponsor.rang == 3) {
-                                    width = 220;
-                                }
-
-                                const linkElement = sponsor.link == null ?
-                                    `<button class="no_website" style="width: ${width}px;">
+                            let linkElement;
+                            let sponsorId=sponsor.id;
+                            if (sponsor.link==null) {
+                                linkElement=`<button class="no_website" style="width: ${width}px;">
+                                    <img src="${sponsor.logo}" alt="${sponsor.naam}" style="width: ${width}px;">
+                                </button>`;
+                            } else if(sponsor.description!=null){
+                                let showUrl = sponsorShowUrl.replace(':id', sponsor.id);
+                                linkElement = `<button style="width: ${width}px;">
+                                    <a href="${showUrl}" target="_blank">
                                         <img src="${sponsor.logo}" alt="${sponsor.naam}" style="width: ${width}px;">
-                                    </button>` :
-                                    `<button style="width: ${width}px;">
-                                        <a href="${sponsor.link}" target="_blank">
-                                            <img src="${sponsor.logo}" alt="${sponsor.naam}" style="width: ${width}px;">
-                                        </a>
-                                    </button>`;
+                                    </a>
+                                </button>`;
+                            }else{
+                                linkElement=`<button style="width: ${width}px;">
+                                    <a href="${sponsor.link}" target="_blank">
+                                        <img src="${sponsor.logo}" alt="${sponsor.naam}" style="width: ${width}px;">
+                                    </a>
+                                </button>`;
+                            }
 
-                                return `<section>${linkElement}</section>`;
-                            };
+                            return `<section>${linkElement}</section>`;
+                        };
 
-                            const sponsorElements = sponsors.map(placingImage).join('');
-                            main.innerHTML = sponsorElements;
-                        } catch (error) {
-                            console.error('Error:', error);
-                        }
+                        const sponsorElements = sponsors.map(placingImage).join('');
+                        main.innerHTML = sponsorElements;
+                    } catch (error) {
+                        console.error('Error:', error);
                     }
+                }
 
-                    asyncCall();
-                </script>
+                asyncCall();
+            </script>
             @else
                 <b>Er zijn nog geen sponsors</b>
             @endif
@@ -238,7 +256,9 @@
                             "link": sponsor.url,
                             "logo": sponsor.logo, // Assuming there is a logo field
                             "rang": sponsor.rank,
-                            "geld": sponsor.sponsored
+                            "geld": sponsor.sponsored,
+                            "description":sponsor.description,
+                            "id":sponsor.id
                         };
                         transformedSponsors.push(item);
                     }
@@ -286,16 +306,28 @@
                         } else if (sponsor.rang == 3) {
                             width = 220;
                         }
+                        let sponsorShowUrl = "{{ route('sponsors.show', ['sponsor' => ':id']) }}";
 
-                        const linkElement = sponsor.link == null ?
-                            `<button class="no_website" style="width: ${width}px;">
+                        let linkElement;
+                        let sponsorId=sponsor.id;
+                        if (sponsor.link==null) {
+                            linkElement=`<button class="no_website" style="width: ${width}px;">
                                 <img src="${sponsor.logo}" alt="${sponsor.naam}" style="width: ${width}px;">
-                            </button>` :
-                            `<button style="width: ${width}px;">
+                            </button>`;
+                        } else if(sponsor.description!=null){
+                            let showUrl = sponsorShowUrl.replace(':id', sponsor.id);
+                            linkElement = `<button style="width: ${width}px;">
+                                <a href="${showUrl}" target="_blank">
+                                    <img src="${sponsor.logo}" alt="${sponsor.naam}" style="width: ${width}px;">
+                                </a>
+                            </button>`;
+                        }else{
+                            linkElement=`<button style="width: ${width}px;">
                                 <a href="${sponsor.link}" target="_blank">
                                     <img src="${sponsor.logo}" alt="${sponsor.naam}" style="width: ${width}px;">
                                 </a>
                             </button>`;
+                        }
 
                         return `<section>${linkElement}</section>`;
                     };

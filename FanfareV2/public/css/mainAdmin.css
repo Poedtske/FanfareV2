@@ -77,3 +77,24 @@ footer {
     margin-left: auto;
     margin-right: auto;
 }
+.flash-success {
+    text-align: center;
+    width: 100%;
+    padding-block: 20px;
+    background-color: #33a43a;
+    color: white;
+    border-radius: 4px;
+}
+
+.flash-error {
+    text-align: center;
+    width: 100%;
+    padding-block: 20px;
+    background-color: rgb(235, 47, 47);
+    color: white;
+    border-radius: 4px;
+}
+
+.crud-form {
+    padding-inline: 2%;
+}

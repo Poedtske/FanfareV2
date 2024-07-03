@@ -86,14 +86,11 @@ class SpondService{
     }
 
 
-    // function that checks if there is another event with the same name and date in the data base, if so it will update that event and return false, if there isn't it will return true
+    // function that checks if there is another event with the same spond_id in the data base, if so it will update that event and return false, if there isn't it will return true
     private function checkForDoubleEvent($event){
-        $existingEvent = Event::where('title', $event['title'])
+        $existingEvent = Event::where('spond_id', $event['spond_id'])
                               ->first();
-        // echo $event['title'];
-        // echo $event['date'];
-        // echo $existingEvent->title;
-        // echo $existingEvent->date;
+
         if(!is_Null($existingEvent)) {
             $allowed=self::checkDelete($existingEvent);
             if($allowed)
@@ -105,7 +102,7 @@ class SpondService{
     }
 
 
-    // function that validates an event, it checks if there is another event with the same name and date in the database by calling the checkForDoubleEvent function
+    // function that validates an event, it checks if there is another event with the same spond_id in the database by calling the checkForDoubleEvent function
     // if there is one, it will update that event and return false, if there isn't one it will return true and the event will be created.
     private function validateEvent($event){
         $validate=self::checkForDoubleEvent($event);
@@ -137,26 +134,27 @@ class SpondService{
 
 
     private function checkEvents(){
-        $events = self::apiCall();
-        if (!$events) {
+        $spondEvents = self::apiCall();
+        if (!$spondEvents) {
             return [];
         }
         $eventArray = [];
-        foreach ($events as $event) {
+        foreach ($spondEvents as $spondEvent) {
             // formatting date and start date
-            $start = self::dateSplitter($event['start']);
-            $end = self::dateSplitter($event['end']);
+            $start = self::dateSplitter($spondEvent['start']);
+            $end = self::dateSplitter($spondEvent['end']);
             $date = $start[0];
             $startTime = $start[1];
             $endTime = $end[1];
 
             // making the event
-            $e['title'] = $event['title'];
-            $e['description'] = isset($event['description']) ? $event['description'] : '';
+            $e['spond_id']=$spondEvent['ID'];
+            $e['title'] = $spondEvent['title'];
+            $e['description'] = isset($spondEvent['description']) ? $spondEvent['description'] : '';
             $e['date'] = $date;
             $e['startTime'] = $startTime;
             $e['endTime'] = $endTime;
-            $e['location'] = $event['location'];
+            $e['location'] = $spondEvent['location'];
 
             // checking the name and date for duplicates & updating if there are
             $allowed = self::validateEvent($e);
@@ -172,6 +170,7 @@ class SpondService{
         $events = self::checkEvents();
         foreach ($events as $e) {
             $event = new Event();
+            $event->spond_id=$e['spond_id'];
             $event->title = $e['title'];
             $event->description = $e['description'];
             $event->date = $e['date'];

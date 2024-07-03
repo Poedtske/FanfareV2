@@ -3,11 +3,10 @@
 @section('title', 'Update Sponsor'.$sponsor->title)
 
 @section('content')
-<h1>Pas Sponsor {{ $sponsor->title }} aan</h1>
-<form method="POST" action="{{ route('sponsors.update',[$sponsor]) }}" enctype="multipart/form-data">
+<form class="crud-form" method="POST" action="{{ route('sponsors.update',[$sponsor]) }}" enctype="multipart/form-data">
     @csrf
     @method('PUT')
-
+    <h1>Pas Sponsor {{ $sponsor->title }} aan</h1>
     <label>Naam*</label>
     <input class="@error('title') error-border @enderror" type="text" name="title" value="{{ old('title',$sponsor->title) }}">
     @error('title')
@@ -54,6 +53,6 @@
     <label>Rang</label><br><br>
     <button style="padding:1em; border-radius:10px; background-color:transparent; border:solid; color:white; font-size:1.5em; cursor:auto;">{{ $sponsor->rank }}</button>
     <br><br>
-    <button class="updateBtn" type="submit">Update</button>
+    <button class="updateBtn" type="submit">Pas Aan</button>
 </form>
 @endsection

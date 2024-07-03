@@ -18,11 +18,6 @@
 
   @auth
         @admin
-        {{-- <style>
-            main{
-                grid-template-columns:1fr;
-            }
-        </style> --}}
         @if ($events)
         <script>
             let currentSortColumn = null;
@@ -66,8 +61,10 @@
                     table.appendChild(row);
                 });
             }
+            function confirmDelete() {
+                return confirm("Ben je zeker dat je dit evenement wilt verwijderen?");
+            }
         </script>
-
         <style>
             main {
                 gap:0;
@@ -91,7 +88,7 @@
                 <tbody>
                     @foreach ($events as $event)
                         <tr>
-                            <td><a href="{{ route('events.show',[$event]) }}">{{ $event->id }}<button></button></a></td>
+                            <td><a href="{{ route('events.show',[$event]) }}">{{ $event->id }}</a></td>
                             <td>{{ $event->title }}</td>
                             <td>{{ $event->description ? "ja":"nee"; }}</td>
                             <td>{{ $event->date }}</td>
@@ -100,10 +97,10 @@
                             <td>{{ $event->location }}</td>
                             <td><a href="{{ route('events.edit',[$event]) }}"><button class="updateBtn">aanpassen</button></a></td>
                             <td>
-                                <form method="POST" action="{{ route('events.destroy',[$event]) }}">
+                                <form method="POST" action="{{ route('events.destroy', [$event]) }}" onsubmit="return confirmDelete()">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="deleteBtn" type="submit">verwijderen</button>
+                                    <button class="deleteBtn" type="submit">Verwijderen</button>
                                 </form>
                             </td>
                         </tr>

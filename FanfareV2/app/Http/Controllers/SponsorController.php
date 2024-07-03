@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SponsorFormRequest;
 use App\Http\Requests\SponsorEditFormRequest;
 use App\Models\Sponsor;
+use App\Models\User;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+
 
 class SponsorController extends Controller
 {
@@ -15,9 +18,24 @@ class SponsorController extends Controller
      */
     public function index()
     {
-        $sponsors=Sponsor::all();
-        return view('sponsors.index')->with('sponsors',$sponsors);
+        $sponsors = Sponsor::all();
+
+        // Check if the user is authenticated and is an admin
+        if (auth()->check() && auth()->user()->isAdmin()) {
+            // Admin view
+            return view('sponsors.index')->with('sponsors', $sponsors);
+        } else {
+            // Non-admin or unauthenticated view: modify the `sponsored` property
+            foreach ($sponsors as $sponsor) {
+                $sponsor->sponsored = 'classified';
+            }
+
+            return view('sponsors.index')->with('sponsors', $sponsors);
+        }
     }
+
+
+
 
     /**
      * Show the form for creating a new resource.

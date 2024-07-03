@@ -49,7 +49,7 @@ Route::name('fanfare.')->prefix('fanfare')->group(function(){
 Route::name('praktischeInfo.')->prefix('praktischeInfo')->group(function(){
     Route::get('/belangrijkeDocumenten',[HomeController::class, 'belangrijkeDocumenten'])->name('belangrijkeDocumenten');
     Route::get('/privacyverklaring',[HomeController::class, 'privacyverklaring'])->name('privacyverklaring');
-    Route::get('/faq',[HomeController::class, 'faq'])->name('faq');
+    // Route::get('/faq',[HomeController::class, 'faq'])->name('faq');
 });
 
 // Route::get('/members', [HomeController::class, 'members'])->name('members');
@@ -91,9 +91,17 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy')->middleware(['auth']);
 });
 
+Route::name('events.')->prefix('events')->group(function(){
+    Route::get('/show/{event}',[EventController::class, 'show'])->name('show');
+    // Route::delete('/destroy/{event}',[EventController::class, 'destroy'])->name('destroy')->middleware(('admin'));
+    // Route::get('/edit/{event}',[EventController::class, 'edit'])->name('edit')->middleware(('admin'));
+    // Route::put('/update/{event}',[EventController::class, 'update'])->name('update')->middleware(('admin'));
+
+});
 
 Route::resource('events',EventController::class)
 ->except(['index'])
+->except(['show'])
 ->middleware(('admin'));
 
 Route::middleware('auth')->group(function () {

@@ -20,19 +20,32 @@
         <p>Locatie: {{ $event->location }}</p>
         <p>Begin: {{ substr($event->start_time,0,-3) }}</p>
         <p>Einde: {{ substr($event->end_time,0,-3) }}</p>
-        @can('update',$event)
         <br>
+        <button style="border: none;">
+            <a href="https://spond.com/client/sponds/{{ $event->spond_id }}" target="_blank">
+                <img class="Spond" src="{{ asset('images/logos/spond.png') }}" alt="Spond-logo">
+              </a>
+        </button>
+        <br>
+        @can('update',$event)
         <a href="{{ route('events.edit',[$event]) }}"><button class="update">Aanpassen</button></a>
 
         @endcan
         @can('delete',$event)
-        <form method="POST" action="{{ route('events.destroy',[$event]) }}">
+        <form method="POST" action="{{ route('events.destroy', [$event]) }}" onsubmit="return confirmDelete()">
             @csrf
             @method('DELETE')
             <button class="delete" type="submit">Verwijderen</button>
         </form>
+        <script>
+            function confirmDelete() {
+                return confirm("Ben je zeker dat je dit evenement wilt verwijderen?");
+            }
+        </script>
+
+
         @endcan
-        <small>Aangemaakt: <b>{{ $event->created_at }}</b></small>
+        <small>Aangemaakt: <b>{{ $event->created_at }}</b></small><br>
         @if ($event->updated_at!=$event->created_at )
         <small>Laatst aangepast: <b>{{ $event->updated_at }}</b></small>
         @endif

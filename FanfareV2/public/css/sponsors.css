@@ -17,7 +17,7 @@ main {
     display: grid;
     margin: 0 auto 0 auto;
     grid-template-columns: repeat(5, auto) 1fr;
-    justify-items: right;
+    /* justify-items: right; */
     gap: 2rem;
 
     transition: 0.3s;

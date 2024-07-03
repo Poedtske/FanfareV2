@@ -36,17 +36,141 @@
         <p id="naam"></p>
         <p id="datum"></p>
         <p id="uur"></p>
+        <p id="locatie"></p>
+        <a style="display: flex; justify-content: center; align-items: center; width: 2.2em; height: 2.2em; margin-left: auto; margin-right: auto; border-radius: 50%; background-color: transparent; border: solid black 2px;" id="eventLink" href="#">
+            <i class="fa-solid fa-info" style="font-size: 1.2em; color: black;"></i>
+        </a>
+
+
+
         <div>
-          <button style="width: 10em;"><a href="kalender/index.html">Kalender</a></button>
+          <button style="width: 10em;"><a href="{{ route('kalender') }}">Kalender</a></button>
         </div>
           <div>
             <button style="width: 2em;" class="prev" id="prev">&#10094;</button>
             <button style="width: 2em;" class="next" id="next">&#10095;</button>
           </div>
+          <script>
+            let activityList=@json($events)
+
+            let currentImageIndex=0;
+            let hasBeenClicked=false;
+            let slideInterval;
+
+            let sponsorShowUrl = "{{ route('events.show', ['event' => ':id']) }}";
+
+            let assignValues=()=>{
+            document.getElementById("naam").innerHTML= activityList[currentImageIndex].title;
+            document.getElementById("datum").innerHTML= activityList[currentImageIndex].date;
+            document.getElementById("uur").innerHTML=activityList[currentImageIndex].start_time.slice(0,-3);
+            document.getElementById("locatie").innerHTML=activityList[currentImageIndex].location;
+            let showUrl = sponsorShowUrl.replace(':id', activityList[currentImageIndex].id);
+            document.getElementById("eventLink").href=showUrl;
+            }
+
+            // let getValues=()=>{
+            //   console.log(activityList[currentImageIndex].naam);
+            //   console.log(activityList[currentImageIndex].datum);
+            //   console.log(activityList[currentImageIndex].uur);
+            // }
+            assignValues();
+            let nextActivity= () => {
+            console.log("next");
+
+
+            if(currentImageIndex==activityList.length-1){
+                currentImageIndex=0;
+            }
+            else{
+                currentImageIndex++
+            }
+            //getValues();
+            assignValues();
+            }
+
+            let prevActivity= () => {
+            console.log("prev");
+
+
+            if(currentImageIndex==0){
+                currentImageIndex=activityList.length-1;
+            }
+            else{
+                currentImageIndex--;
+            }
+            //getValues();
+            assignValues();
+
+            }
+
+            let clicked=()=>{
+            hasBeenClicked=true;
+            console.log("clicked");
+            clearInterval(slideInterval);
+            }
+
+            const next=document.getElementById("next");
+            const prev=document.getElementById("prev");
+            console.log(next);
+
+            slideInterval=setInterval(nextActivity, 5000);
+            next.addEventListener("click", nextActivity, clicked);
+            next.addEventListener("click", clicked);
+            prev.addEventListener("click", prevActivity, clicked);
+            prev.addEventListener("click", clicked);
+
+            //Slider
+            // let images= [];
+            // for (let i=0;i<29;i++){
+            // images.push(`WA1/photos/photo${i}.jpg`);
+            // }
+
+            // images.push('WA1/photos/photo29.PNG');
+            // images.push('WA1/photos/photo30.PNG');
+
+            // let currentImageIndex=0;
+            // const slider = document.getElementById("slider");
+            // slider.src=images[currentImageIndex];
+
+
+            // let nextPhoto= () => {
+            //   console.log("next");
+
+
+            //   if(currentImageIndex==images.length-1){
+            //     currentImageIndex=0;
+            //   }
+            //   else{
+            //     currentImageIndex++
+            //   }
+            //   console.log(slider.src);
+            //   slider.src = images[currentImageIndex];
+            // }
+            // let prevPhoto= () => {
+            //   console.log("prev");
+
+
+            //   if(currentImageIndex==0){
+            //     currentImageIndex=images.length-1;
+            //   }
+            //   else{
+            //     currentImageIndex--;
+            //   }
+            //   console.log(slider.src);
+            //   slider.src = images[currentImageIndex];
+
+            // }
+
+            // const next=document.getElementById("next");
+            // const prev=document.getElementById("prev");
+            // console.log(next);
+            // next.addEventListener("click", nextPhoto);
+            // prev.addEventListener("click", prevPhoto);
 
 
 
-
+            // setInterval(nextPhoto, 5000);
+        </script>
       </section>
 
       <section style="width: 80%; max-width: 600px;">
@@ -82,8 +206,8 @@
               @if ($event->description)
                   <p>beschrijving: {{ $event->description }}</p>
               @endif
-              <p>begin: {{ $event->start_time }}</p>
-              <p>einde: {{ $event->end_time }}</p>
+              <p>begin: {{ substr($event->start_time,0,-3) }}</p>
+              <p>einde: {{ substr($event->end_time,0,-3) }}</p>
               <p>locatie: {{ $event->location }}</p>
           </div>
       </div>
@@ -100,8 +224,8 @@
             @if ($event->description)
                 <p>beschrijving: {{ $event->description }}</p>
             @endif
-            <p>begin: {{ $event->start_time }}</p>
-            <p>einde: {{ $event->end_time }}</p>
+            <p>begin: {{ substr($event->start_time,0,-3) }}</p>
+            <p>einde: {{ substr($event->end_time,0,-3) }}</p>
             <p>locatie: {{ $event->location }}</p>
         </div>
 

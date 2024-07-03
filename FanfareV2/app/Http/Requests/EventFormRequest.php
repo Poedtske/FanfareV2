@@ -24,6 +24,7 @@ class EventFormRequest extends FormRequest
         return [
             'title' => ['required', 'string', 'max:100'],
             'date' => ['required', 'date'],
+            'description'=>['string','nullable'],
             'start_time' => ['required', 'string'],
             'end_time' => ['required', 'string'],
             'location' => ['required', 'string'],

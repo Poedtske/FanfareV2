@@ -17,12 +17,13 @@ async def get_events_spond():
     eventlist = []
 
     for event in events:
-        if event['heading'] != 'Repetitie':
+        if 'repetitie' not in event['heading'].lower():
             eventlist.append(event)
 
     event_dict = {}
     for index, event in enumerate(eventlist):
         event_details = {
+            "ID":event['id'],
             "title": event['heading'],
             "start": event['startTimestamp'],
             "end": event['endTimestamp'],
