@@ -55,6 +55,36 @@
         {{ $message }}
     </div>
     @enderror
+    <label for="file-upload" class="custom-file-upload">Selecteer Poster</label>
+    <input id="file-upload" class="@error('poster') error-border @enderror" name="poster" type="file" value="{{ old('poster',$event->poster) }}">
+    <img id="preview" src="{{asset($event->poster)}}" style="width:80px;margin-top: 10px;">
+    @error('poster')
+    <div class="error">
+        {{ $message }}
+    </div>
+    @enderror
+<br><br>
+    <script>
+        document.getElementById('file-upload').addEventListener('change', function(event) {
+            const label = document.querySelector('.custom-file-upload');
+            const img = document.getElementById('preview');
+
+            if (event.target.files.length > 0) {
+                label.classList.add('selected');
+
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    img.src = e.target.result;
+                    label.textContent = "Poster is Geselecteerd";
+                };
+                reader.readAsDataURL(event.target.files[0]);
+            } else {
+                label.classList.remove('selected');
+                if(img.src)
+                    img.src = "{{ asset($event->poster) }}"; // Revert to original image if no file is selected
+            }
+        });
+    </script>
 
     <button class="updateBtn" type="submit">Pas Aan</button>
 </form>

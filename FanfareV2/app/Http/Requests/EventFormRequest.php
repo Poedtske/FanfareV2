@@ -23,11 +23,18 @@ class EventFormRequest extends FormRequest
     {
         return [
             'title' => ['required', 'string', 'max:100'],
-            'date' => ['required', 'date'],
+            'date' => ['required', 'date','after_or_equal:today'],
             'description'=>['string','nullable'],
             'start_time' => ['required', 'string'],
             'end_time' => ['required', 'string'],
             'location' => ['required', 'string'],
+            'poster'=>['nullable', 'image','mimes:png,jpg,jpeg,gif','max:2048']
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'date.after_or_equal' => 'De datum mag niet vroeger dan vandaag zijn.',
         ];
     }
 }

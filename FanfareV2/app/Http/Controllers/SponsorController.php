@@ -157,7 +157,7 @@ class SponsorController extends Controller
 
         return redirect()
             ->route('sponsors.show', [$sponsor])
-            ->with('success', 'Sponsor is submitted! Title: ' . $sponsor->title);
+            ->with('success', 'Sponsor is Aangemaakt! Title: ' . $sponsor->title);
     }
 
     public function show(Sponsor $sponsor)
@@ -221,7 +221,7 @@ class SponsorController extends Controller
         // Redirect with success message
         return redirect()
             ->route('sponsors.show', [$sponsor])
-            ->with('success', 'Sponsor is updated!');
+            ->with('success', 'Sponsor is Aangepast!');
     }
 
 
@@ -241,6 +241,6 @@ class SponsorController extends Controller
 
         return redirect()
         ->route('sponsors.index')
-        ->with('success','Sponsor has been deleted!');
+        ->with('success','Sponsor is Verwijderd!');
     }
 }
