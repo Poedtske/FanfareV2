@@ -19,9 +19,16 @@
   @auth
         @admin
         @if ($events)
-        <div style="margin-left:auto; margin-right:2em;">
-            <a href="{{ route('events.create') }}"><button class="createBtn">Aanmaken</button></a>
-        </div>
+        <style>
+            main section {
+                width: min(90vw, 70rem);
+            }
+        </style>
+        <section>
+            <div style="margin-left:auto;">
+                <a href="{{ route('events.create') }}"><button class="createBtn">Aanmaken</button></a>
+            </div>
+        </section>
         <style>
 
         </style>
@@ -80,13 +87,15 @@
             <table id="events-table">
                 <thead>
                     <tr>
-                        <th><a class="filter" href="#" onclick="sortTable(0)">id</a></th>
-                        <th><a class="filter" href="#" onclick="sortTable(1)">titel</a></th>
-                        <th><a class="filter" href="#" onclick="sortTable(2)">beschrijving</a></th>
-                        <th><a class="filter" href="#" onclick="sortTable(3)">datum</a></th>
-                        <th><a class="filter" href="#" onclick="sortTable(4)">begin</a></th>
-                        <th><a class="filter" href="#" onclick="sortTable(5)">einde</a></th>
-                        <th><a class="filter" href="#" onclick="sortTable(6)">locatie</a></th>
+                        <th><a class="filter" href="#" onclick="sortTable(0)">poster</a></th>
+                        <th><a class="filter" href="#" onclick="sortTable(1)">id</a></th>
+                        <th><a class="filter" href="#" onclick="sortTable(2)">titel</a></th>
+                        <th><a class="filter" href="#" onclick="sortTable(3)">beschrijving</a></th>
+                        <th><a class="filter" href="#" onclick="sortTable(4)">Spond</a></th>
+                        <th><a class="filter" href="#" onclick="sortTable(5)">datum</a></th>
+                        <th><a class="filter" href="#" onclick="sortTable(6)">begin</a></th>
+                        <th><a class="filter" href="#" onclick="sortTable(7)">einde</a></th>
+                        <th><a class="filter" href="#" onclick="sortTable(8)">locatie</a></th>
                         <th>aanpassen</th>
                         <th>verwijderen</th>
                     </tr>
@@ -94,9 +103,15 @@
                 <tbody>
                     @foreach ($events as $event)
                         <tr>
-                            <td><a class="filter" href="{{ route('events.show',[$event]) }}">{{ $event->id }}</a></td>
+                            @if ($event->poster)
+                                <td><a href="{{ route('events.show',[$event]) }}"><button><img class="poster" src="{{ asset($event->poster) }}" alt="{{ $event->title.'_poster' }}"></button></a></td>
+                            @else
+                                <td><a href="{{ route('events.show',[$event]) }}"><button><img class="poster" src="{{ asset('images/no_image.png') }}" alt="No Image foto"></button></a></td>
+                            @endif
+                            <td>{{ $event->id }}</td>
                             <td>{{ $event->title }}</td>
                             <td>{{ $event->description ? "ja":"nee"; }}</td>
+                            <td>{{ $event->spond_id ? "ja":"nee"; }}</td>
                             <td>{{ $event->date }}</td>
                             <td>{{ substr($event->start_time,0,-3) }}</td>
                             <td>{{ substr($event->end_time,0,-3) }}</td>

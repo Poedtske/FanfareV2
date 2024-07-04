@@ -54,3 +54,11 @@ td {
     background-color: #444;
     color: white;
 }
+
+.poster:hover {
+    scale: 1.15;
+}
+
+.poster {
+    transition: 0.3s;
+}

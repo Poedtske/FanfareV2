@@ -91,7 +91,7 @@
             <tbody>
                 @foreach ($sponsors as $sponsor)
                     <tr>
-                        <td><a href="{{ route('sponsors.show',[$sponsor]) }}"><button><img src="{{ asset($sponsor->logo) }}" alt=""></button></a></td>
+                        <td><a href="{{ route('sponsors.show',[$sponsor]) }}"><button><img src="{{ asset($sponsor->logo) }}" alt="{{ $sponsor->title.'_logo' }}"></button></a></td>
                         <td>{{ $sponsor->id }}</td>
                         <td>{{ $sponsor->title }}</td>
                         <td>{{ $sponsor->description ? "ja":"nee"; }}</td>
