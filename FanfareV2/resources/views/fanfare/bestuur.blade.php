@@ -27,7 +27,7 @@
       <div class="flexbox-item">
         <img src="{{ asset('images/icoonVrouwBestuur.png') }}" alt="Ilse">
         <p>Ilse De Wachter</p>
-        <p>Ondervoorzitter</p>
+        <p>Bestuurslid</p>
       </div>
       <div class="flexbox-item">
         <img src="{{ asset('images/icoonVrouwBestuur.png') }}" alt="Jenny">
