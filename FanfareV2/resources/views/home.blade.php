@@ -13,7 +13,7 @@
     ?>
     @if ($first->poster)
         <section style="background-color:black;">
-            <img src="{{ asset("$first->poster") }}" alt="">
+            <a style="margin-inline: auto;" href="{{ route('events.show',[$first]) }}"><img id="poster" src="{{ asset("$first->poster") }}" alt="{{ $first->title.'_poster' }}"></a>
         </section>
     @endif
 

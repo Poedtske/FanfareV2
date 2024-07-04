@@ -8,6 +8,10 @@
     <div class="post-content">
         <h1>{{ $event->title }}</h1>
         <br>
+        @if ($event->poster)
+        <img style="margin-inline: auto;" src="{{ asset($event->poster) }}" alt="{{ $event->title.'_poster' }}">
+        @else
+        @endif
         @if ($event->description)
         <h2>Omschrijving</h2>
         <p>{{ $event->description }}</p>
