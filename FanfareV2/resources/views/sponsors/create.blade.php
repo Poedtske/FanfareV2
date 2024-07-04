@@ -6,7 +6,7 @@
 
 <form class="crud-form" method="POST" action="{{ route('sponsors.store') }}" enctype="multipart/form-data">
     @csrf
-    <h1>Create a Sponsor</h1>
+    <h1>Maak een Sponsor aan</h1>
     <label>Naam*</label>
     <input class="@error('title') error-border @enderror" type="text" name="title" value="{{ old('title') }}">
     @error('title')

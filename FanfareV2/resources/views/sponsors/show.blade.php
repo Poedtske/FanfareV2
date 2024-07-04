@@ -9,7 +9,12 @@
         <h1>{{ $sponsor->title }}</h1>
         <br>
         @if ($sponsor->url)
-            <a target="blank_" href="{{ $sponsor->url }}"><img src="{{ asset($sponsor->logo) }}" alt="{{ $sponsor->title.'_logo' }}"></a>
+        <a target="blank_" href="{{ $sponsor->url }}">
+            <button style="border: none; padding: 0; border-radius: 10px; overflow: hidden;">
+                <img src="{{ asset($sponsor->logo) }}" alt="{{ $sponsor->title.'_logo' }}" style="border-radius: 10px;">
+            </button>
+        </a>
+
         @else
         <img src="{{ asset($sponsor->logo) }}" alt="{{ $sponsor->title.'_logo' }}">
         @endif

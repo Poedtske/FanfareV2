@@ -26,12 +26,33 @@
     <br>
     <label for="file-upload" class="custom-file-upload">Selecteer Logo*</label>
     <input id="file-upload" class="@error('logo') error-border @enderror" name="logo" type="file" value="{{ old('logo',$sponsor->logo) }}">
-    <img src="{{asset($sponsor->logo)}}" style="width:80px;margin-top: 10px;">
+    <img id="preview" src="{{asset($sponsor->logo)}}" style="width:80px;margin-top: 10px;">
     @error('logo')
     <div class="error">
         {{ $message }}
     </div>
     @enderror
+
+    <script>
+        document.getElementById('file-upload').addEventListener('change', function(event) {
+            const label = document.querySelector('.custom-file-upload');
+            const img = document.getElementById('preview');
+
+            if (event.target.files.length > 0) {
+                label.classList.add('selected');
+
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    img.src = e.target.result;
+                    label.textContent = "Logo is Geselecteerd";
+                };
+                reader.readAsDataURL(event.target.files[0]);
+            } else {
+                label.classList.remove('selected');
+                img.src = "{{ asset($sponsor->logo) }}"; // Revert to original image if no file is selected
+            }
+        });
+    </script>
     <br>
     <label>Gesponsord (€)*</label>
     <input type="number" step="any" class="@error('sponsored') error-border @enderror" name="sponsored" value="{{ old('sponsored',$sponsor->sponsored) }}"></input>

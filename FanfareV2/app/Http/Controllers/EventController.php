@@ -8,6 +8,34 @@ use App\Http\Requests\EventFormRequest;
 
 class EventController extends Controller
 {
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        // $this->authorize('create');
+        return view('events.create');
+    }
+
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(EventFormRequest $request)
+    {
+        $validated=$request->validated();
+
+        $event=new Event();
+        $event->fill($validated);
+        $event->save();
+
+
+        return redirect()
+                ->route('events.show',[$event])
+                ->with('success', 'Event is submitted! Title: '.
+                $event->title.' Description: '.
+                $event->description);
+    }
 
    /**
     * Display the specified resource.

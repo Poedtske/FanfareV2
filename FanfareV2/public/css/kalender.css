@@ -14,11 +14,6 @@ main {
     /* padding-block: 2.5rem; */
 }
 
-a:hover {
-    font-size: 150%;
-    color: rgb(0, 0, 0);
-}
-
 main section {
     width: min(90vw, 55rem);
     display: grid;

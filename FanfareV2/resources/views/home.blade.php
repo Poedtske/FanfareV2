@@ -57,11 +57,16 @@
             let hasBeenClicked=false;
             let slideInterval;
 
+            function formatDate(dateString) {
+                const [year, month, day] = dateString.split('-');
+                return `${day}/${month}/${year}`;
+            }
+
             let sponsorShowUrl = "{{ route('events.show', ['event' => ':id']) }}";
 
             let assignValues=()=>{
             document.getElementById("naam").innerHTML= activityList[currentImageIndex].title;
-            document.getElementById("datum").innerHTML= activityList[currentImageIndex].date;
+            document.getElementById("datum").innerHTML= formatDate(activityList[currentImageIndex].date);
             document.getElementById("uur").innerHTML=activityList[currentImageIndex].start_time.slice(0,-3);
             document.getElementById("locatie").innerHTML=activityList[currentImageIndex].location;
             let showUrl = sponsorShowUrl.replace(':id', activityList[currentImageIndex].id);

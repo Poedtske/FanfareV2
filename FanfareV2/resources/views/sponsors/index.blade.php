@@ -76,14 +76,14 @@
             <thead>
                 <tr>
                     <th>logoFoto</th>
-                    <th><a href="#" onclick="sortTable(1)">id</a></th>
-                    <th><a href="#" onclick="sortTable(2)">naam</a></th>
-                    <th><a href="#" onclick="sortTable(3)">beschrijving</a></th>
-                    <th><a href="#" onclick="sortTable(4)">logoLink</a></th>
-                    <th><a href="#" onclick="sortTable(5)">rang</a></th>
-                    <th><a href="#" onclick="sortTable(6)">sponserd</a></th>
-                    <th><a href="#" onclick="sortTable(7)">url</a></th>
-                    <th><a href="#" onclick="sortTable(8)">aanmaker</a></th>
+                    <th><a class="filter" href="#" onclick="sortTable(1)">id</a></th>
+                    <th><a class="filter" href="#" onclick="sortTable(2)">naam</a></th>
+                    <th><a class="filter" href="#" onclick="sortTable(3)">beschrijving</a></th>
+                    <th><a class="filter" href="#" onclick="sortTable(4)">logoLink</a></th>
+                    <th><a class="filter" href="#" onclick="sortTable(5)">rang</a></th>
+                    <th><a class="filter" href="#" onclick="sortTable(6)">sponserd</a></th>
+                    <th><a class="filter" href="#" onclick="sortTable(7)">url</a></th>
+                    <th><a class="filter" href="#" onclick="sortTable(8)">aanmaker</a></th>
                     <th>aanpassen</th>
                     <th>verwijderen</th>
                 </tr>
@@ -195,16 +195,16 @@
 
                             let linkElement;
                             let sponsorId=sponsor.id;
-                            if (sponsor.link==null) {
-                                linkElement=`<button class="no_website" style="width: ${width}px;">
-                                    <img src="${sponsor.logo}" alt="${sponsor.naam}" style="width: ${width}px;">
-                                </button>`;
-                            } else if(sponsor.description!=null){
+                            if (sponsor.description!=null) {
                                 let showUrl = sponsorShowUrl.replace(':id', sponsor.id);
                                 linkElement = `<button style="width: ${width}px;">
                                     <a href="${showUrl}" target="_blank">
                                         <img src="${sponsor.logo}" alt="${sponsor.naam}" style="width: ${width}px;">
                                     </a>
+                                </button>`;
+                            } else if(sponsor.link==null){
+                                linkElement=`<button class="no_website" style="width: ${width}px;">
+                                    <img src="${sponsor.logo}" alt="${sponsor.naam}" style="width: ${width}px;">
                                 </button>`;
                             }else{
                                 linkElement=`<button style="width: ${width}px;">
@@ -310,24 +310,24 @@
 
                         let linkElement;
                         let sponsorId=sponsor.id;
-                        if (sponsor.link==null) {
-                            linkElement=`<button class="no_website" style="width: ${width}px;">
-                                <img src="${sponsor.logo}" alt="${sponsor.naam}" style="width: ${width}px;">
-                            </button>`;
-                        } else if(sponsor.description!=null){
-                            let showUrl = sponsorShowUrl.replace(':id', sponsor.id);
-                            linkElement = `<button style="width: ${width}px;">
-                                <a href="${showUrl}" target="_blank">
+                        if (sponsor.description!=null) {
+                                let showUrl = sponsorShowUrl.replace(':id', sponsor.id);
+                                linkElement = `<button style="width: ${width}px;">
+                                    <a href="${showUrl}" target="_blank">
+                                        <img src="${sponsor.logo}" alt="${sponsor.naam}" style="width: ${width}px;">
+                                    </a>
+                                </button>`;
+                            } else if(sponsor.link==null){
+                                linkElement=`<button class="no_website" style="width: ${width}px;">
                                     <img src="${sponsor.logo}" alt="${sponsor.naam}" style="width: ${width}px;">
-                                </a>
-                            </button>`;
-                        }else{
-                            linkElement=`<button style="width: ${width}px;">
-                                <a href="${sponsor.link}" target="_blank">
-                                    <img src="${sponsor.logo}" alt="${sponsor.naam}" style="width: ${width}px;">
-                                </a>
-                            </button>`;
-                        }
+                                </button>`;
+                            }else{
+                                linkElement=`<button style="width: ${width}px;">
+                                    <a href="${sponsor.link}" target="_blank">
+                                        <img src="${sponsor.logo}" alt="${sponsor.naam}" style="width: ${width}px;">
+                                    </a>
+                                </button>`;
+                            }
 
                         return `<section>${linkElement}</section>`;
                     };

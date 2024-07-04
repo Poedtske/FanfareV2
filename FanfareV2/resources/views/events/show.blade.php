@@ -14,18 +14,20 @@
         <br>
         @endif
         <h2>Datum</h2>
-        <p>{{ $event->date }}</p>
+        <p>{{ \Carbon\Carbon::parse($event->date)->format('d/m/Y') }}</p>
         <br>
         <h2>Locatie en Tijd</h2>
         <p>Locatie: {{ $event->location }}</p>
         <p>Begin: {{ substr($event->start_time,0,-3) }}</p>
         <p>Einde: {{ substr($event->end_time,0,-3) }}</p>
+        @if ($event->spond_id)
         <br>
         <button style="border: none;">
             <a href="https://spond.com/client/sponds/{{ $event->spond_id }}" target="_blank">
                 <img class="Spond" src="{{ asset('images/logos/spond.png') }}" alt="Spond-logo">
               </a>
         </button>
+        @endif
         <br>
         @can('update',$event)
         <a href="{{ route('events.edit',[$event]) }}"><button class="update">Aanpassen</button></a>

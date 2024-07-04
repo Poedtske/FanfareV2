@@ -522,8 +522,20 @@ input[type="file"]{
     transition:0.3s;
 }
 
+.custom-file-upload.selected {
+    background-color: green;
+    color: white;
+}
+
 .custom-file-upload:hover{
     scale:1.15;
 }
 
+.filter:hover {
+    font-size: 150%;
+    color: rgb(0, 0, 0);
+}
 
+.scale:hover{
+    scale:1.15;
+}

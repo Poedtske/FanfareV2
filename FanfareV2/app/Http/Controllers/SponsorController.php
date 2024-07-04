@@ -184,7 +184,7 @@ class SponsorController extends Controller
 
         // Validate the request
         $validated = $request->validated();
-        $oldpath = str_replace('/storage/', '', $sponsor->logo);
+        $oldPath = str_replace('/storage/', '', $sponsor->logo);
 
         // Handle file upload if a new file is provided
         if ($request->hasFile('logo')) {
@@ -193,9 +193,9 @@ class SponsorController extends Controller
             $newPath = 'images/sponsorLogos/' . $fileName;
 
             // Delete the old file if the new file is different
-            if ($oldpath !== $newPath) {
-                if (Storage::exists($oldpath)) {
-                    Storage::delete($oldpath);
+            if ($oldPath !== $newPath) {
+                if (Storage::disk('public')->exists($oldPath)) {
+                    Storage::disk('public')->delete($oldPath);
                 }
             }
 
@@ -205,7 +205,7 @@ class SponsorController extends Controller
             $validated['logo'] = '/storage/' . $path;
         } else {
             // Retain the old logo if no new file is uploaded
-            $validated['logo'] = '/storage/'.$oldpath;
+            $validated['logo'] = '/storage/'.$oldPath;
         }
 
         // Update the sponsor with the validated data

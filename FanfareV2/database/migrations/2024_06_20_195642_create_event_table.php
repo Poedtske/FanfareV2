@@ -19,7 +19,7 @@ return new class extends Migration
             $table->time('start_time');
             $table->time('end_time');
             $table->string('location');
-            $table->string('spond_id')->unique();
+            $table->string('spond_id')->unique()->nullable();
             $table->timestamps();
         });
     }
