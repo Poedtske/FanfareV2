@@ -3,12 +3,15 @@ namespace App\Services;
 
 use App\Exceptions\EventAlreadyPresent;
 use App\Models\Event;
-use Illuminate\Support\Facades\Log;
-use DateTime;
+use App\Functions\CrudFunctions;
 
+use DateTime;
+use Carbon\Carbon;
+
+use Illuminate\Support\Facades\Log;
 use function PHPUnit\Framework\isNull;
 use function PHPUnit\Framework\isTrue;
-use Carbon\Carbon;
+
 
 // class that is responsible for interacting with the SpondApi
 class SpondService{
@@ -18,7 +21,6 @@ class SpondService{
     // function that is called when SpondService is created
     public function __construct($apiPath){
         $this->apiPath = $apiPath;
-        Log::debug("SpondService is created");
         print('SpondService is created');
     }
 
@@ -65,6 +67,7 @@ class SpondService{
         $oldEvent->end_time=$newEvent['endTime'];
         $oldEvent->location=$newEvent['location'];
         $oldEvent->save();
+        CrudFunctions::crudSpondLogger('Event updated',$oldEvent,true);
         print('Update');
 
     }
@@ -79,7 +82,9 @@ class SpondService{
         // Check if the event date is in the past
         if ($eventDate->isPast()) {
             // Delete the event if the date is in the past
+            $tempEvent=$event;
             $event->delete();
+            CrudFunctions::crudSpondLogger('Event deleted',$tempEvent,true);
             return false;
         }
         return true;
@@ -166,6 +171,21 @@ class SpondService{
         return $eventArray;
     }
 
+    private function deleteEvents(){
+        $events = Event::all();
+        foreach ($events as $event) {
+            $eventDate = Carbon::parse($event->date);
+
+            // Check if the event date is in the past
+            if ($eventDate->isPast()) {
+                // Delete the event if the date is in the past
+                $tempEvent = $event;
+                $event->delete();
+                CrudFunctions::crudSpondLogger('Event deleted',$tempEvent, false);
+            }
+        }
+    }
+
     public function run(){
         $events = self::checkEvents();
         foreach ($events as $e) {
@@ -178,7 +198,9 @@ class SpondService{
             $event->end_time = $e['endTime'];
             $event->location = $e['location'];
             $event->save();
+            CrudFunctions::crudSpondLogger('Event created',$event,true);
         }
+        self::deleteEvents();
     }
 }
 
