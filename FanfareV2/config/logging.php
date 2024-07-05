@@ -133,6 +133,13 @@ return [
             'tap'=>[SimpleFormatter::class],
             'path'=>storage_path('logs/crud.log'),
             'level'=> 'debug'
+        ],
+
+        'SpondErrors'=>[
+            'driver'=>'single',
+            'tap'=>[SimpleFormatter::class],
+            'path'=>storage_path('logs/SpondErrors.log'),
+            'level'=>'debug'
         ]
     ],
 

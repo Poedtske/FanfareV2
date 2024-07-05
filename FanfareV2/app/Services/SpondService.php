@@ -41,7 +41,7 @@ class SpondService{
         if (json_last_error() !== JSON_ERROR_NONE) {
             echo "ERROR: Failed to decode JSON: " . json_last_error_msg() . "\n";
             echo "Output:\n" . $output . "\n"; // Provide full output for debugging
-            Log::debug("Error in json");
+            CrudFunctions::spondErrorLogger("ERROR: Failed to decode JSON: ",json_last_error_msg());
             return false;
         }
 
@@ -51,7 +51,7 @@ class SpondService{
         } else {
             echo "Failed to retrieve events.\n";
             echo "Output:\n" . $output . "\n"; // Log the full output for debugging
-            Log::debug("Error in events, it is empty");
+            CrudFunctions::spondErrorLogger("ERROR: Failed to retrieve events: ",$output);
             return false;
         }
     }

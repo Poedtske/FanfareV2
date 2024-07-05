@@ -123,7 +123,13 @@ class CrudFunctions{
                 'event'=>$object
                 ]);
         }
+    }
 
+    public static function spondErrorLogger($message,$object){
+        Log::channel('SpondErrors')->info($message,[
+            'user_name'=>'Spond',
+            'event'=>$object
+            ]);
     }
 
     public static function camelcaseTransformer($name){
