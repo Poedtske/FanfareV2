@@ -8,6 +8,7 @@ use App\Functions\CrudFunctions;
 use DateTime;
 use Carbon\Carbon;
 
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Log;
 use function PHPUnit\Framework\isNull;
 use function PHPUnit\Framework\isTrue;
@@ -67,7 +68,7 @@ class SpondService{
         $oldEvent->end_time=$newEvent['endTime'];
         $oldEvent->location=$newEvent['location'];
         $oldEvent->save();
-        CrudFunctions::crudSpondLogger('Event updated',$oldEvent,true);
+        CrudFunctions::crudSpondLogger("Event {$oldEvent->title} updated by Spond",$oldEvent);
         print('Update');
 
     }
@@ -83,8 +84,15 @@ class SpondService{
         if ($eventDate->isPast()) {
             // Delete the event if the date is in the past
             $tempEvent=$event;
+            if($event->poster){
+                $path = str_replace('/storage/', '', $event->poster);
+                // Check if the file exists and delete it
+                if (Storage::disk('public')->exists($path)) {
+                    Storage::disk('public')->delete($path);
+                }
+            }
             $event->delete();
-            CrudFunctions::crudSpondLogger('Event deleted',$tempEvent,true);
+            CrudFunctions::crudSpondLogger("Event {$tempEvent->title} deleted by Spond",$tempEvent);
             return false;
         }
         return true;
@@ -171,20 +179,30 @@ class SpondService{
         return $eventArray;
     }
 
-    private function deleteEvents(){
+    private function deleteEvents()
+    {
         $events = Event::all();
         foreach ($events as $event) {
             $eventDate = Carbon::parse($event->date);
+            $updatedAt = Carbon::parse($event->updated_at);
 
-            // Check if the event date is in the past
-            if ($eventDate->isPast()) {
-                // Delete the event if the date is in the past
+            // Check if the event date is in the past or if the event has a SpondId and hasn't been updated today
+            if ($eventDate->isPast() || ($event->SpondId && !$updatedAt->isToday())) {
+                // Delete the event if the date is in the past or it hasn't been updated today
                 $tempEvent = $event;
+                if ($event->poster) {
+                    $path = str_replace('/storage/', '', $event->poster);
+                    // Check if the file exists and delete it
+                    if (Storage::disk('public')->exists($path)) {
+                        Storage::disk('public')->delete($path);
+                    }
+                }
                 $event->delete();
-                CrudFunctions::crudSpondLogger('Event deleted',$tempEvent, false);
+                CrudFunctions::crudSpondLogger("Event {$tempEvent->title} deleted by AutoCheck", $tempEvent);
             }
         }
     }
+
 
     public function run(){
         $events = self::checkEvents();
@@ -198,7 +216,7 @@ class SpondService{
             $event->end_time = $e['endTime'];
             $event->location = $e['location'];
             $event->save();
-            CrudFunctions::crudSpondLogger('Event created',$event,true);
+            CrudFunctions::crudSpondLogger("Event {$event->title} created by Spond",$event);
         }
         self::deleteEvents();
     }

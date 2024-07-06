@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Functions\UserFunctions;
 
 class AuthController extends Controller
 {
@@ -20,7 +21,7 @@ class AuthController extends Controller
             'password'=>'required|min:6',
         ]);
 
-        User::create([
+        $user=User::create([
             'name'=>$request->input('name'),
             'email'=>$request->input('email'),
             'password'=>Hash::make($request->input('password')),
@@ -30,6 +31,7 @@ class AuthController extends Controller
         ->route('login')
         ->with('success','Your account has been created! You can now login.');
     }
+
     public function login(Request $request){
         if($request->isMethod(('get'))){
             return view('auth.login');
@@ -41,17 +43,20 @@ class AuthController extends Controller
         ]);
 
         if(Auth::attempt($credentials)){
+            UserFunctions::log('User login',$credentials['email']);
             return redirect()
                 ->route('dashboard')
                 ->with('success','You have successfully logged in');
         }
-
+        UserFunctions::warning('User login Attempt',$credentials['email']);
         return redirect()
             ->route('login')
             ->withErrors('Provided login information is not valid');
 
     }
+
     public function logout(Request $request){
+        UserFunctions::log('User logout',Auth::user()->email);
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();

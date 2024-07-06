@@ -6,9 +6,10 @@ use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Http\Requests\EventFormRequest;
 use App\Functions\CrudFunctions;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Log;
+
 
 class EventController extends Controller
 {
@@ -42,7 +43,8 @@ class EventController extends Controller
         }
 
         $event->save();
-        CrudFunctions::crudLogger('Event created',$event,Auth::user());
+        $ip=request()->getClientIp();
+        CrudFunctions::crudLogger("Event {$event->title} has been created: \nUser who did action: \nip:{$ip} \nusername: ".Auth::user()->name." \nid: ".Auth::user()->id."\nObjectInfo:",$event);
         return redirect()
                 ->route('events.show',[$event])
                 ->with('success', 'Evenement '.$event->title.' is Aangemaakt!');
@@ -108,7 +110,8 @@ class EventController extends Controller
        }
 
        $event->update($validated);
-       CrudFunctions::crudLogger('Event updated',$event,Auth::user());
+       $ip=request()->getClientIp();
+       CrudFunctions::crudLogger("Event {$event->title} has been updated: \nUser who did action: \nip: {$ip} \nusername: ".Auth::user()->name." \nid: ".Auth::user()->id."\nObjectInfo:",$event);
 
 
        return redirect()
@@ -134,9 +137,9 @@ class EventController extends Controller
                 Storage::disk('public')->delete($path);
             }
        }
-
+       $ip=request()->getClientIp();
        $event->delete();
-       CrudFunctions::crudLogger('Event deleted',$tempEvent,Auth::user());
+       CrudFunctions::crudLogger("Event {$tempEvent->title} has been deleted: \nUser who did action: \nip: {$ip} \nusername: ".Auth::user()->name." \nid: ".Auth::user()->id."\nObjectInfo:",$tempEvent);
 
 
 

@@ -103,31 +103,20 @@ use App\Models\Sponsor;
 
 
 class CrudFunctions{
-    public static function crudLogger($message,$object,$user){
+    public static function crudLogger($message,$object){
         Log::channel('crud')->info($message,[
-            'user_id'=>$user->id,
-            'user_name'=>$user->name,
-            'event'=>$object
+            'object'=>$object
             ]);
     }
 
-    public static function crudSpondLogger($message,$object,$spond){
-        if($spond){
-            Log::channel('crud')->info($message,[
-                'user_name'=>'Spond',
-                'event'=>$object
-                ]);
-        }else{
-            Log::channel('crud')->info($message,[
-                'user_name'=>'Autocheck',
-                'event'=>$object
-                ]);
-        }
+    public static function crudSpondLogger($message,$object){
+        Log::channel('crud')->info($message,[
+            'object'=>$object
+            ]);
     }
 
     public static function spondErrorLogger($message,$object){
-        Log::channel('SpondErrors')->info($message,[
-            'user_name'=>'Spond',
+        Log::channel('sponderrors')->info($message,[
             'event'=>$object
             ]);
     }
@@ -219,3 +208,4 @@ class CrudFunctions{
         }
     }
 }
+

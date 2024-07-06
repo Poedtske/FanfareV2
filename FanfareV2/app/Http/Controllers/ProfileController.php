@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
 use App\Models\User;
+use App\Functions\UserFunctions;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -30,15 +31,23 @@ class ProfileController extends Controller
         $newAdmin->role='admin';
 
         $newAdmin->save();
+
+        $ip =  request()->getClientIp(true);
+        UserFunctions::log("User {$newAdmin->email} has been promoted to admin: \nUser who did action: \nip: {$ip} \nusername: ".Auth::user()->name." \nid: ".Auth::user()->id."\nObjectInfo:", $newAdmin);
+
         return Redirect::route('profile.show',$newAdmin->id)->with('status', 'profile-updated');
     }
 
     public function demote(Request $request){
-        $newAdmin=User::find($request->input('id'));
-        $newAdmin->role='user';
+        $demotedAdmin=User::find($request->input('id'));
+        $demotedAdmin->role='user';
 
-        $newAdmin->save();
-        return Redirect::route('profile.show',$newAdmin->id)->with('status', 'profile-updated');
+        $demotedAdmin->save();
+
+        $ip =  request()->getClientIp(true);
+        UserFunctions::log("User {$demotedAdmin->email} has been demoted to user: \nUser who did action: \nip: {$ip} \nusername ".Auth::user()->name." \nid: ".Auth::user()->id."\nObjectInfo:", $demotedAdmin);
+
+        return Redirect::route('profile.show',$demotedAdmin->id)->with('status', 'profile-updated');
     }
 
     public function showProfile(int $id)
@@ -76,6 +85,8 @@ class ProfileController extends Controller
         }
 
         $request->user()->save();
+        $ip =  request()->getClientIp(true);
+        UserFunctions::log("User {$request->user()->email} has been updated: \nUser who did action: \nip: {$ip} \nusername: ".Auth::user()->name." \nid: ".Auth::user()->id."\nObjectInfo:", $request->user());
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
@@ -90,10 +101,14 @@ class ProfileController extends Controller
         ]);
 
         $user = $request->user();
+        $actionUser=Auth::user();
 
         Auth::logout();
 
         $user->delete();
+
+        $ip =  request()->getClientIp(true);
+        UserFunctions::log("User {$user->email} has been deleted: \nUser who did action: \nip: {$ip} \nusername: {$actionUser->name} \nid: {$actionUser->id}", $user);
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();

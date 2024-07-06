@@ -135,10 +135,17 @@ return [
             'level'=> 'debug'
         ],
 
-        'SpondErrors'=>[
+        'sponderrors'=>[
             'driver'=>'single',
             'tap'=>[SimpleFormatter::class],
-            'path'=>storage_path('logs/SpondErrors.log'),
+            'path'=>storage_path('logs/sponderrors.log'),
+            'level'=>'debug'
+        ],
+
+        'user'=>[
+            'driver'=>'single',
+            'tap'=>[SimpleFormatter::class],
+            'path'=>storage_path('logs/user.log'),
             'level'=>'debug'
         ]
     ],

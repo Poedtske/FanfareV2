@@ -71,7 +71,8 @@ class SponsorController extends Controller
         $sponsor->save();
         CrudFunctions::firstRankChecker();
 
-        CrudFunctions::crudLogger('Sponsor created',$sponsor,Auth::user());
+        $ip=request()->getClientIp();
+        CrudFunctions::crudLogger("Sponsor {$sponsor->title} has been created: \nUser who did action: \nip: {$ip} \nusername: ".Auth::user()->name." \nid: ".Auth::user()->id."\nObjectInfo:",$sponsor);
 
 
         return redirect()
@@ -137,7 +138,8 @@ class SponsorController extends Controller
         $sponsor->save();
         CrudFunctions::firstRankChecker();
 
-        CrudFunctions::crudLogger('Sponsor updated',$sponsor,Auth::user());
+        $ip=request()->getClientIp();
+        CrudFunctions::crudLogger("Sponsor {$sponsor->title} has been updated: \nUser who did action: \nip: {$ip}\nusername: ".Auth::user()->name." \nid: ".Auth::user()->id."\nObjectInfo:",$sponsor);
 
         // Redirect with success message
         return redirect()
@@ -163,7 +165,8 @@ class SponsorController extends Controller
 
         $sponsor->delete();
 
-        CrudFunctions::crudLogger('Sponsor deleted',$tempSponsor,Auth::user());
+        $ip=request()->getClientIp();
+        CrudFunctions::crudLogger("Sponsor {$tempSponsor->title} has been deleted: \nUser who did action: \nip: {$ip} \nusername: ".Auth::user()->name." \nid: ".Auth::user()->id."\nObjectInfo:",$tempSponsor);
 
         return redirect()
         ->route('sponsors.index')
