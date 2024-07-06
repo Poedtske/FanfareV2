@@ -53,7 +53,7 @@
         });
     </script><br>
     <label>Gesponsord (€)*</label>
-    <input type="number" step="any" class="@error('sponsored') error-border @enderror" name="sponsored">{{ old('sponsored') }}</input>
+    <input type="number" step="any" class="@error('sponsored') error-border @enderror" name="sponsored" value="{{ old('sponsored') }}"></input>
     @error('sponsored')
     <div class="error">
         {{ $message }}
