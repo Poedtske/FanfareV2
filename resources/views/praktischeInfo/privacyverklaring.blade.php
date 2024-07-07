@@ -55,7 +55,7 @@
       1850 Grimbergen
     </li>
     <li>
-      <a href="mailto: k.f.demoedigevrienden@gmail.com">k.f.demoedigevrienden@gmail.com</a>
+      <a id="fanfareLink" href="mailto: k.f.demoedigevrienden@gmail.com">k.f.demoedigevrienden@gmail.com</a>
     </li>
   </ul>
   </section>

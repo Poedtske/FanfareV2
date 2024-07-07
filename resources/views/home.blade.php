@@ -1,6 +1,4 @@
 @extends('layout')
-
-
 @section('title', 'Home')
 
 @section('customstyle', 'home')
@@ -8,14 +6,18 @@
 
 @section('content')
 <img src="{{ asset('images/banner.jpg') }}" alt="banner" id="banner">
-    <?php
-        $first=$events[0]
-    ?>
-    @if ($first->poster)
-        <section style="background-color:black;">
-            <a style="margin-inline: auto;" href="{{ route('events.show',[$first]) }}"><img id="poster" src="{{ asset("$first->poster") }}" alt="{{ $first->title.'_poster' }}"></a>
-        </section>
+
+    @if (!$events->Empty())
+        <?php
+            $first=$events[0]
+        ?>
+        @if ($first->poster)
+            <section style="background-color:black;">
+                <a style="margin-inline: auto;" href="{{ route('events.show',[$first]) }}"><img id="poster" src="{{ asset("$first->poster") }}" alt="{{ $first->title.'_poster' }}"></a>
+            </section>
+        @endif
     @endif
+
 
     <section style="background-color: gray;">
     <p>
