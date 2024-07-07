@@ -64,3 +64,21 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+<hr>
+<h1>Commands</h1>
+
+<h2>Spond</h2>
+<p>php artisan app:spond-api</p>
+<small>makes connection with Spond and updates the events</small>
+
+<h2>Sponsor</h2>
+<p>php artisan app:add-sponsors</p>
+<small>seeds sponsors based of a json file, only when initializing</small>
+
+<h2>Laravel</h2>
+<p>php artisan serve</p>
+<small>runs laravel</small>
+
+<h2>NPM</h2>
+<p>npm run dev</p>
+<small>runs npm</small>
