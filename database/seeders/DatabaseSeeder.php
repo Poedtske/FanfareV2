@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Artisan;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -186,6 +188,9 @@ class DatabaseSeeder extends Seeder
             $instruments=\App\Models\Instrument::all()->random(rand(1,4))->pluck('id');
             $user->instruments()->attach($instruments);
         });
+
+        Artisan::call('app:add-sponsors');
+        Artisan::call('app:spond-api');
 
 //kud tinder tiran
 

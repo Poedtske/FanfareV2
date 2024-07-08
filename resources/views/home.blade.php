@@ -18,6 +18,10 @@
         @endif
     @endif
 
+    <section style="background-color:black;">
+        <video width="100%" src="{{ asset('videos/demo.mkv') }}" controls></video>
+    </section>
+
 
     <section style="background-color: gray;">
     <p>
@@ -42,6 +46,8 @@
     </p>
     </section>
 
+
+
     <section id="activity" style=" background-color: white; color: black;">
     <p id="naam"></p>
     <p id="datum"></p>
@@ -56,11 +62,11 @@
     <div>
         <button style="width: 10em;"><a href="{{ route('kalender') }}">Kalender</a></button>
     </div>
-        <div>
+    <div>
         <button style="width: 2em;" class="prev" id="prev">&#10094;</button>
         <button style="width: 2em;" class="next" id="next">&#10095;</button>
-        </div>
-        <script>
+    </div>
+    <script>
         let activityList=@json($events)
 
         let currentImageIndex=0;
@@ -90,38 +96,34 @@
         // }
         assignValues();
         let nextActivity= () => {
-        console.log("next");
-
-
-        if(currentImageIndex==activityList.length-1){
-            currentImageIndex=0;
-        }
-        else{
-            currentImageIndex++
-        }
-        //getValues();
-        assignValues();
+            console.log("next");
+            if(currentImageIndex==activityList.length-1){
+                currentImageIndex=0;
+            }
+            else{
+                currentImageIndex++
+            }
+            //getValues();
+            assignValues();
         }
 
         let prevActivity= () => {
-        console.log("prev");
-
-
-        if(currentImageIndex==0){
-            currentImageIndex=activityList.length-1;
-        }
-        else{
-            currentImageIndex--;
-        }
-        //getValues();
-        assignValues();
+            console.log("prev");
+            if(currentImageIndex==0){
+                currentImageIndex=activityList.length-1;
+            }
+            else{
+                currentImageIndex--;
+            }
+            //getValues();
+            assignValues();
 
         }
 
         let clicked=()=>{
-        hasBeenClicked=true;
-        console.log("clicked");
-        clearInterval(slideInterval);
+            hasBeenClicked=true;
+            console.log("clicked");
+            clearInterval(slideInterval);
         }
 
         const next=document.getElementById("next");
@@ -193,7 +195,7 @@
         <a href="https://www.trooper.be/nl/trooperverenigingen/kfdemoedigevrienden" target="_blank"><img class="fotos" src="{{ asset('images/logos/sponsors/trooper_logo.png') }}" alt="Hoofdsponsor" /></a>
     </button>
     </section>
-    @auth
+    {{-- @auth
     @admin
     @forelse($events as $event)
     <div class="post-item">
@@ -248,6 +250,6 @@
     @empty
         <b>Er zijn nog geen evenementen</b>
     @endforelse
-    @endauth
+    @endauth --}}
 
 @endsection
