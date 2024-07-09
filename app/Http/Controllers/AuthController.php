@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Functions\UserFunctions;
 
+//Seems that this isn't used
+
 class AuthController extends Controller
 {
     public function register(Request $request){

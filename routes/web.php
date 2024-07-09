@@ -118,6 +118,7 @@ Route::name('sponsors.')->prefix('sponsors')->group(function(){
     Route::get('/edit/{sponsor}',[SponsorController::class, 'edit'])->name('edit')->middleware(('admin'));
     Route::put('/update/{sponsor}',[SponsorController::class, 'update'])->name('update')->middleware(('admin'));
     Route::post('/store',[SponsorController::class, 'store'])->name('store')->middleware(('admin'));
+    Route::post('changeState/{sponsor}', [SponsorController::class, 'changeState'])->name('changeState')->middleware(['admin']);
 
 });
 
@@ -127,8 +128,8 @@ Route::name('sponsors.')->prefix('sponsors')->group(function(){
 // ->middleware(('admin'));
 
 Route::get('/profile/{user_id}', [ProfileController::class, 'showProfile'])->name('profile.show');
-Route::post('/profile/pro{user_id}', [ProfileController::class, 'promote'])->name('profile.promote')->middleware(['admin']);
-Route::post('/profile/dem{user_id}', [ProfileController::class, 'demote'])->name('profile.demote')->middleware(['admin']);
+Route::post('/profile/pro{user}', [ProfileController::class, 'promote'])->name('profile.promote')->middleware(['admin']);
+Route::post('/profile/dem{user}', [ProfileController::class, 'demote'])->name('profile.demote')->middleware(['admin']);
 
 require __DIR__.'/auth.php';
 

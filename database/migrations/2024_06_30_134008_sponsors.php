@@ -19,6 +19,7 @@ return new class extends Migration
             $table->enum('rank',[1,2,3,4]);
             $table->double('sponsored');
             $table->text('url')->nullable();
+            $table->boolean('active');
             $table->timestamps();
         });
     }

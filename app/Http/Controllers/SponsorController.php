@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SponsorFormRequest;
 use App\Http\Requests\SponsorEditFormRequest;
 use App\Models\Sponsor;
-use App\Models\User;
 use App\Functions\CrudFunctions;
+use App\Logging\SponsorLogger;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -21,20 +21,47 @@ class SponsorController extends Controller
      */
     public function index()
     {
-        $sponsors = Sponsor::all();
+
 
         // Check if the user is authenticated and is an admin
         if (auth()->check() && auth()->user()->isAdmin()) {
             // Admin view
+            $sponsors = Sponsor::all();
             return view('sponsors.index')->with('sponsors', $sponsors);
         } else {
             // Non-admin or unauthenticated view: modify the `sponsored` property
+            $sponsors = Sponsor::where('active', true)->get();
             foreach ($sponsors as $sponsor) {
                 $sponsor->sponsored = 'classified';
             }
 
             return view('sponsors.index')->with('sponsors', $sponsors);
         }
+    }
+
+    public function changeState(Sponsor $sponsor){
+        $this->authorize('changeState', $sponsor);
+
+        if($sponsor->active){
+            $sponsor->active=false;
+            $state="deactivated";
+            $flashMessage="Niet Actief";
+        }else{
+            $sponsor->active=true;
+            $state="activated";
+            $flashMessage="Actief";
+        }
+
+        $sponsor->save();
+        // $sponsor->sponsored='classified';
+
+        // $ip =  request()->getClientIp(true);
+        // CrudFunctions::crudLogger("Sponsor {$sponsor->title} has been {$message}: \nUser who did action: \nip: {$ip} \nusername: ".Auth::user()->name." \nid: ".Auth::user()->id."\nObjectInfo:", $sponsor);
+        SponsorLogger::changeState($sponsor,Auth::user(),$state,request()->getClientIp(true));
+        CrudFunctions::firstRankChecker();
+        return redirect()
+        ->back()
+        ->with('success', "Sponsor {$sponsor->title} is nu {$flashMessage}!");
     }
 
 
@@ -56,9 +83,10 @@ class SponsorController extends Controller
      */
     public function store(SponsorFormRequest $request)
     {
-        $validated = $request->validated();
+        $validated=$request->validated();
 
-        $sponsor=$request->user()->sponsors()->create($validated);
+        $sponsor=new Sponsor();
+        $sponsor->fill($validated);
 
         // Handle file upload
         $file = $request->file('logo');
@@ -67,17 +95,18 @@ class SponsorController extends Controller
         $sponsor->rank=CrudFunctions::rankFilter($sponsor);
         // Update validated data with the file path
         $sponsor['logo'] = '/storage/' . $path;
-
+        $sponsor->active=true;
         $sponsor->save();
         CrudFunctions::firstRankChecker();
 
-        $ip=request()->getClientIp();
-        CrudFunctions::crudLogger("Sponsor {$sponsor->title} has been created: \nUser who did action: \nip: {$ip} \nusername: ".Auth::user()->name." \nid: ".Auth::user()->id."\nObjectInfo:",$sponsor);
+        // $ip=request()->getClientIp();
+        SponsorLogger::create($sponsor,Auth::user(),request()->getClientIp());
+        // CrudFunctions::crudLogger("Sponsor {$sponsor->title} has been created: \nUser who did action: \nip: {$ip} \nusername: ".Auth::user()->name." \nid: ".Auth::user()->id."\nObjectInfo:",$sponsor);
 
 
         return redirect()
             ->route('sponsors.show', [$sponsor])
-            ->with('success', 'Sponsor '.$sponsor->title.' is Aangemaakt!');
+            ->with('success', 'Sponsor '.$sponsor->title.' is Aangepast!');
     }
 
     public function show(Sponsor $sponsor)
@@ -101,6 +130,7 @@ class SponsorController extends Controller
     {
         // Authorize the update
         $this->authorize('update', $sponsor);
+        $original=$sponsor->getOriginal();
 
         // Validate the request
         $validated = $request->validated();
@@ -138,8 +168,18 @@ class SponsorController extends Controller
         $sponsor->save();
         CrudFunctions::firstRankChecker();
 
-        $ip=request()->getClientIp();
-        CrudFunctions::crudLogger("Sponsor {$sponsor->title} has been updated: \nUser who did action: \nip: {$ip}\nusername: ".Auth::user()->name." \nid: ".Auth::user()->id."\nObjectInfo:",$sponsor);
+        // Get the updated attributes
+        $changes = $sponsor->getChanges();
+
+        // Prepare the differences for logging
+        $differences = [];
+        foreach ($changes as $attribute => $newValue) {
+            $oldValue = $original[$attribute] ?? 'N/A';
+            $differences[] = "{$attribute}: '{$oldValue}' => '{$newValue}'";
+        }
+        $differencesString = implode(", ", $differences);
+
+        SponsorLogger::update($sponsor,$differencesString,Auth::user(),request()->getClientIp());
 
         // Redirect with success message
         return redirect()
@@ -165,8 +205,9 @@ class SponsorController extends Controller
 
         $sponsor->delete();
 
-        $ip=request()->getClientIp();
-        CrudFunctions::crudLogger("Sponsor {$tempSponsor->title} has been deleted: \nUser who did action: \nip: {$ip} \nusername: ".Auth::user()->name." \nid: ".Auth::user()->id."\nObjectInfo:",$tempSponsor);
+        // $ip=request()->getClientIp();
+        // CrudFunctions::crudLogger("Sponsor {$tempSponsor->title} has been deleted: \nUser who did action: \nip: {$ip} \nusername: ".Auth::user()->name." \nid: ".Auth::user()->id."\nObjectInfo:",$tempSponsor);
+        SponsorLogger::delete($sponsor,Auth::user(),request()->getClientIp());
 
         return redirect()
         ->route('sponsors.index')

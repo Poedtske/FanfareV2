@@ -44,6 +44,11 @@
                         return currentSortDirection === 'asc'
                             ? parseInt(cellA) - parseInt(cellB)
                             : parseInt(cellB) - parseInt(cellA);
+                    } else if (columnIndex === 8) {
+                        // Handle sorting for the 'status' column (active or not active)
+                        return currentSortDirection === 'asc'
+                            ? (cellA === 'Actief' ? 1 : -1) - (cellB === 'Actief' ? 1 : -1)
+                            : (cellB === 'Actief' ? 1 : -1) - (cellA === 'Actief' ? 1 : -1);
                     } else {
                         return currentSortDirection === 'asc'
                             ? cellA.localeCompare(cellB)
@@ -62,8 +67,8 @@
                 });
             }
             function confirmDelete() {
-                                    return confirm("Ben je zeker dat je deze sponsor wilt verwijderen?");
-                                }
+                return confirm("Ben je zeker dat je deze sponsor wilt verwijderen?");
+            }
         </script>
 
         <style>
@@ -83,7 +88,7 @@
                     <th><a class="filter" href="#" onclick="sortTable(5)">rang</a></th>
                     <th><a class="filter" href="#" onclick="sortTable(6)">sponserd</a></th>
                     <th><a class="filter" href="#" onclick="sortTable(7)">url</a></th>
-                    <th><a class="filter" href="#" onclick="sortTable(8)">aanmaker</a></th>
+                    <th><a class="filter" href="#" onclick="sortTable(8)">status</a></th>
                     <th>aanpassen</th>
                     <th>verwijderen</th>
                 </tr>
@@ -99,7 +104,21 @@
                         <td>{{ $sponsor->rank }}</td>
                         <td>{{ $sponsor->sponsored }}</td>
                         <td>{{ $sponsor->url }}</td>
-                        <td>{{ $sponsor->user->name }}</td>
+                        @if ($sponsor->active)
+                        <td>
+                            <form action="{{ route('sponsors.changeState',[$sponsor]) }}" method="post">
+                                @csrf
+                                <button class="changeStateBtn" type="submit" name="id" value="{{ $sponsor->id }}" style="background-color: white;color:black;">Actief</button>
+                            </form>
+                        </td>
+                        @else
+                        <td>
+                            <form action="{{ route('sponsors.changeState',[$sponsor]) }}" method="post">
+                                @csrf
+                                <button class="changeStateBtn" type="submit" name="id" value="{{ $sponsor->id }}" style="background-color: black;color:white">Niet Actief</button>
+                            </form>
+                        </td>
+                        @endif
                         <td><a href="{{ route('sponsors.edit',[$sponsor]) }}"><button class="updateBtn">aanpassen</button></a></td>
                         <td>
                             <form method="POST" action="{{ route('sponsors.destroy', [$sponsor]) }}" onsubmit="return confirmDelete()">

@@ -45,7 +45,7 @@ header {
     position: fixed;
     inset: 0 0 auto 0;
     height: var(--header-height);
-
+    z-index: 10;
     background-color: black;
 }
 .active{
@@ -480,27 +480,7 @@ footer img {
     background-color:white;
   }
 
-.createBtn {
-    background-color: green;
-    padding: 1em;
-    border-radius:10px;
-    border:none;
-    transition:0.3s
-}
-.deleteBtn {
-    background-color: red;
-    padding: 1em;
-    border-radius:10px;
-    border:none;
-    transition:0.3s
-}
-.updateBtn {
-    background-color: #fa6908;
-    padding: 1em;
-    border-radius:10px;
-    border:none;
-    transition:0.3s
-}
+
 
 .createBtn:hover,
 .deleteBtn:hover,

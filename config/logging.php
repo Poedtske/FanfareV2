@@ -128,10 +128,17 @@ return [
             'path' => storage_path('logs/laravel.log'),
         ],
 
-        'crud'=>[
+        'sponsor'=>[
             'driver'=>'single',
             'tap'=>[SimpleFormatter::class],
-            'path'=>storage_path('logs/crud.log'),
+            'path'=>storage_path('logs/sponsor.log'),
+            'level'=> 'debug'
+        ],
+
+        'event'=>[
+            'driver'=>'single',
+            'tap'=>[SimpleFormatter::class],
+            'path'=>storage_path('logs/event.log'),
             'level'=> 'debug'
         ],
 

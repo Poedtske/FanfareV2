@@ -24,9 +24,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'birthday',
         'avatar',
-        'aboutme',
     ];
 
 
@@ -55,18 +53,18 @@ class User extends Authenticatable
     {
         return $this->hasMany(Post::class);
     }
-    public function getBirthday()
-    {
-        // Assuming birthday is the date column
-        $birthday = $this->attributes['birthday'];
+    // public function getBirthday()
+    // {
+    //     // Assuming birthday is the date column
+    //     $birthday = $this->attributes['birthday'];
 
-        // Extract month and day
-        $month = date('m', strtotime($birthday));
-        $day = date('d', strtotime($birthday));
+    //     // Extract month and day
+    //     $month = date('m', strtotime($birthday));
+    //     $day = date('d', strtotime($birthday));
 
-        // Format the birthday as mm/dd
-        return sprintf('%02d/%02d', $month, $day);
-    }
+    //     // Format the birthday as mm/dd
+    //     return sprintf('%02d/%02d', $month, $day);
+    // }
 
     public function categories():HasMany
     {

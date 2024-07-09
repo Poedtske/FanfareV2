@@ -19,11 +19,11 @@
   @auth
         @admin
         @if ($events)
-        <style>
-            main section {
-                width: min(90vw, 70rem);
-            }
-        </style>
+            <style>
+                main section {
+                    width: min(90vw, 70rem);
+                }
+            </style>
         <section>
             <div style="margin-left:auto;">
                 <a href="{{ route('events.create') }}"><button class="createBtn">Aanmaken</button></a>
@@ -106,7 +106,7 @@
                             @if ($event->poster)
                                 <td><a href="{{ route('events.show',[$event]) }}"><button><img class="poster" src="{{ asset($event->poster) }}" alt="{{ $event->title.'_poster' }}"></button></a></td>
                             @else
-                                <td><a href="{{ route('events.show',[$event]) }}"><button><img class="poster" src="{{ asset('images/no_image.png') }}" alt="No Image foto"></button></a></td>
+                                <td><a class="filter" href="{{ route('events.show',[$event]) }}">Geen Poster</a></td>
                             @endif
                             <td>{{ $event->id }}</td>
                             <td>{{ $event->title }}</td>

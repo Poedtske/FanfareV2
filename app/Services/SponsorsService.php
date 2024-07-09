@@ -62,7 +62,7 @@ class SponsorsService
                 $sponsor->description = null;
                 $sponsor->rank = $s["rang"];
                 $sponsor->sponsored = $s["geld"];
-                $sponsor->user_id = 1; // Assign a default user ID or adjust as necessary
+                $sponsor->active=true;
                 $sponsor->save();
             }
         }

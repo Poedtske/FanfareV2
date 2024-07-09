@@ -24,12 +24,25 @@
         <h2>Beschrijving</h2>
         <p>{{ $sponsor->description }}</p>
         @endif
-
+        <br>
         <a href="{{ route('sponsors.index') }}"><button class="btn">Sponsors</button></a>
 
         @can('update',$sponsor)
         <br>
         <a href="{{ route('sponsors.edit',[$sponsor]) }}"><button class="update">Aanpassen</button></a>
+
+        @if ($sponsor->active)
+            <form action="{{ route('sponsors.changeState',[$sponsor]) }}" method="post">
+                @csrf
+                <button class="changeState" type="submit" name="id" value="{{ $sponsor->id }}" style="background-color: white;color:black;">Actief</button>
+            </form>
+        @else
+            <form action="{{ route('sponsors.changeState',[$sponsor]) }}" method="post">
+                @csrf
+                <button class="changeState" type="submit" name="id" value="{{ $sponsor->id }}" style="background-color: black;color:white">Niet Actief</button>
+            </form>
+        @endif
+
 
         @endcan
         @can('delete',$sponsor)
@@ -48,9 +61,6 @@
         @admin
             <p>Gesponsord: €{{ $sponsor->sponsored }}</p>
             <small>Gemaakt: <b>{{ $sponsor->created_at }}</b></small>
-            <br>
-            <small>Gemaakt door: <b>{{$sponsor->user->name }}</b></small>
-
             <br>
             @if ($sponsor->updated_at!=$sponsor->created_at )
             <small>Laatst aangepast: <b>{{ $sponsor->updated_at }}</b></small>

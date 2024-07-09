@@ -1,7 +1,7 @@
 <footer>
     <?php
         use App\Models\Sponsor;
-        $sponsor=Sponsor::orderBy('sponsored','desc')->first();
+        $sponsor=Sponsor::where("rank",1)->first();
     ?>
     @if ($sponsor)
         @if ($sponsor->url)

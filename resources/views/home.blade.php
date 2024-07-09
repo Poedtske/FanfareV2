@@ -7,18 +7,20 @@
 @section('content')
 <img src="{{ asset('images/banner.jpg') }}" alt="banner" id="banner">
 
-    @if (!$events->Empty())
-        <?php
-            $first=$events[0]
-        ?>
-        @if ($first->poster)
-            <section style="background-color:black;">
-                <a style="margin-inline: auto;" href="{{ route('events.show',[$first]) }}"><img id="poster" src="{{ asset("$first->poster") }}" alt="{{ $first->title.'_poster' }}"></a>
-            </section>
-        @endif
+    @if (!$events->isEmpty())
+    @php
+        $first = $events[0];
+    @endphp
+    @if ($first->poster)
+        <section style="background-color:black;">
+            <a style="margin-inline: auto; width:60%;" href="{{ route('events.show', $first) }}">
+                <img id="poster" src="{{ asset($first->poster) }}" alt="{{ $first->title . '_poster' }}">
+            </a>
+        </section>
+    @endif
     @endif
 
-    <section style="background-color:black;">
+    <section class="video-section" style="background-color:black;">
         <video width="100%" src="{{ asset('videos/demo.mkv') }}" controls></video>
     </section>
 

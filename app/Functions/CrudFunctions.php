@@ -103,23 +103,6 @@ use App\Models\Sponsor;
 
 
 class CrudFunctions{
-    public static function crudLogger($message,$object){
-        Log::channel('crud')->info($message,[
-            'object'=>$object
-            ]);
-    }
-
-    public static function crudSpondLogger($message,$object){
-        Log::channel('crud')->info($message,[
-            'object'=>$object
-            ]);
-    }
-
-    public static function spondErrorLogger($message,$object){
-        Log::channel('sponderrors')->info($message,[
-            'event'=>$object
-            ]);
-    }
 
     public static function camelcaseTransformer($name){
         // Remove special characters, replace spaces with underscores, and convert to lowercase
@@ -190,10 +173,10 @@ class CrudFunctions{
         $hoofdSponsor = Sponsor::where('rank', 1)->first();
 
         // Retrieve the sponsor with the highest 'sponsored' value
-        $highestSponsored = Sponsor::orderBy('sponsored', 'desc')->first();
+        $highestSponsored = Sponsor::orderBy('sponsored', 'desc')->where('active',true)->first();
 
         // Check if there is a sponsor with rank 1 and if the highest sponsored sponsor should be promoted
-        if ($hoofdSponsor && $highestSponsored && $highestSponsored->sponsored > $hoofdSponsor->sponsored) {
+        if ($hoofdSponsor && $highestSponsored && $highestSponsored->sponsored > $hoofdSponsor->sponsored||$hoofdSponsor->active==false) {
             // Demote the current rank 1 sponsor to rank 2
             $hoofdSponsor->rank = 2;
             $hoofdSponsor->save();

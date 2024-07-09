@@ -12,6 +12,12 @@ class SponsorPolicy
         return $user->role=='admin';
     }
 
+    public function changeState(User $user)
+    {
+        // return $user->id === $post->user_id;
+        return $user->role=='admin';
+    }
+
     public function store(User $user)
     {
         return $user->role=='admin';

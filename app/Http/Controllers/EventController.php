@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Http\Requests\EventFormRequest;
 use App\Functions\CrudFunctions;
+use App\Logging\EventLogger;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -43,8 +44,9 @@ class EventController extends Controller
         }
 
         $event->save();
-        $ip=request()->getClientIp();
-        CrudFunctions::crudLogger("Event {$event->title} has been created: \nUser who did action: \nip:{$ip} \nusername: ".Auth::user()->name." \nid: ".Auth::user()->id."\nObjectInfo:",$event);
+        // $ip=request()->getClientIp();
+        EventLogger::create($event,Auth::user(),request()->getClientIp());
+        // CrudFunctions::crudLogger("Event {$event->title} has been created: \nUser who did action: \nip:{$ip} \nusername: ".Auth::user()->name." \nid: ".Auth::user()->id."\nObjectInfo:",$event);
         return redirect()
                 ->route('events.show',[$event])
                 ->with('success', 'Evenement '.$event->title.' is Aangemaakt!');
@@ -74,7 +76,7 @@ class EventController extends Controller
    {
 
        $this->authorize('update',$event);
-
+       $original = $event->getOriginal();
 
        // Validate the request
        $validated = $request->validated();
@@ -110,12 +112,22 @@ class EventController extends Controller
        }
 
        $event->update($validated);
-       $ip=request()->getClientIp();
-       CrudFunctions::crudLogger("Event {$event->title} has been updated: \nUser who did action: \nip: {$ip} \nusername: ".Auth::user()->name." \nid: ".Auth::user()->id."\nObjectInfo:",$event);
+
+       // Get the updated attributes
+        $changes = $event->getChanges();
+
+        // Prepare the differences for logging
+        $differences = [];
+        foreach ($changes as $attribute => $newValue) {
+            $oldValue = $original[$attribute] ?? 'N/A';
+            $differences[] = "{$attribute}: '{$oldValue}' => '{$newValue}'";
+        }
+        $differencesString = implode(", ", $differences);
+       EventLogger::update($event,$differencesString,Auth::user(),request()->getClientIp());
 
 
        return redirect()
-           ->route('events.show',[$event])//id gets extraced from $event and used
+           ->route('events.show', [$event])
            ->with('success','Evenement '.$event->title.' is Aangepast!');
    }
 
@@ -137,9 +149,10 @@ class EventController extends Controller
                 Storage::disk('public')->delete($path);
             }
        }
-       $ip=request()->getClientIp();
+    //    $ip=request()->getClientIp();
        $event->delete();
-       CrudFunctions::crudLogger("Event {$tempEvent->title} has been deleted: \nUser who did action: \nip: {$ip} \nusername: ".Auth::user()->name." \nid: ".Auth::user()->id."\nObjectInfo:",$tempEvent);
+       EventLogger::delete($tempEvent,Auth::user(),request()->getClientIp());
+    //    CrudFunctions::crudLogger("Event {$tempEvent->title} has been deleted: \nUser who did action: \nip: {$ip} \nusername: ".Auth::user()->name." \nid: ".Auth::user()->id."\nObjectInfo:",$tempEvent);
 
 
 

@@ -3,7 +3,7 @@ namespace App\Services;
 
 use App\Exceptions\EventAlreadyPresent;
 use App\Models\Event;
-use App\Functions\CrudFunctions;
+use App\Logging\EventLogger;
 
 use DateTime;
 use Carbon\Carbon;
@@ -42,7 +42,7 @@ class SpondService{
         if (json_last_error() !== JSON_ERROR_NONE) {
             echo "ERROR: Failed to decode JSON: " . json_last_error_msg() . "\n";
             echo "Output:\n" . $output . "\n"; // Provide full output for debugging
-            CrudFunctions::spondErrorLogger("ERROR: Failed to decode JSON: ",json_last_error_msg());
+            EventLogger::spondError("ERROR: Failed to decode JSON: ",json_last_error_msg());
             return false;
         }
 
@@ -52,26 +52,51 @@ class SpondService{
         } else {
             echo "Failed to retrieve events.\n";
             echo "Output:\n" . $output . "\n"; // Log the full output for debugging
-            CrudFunctions::spondErrorLogger("ERROR: Failed to retrieve events: ",$output);
+            EventLogger::spondError("ERROR: Failed to retrieve events: ",$output);
             return false;
         }
     }
 
 
     // updates the oldEvent in the database with data from the new event.
-    private function update($oldEvent,$newEvent){
+    private function update($oldEvent, $newEvent)
+    {
+        $changedFields = [];
 
-        $oldEvent->title=$newEvent['title'];
-        $oldEvent->description=$newEvent['description'];
-        $oldEvent->date=$newEvent['date'];
-        $oldEvent->start_time=$newEvent['startTime'];
-        $oldEvent->end_time=$newEvent['endTime'];
-        $oldEvent->location=$newEvent['location'];
-        $oldEvent->save();
-        CrudFunctions::crudSpondLogger("Event {$oldEvent->title} updated by Spond",$oldEvent);
-        print('Update');
+        if ($oldEvent->title !== $newEvent['title']) {
+            $changedFields['title'] = ['old' => $oldEvent->title, 'new' => $newEvent['title']];
+            $oldEvent->title = $newEvent['title'];
+        }
+        if ($oldEvent->description !== $newEvent['description']) {
+            $changedFields['description'] = ['old' => $oldEvent->description, 'new' => $newEvent['description']];
+            $oldEvent->description = $newEvent['description'];
+        }
+        if ($oldEvent->date !== $newEvent['date']) {
+            $changedFields['date'] = ['old' => $oldEvent->date, 'new' => $newEvent['date']];
+            $oldEvent->date = $newEvent['date'];
+        }
+        if ($oldEvent->start_time !== $newEvent['startTime']) {
+            $changedFields['start_time'] = ['old' => $oldEvent->start_time, 'new' => $newEvent['startTime']];
+            $oldEvent->start_time = $newEvent['startTime'];
+        }
+        if ($oldEvent->end_time !== $newEvent['endTime']) {
+            $changedFields['end_time'] = ['old' => $oldEvent->end_time, 'new' => $newEvent['endTime']];
+            $oldEvent->end_time = $newEvent['endTime'];
+        }
+        if ($oldEvent->location !== $newEvent['location']) {
+            $changedFields['location'] = ['old' => $oldEvent->location, 'new' => $newEvent['location']];
+            $oldEvent->location = $newEvent['location'];
+        }
 
+        if (!empty($changedFields)) {
+            $oldEvent->save();
+
+            // Log the changes
+            $changes = json_encode($changedFields, JSON_PRETTY_PRINT);
+            EventLogger::spondUpdate($oldEvent,$changes);
+        }
     }
+
 
 
     // looks at the date of the already existing event
@@ -79,6 +104,8 @@ class SpondService{
     private function checkDelete($event){
         // Parse the event date
         $eventDate = Carbon::parse($event->date);
+
+        $tempEvent=$event;
 
         // Check if the event date is in the past
         if ($eventDate->isPast()) {
@@ -92,7 +119,8 @@ class SpondService{
                 }
             }
             $event->delete();
-            CrudFunctions::crudSpondLogger("Event {$tempEvent->title} deleted by Spond",$tempEvent);
+            EventLogger::spondDelete($tempEvent,"Spond");
+
             return false;
         }
         return true;
@@ -142,7 +170,7 @@ class SpondService{
         // Combine the adjusted date and time parts back
         $adjustedDateTime = [$datePart,$adjustedTime];
 
-        return $adjustedDateTime;
+        return $dateParts;
     }
 
 
@@ -198,7 +226,7 @@ class SpondService{
                     }
                 }
                 $event->delete();
-                CrudFunctions::crudSpondLogger("Event {$tempEvent->title} deleted by AutoCheck", $tempEvent);
+                EventLogger::spondDelete($tempEvent,"Autocheck");
             }
         }
     }
@@ -216,11 +244,8 @@ class SpondService{
             $event->end_time = $e['endTime'];
             $event->location = $e['location'];
             $event->save();
-            CrudFunctions::crudSpondLogger("Event {$event->title} created by Spond",$event);
+            EventLogger::spondCreate($event);
         }
         self::deleteEvents();
     }
 }
-
-// $a=new SpondService('Spond_api.py');
-// $a->run();

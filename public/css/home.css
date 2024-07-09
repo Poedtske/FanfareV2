@@ -149,3 +149,23 @@ main button {
         padding-inline: 0;
     }
 }
+
+section.video-section {
+    /* position: relative; */
+    z-index: 1; /* Ensure video section is below the header */
+    background-color: black;
+}
+
+video {
+    width: 100%;
+}
+
+/* Ensure the header fully covers the video beneath it */
+header {
+    pointer-events: auto; /* Allow interaction with the header */
+}
+
+/* Prevent interaction with the video through the header */
+/* section.video-section {
+    pointer-events: none;
+} */

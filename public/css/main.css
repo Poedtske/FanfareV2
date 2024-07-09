@@ -197,6 +197,10 @@ ul li .dropdown:hover .dropdown-content {
     border:none;
   }
 
+  .post-item .changeState {
+    border:none;
+  }
+
 
   /* Flash messages */
 

@@ -6,7 +6,7 @@
 
 
 @section('content')
-@if ($user->role=="admin")
+{{-- @if ($user->role=="admin")
 <section style="justify-content: center; background-color:rgb(164,55,65);color: white;">
     {{ $user->name }}
     @if ($user->birthday!=null)
@@ -24,7 +24,7 @@
     {{ $user->getBirthday() }}
     @endif
 </section>
-@endif
+@endif --}}
 
 @auth
     @admin
@@ -46,9 +46,9 @@
     <img style=" width:50%; border-radius:30%" src=" {{ $user->avatar }}" alt="user avatar">
 </section>
 
-<section style="justify-content: center; background-color:black;color: white;">
+{{-- <section style="justify-content: center; background-color:black;color: white;">
     {{ $user->aboutme }}
-</section>
+</section> --}}
 @foreach ($user->instruments as $instrument)
     <section style="justify-content: center; background-color:grey;color: white;">
         <img src="{{ asset($instrument->img) }}" alt="{{ $instrument->name }}">

@@ -47,11 +47,11 @@
             @endif
         </div>
 
-        <div>
+        {{-- <div>
             <x-input-label for="birthday" :value="__('Birthday')" />
             <x-text-input id="birthday" name="birthday" type="date" class="block w-full mt-1" :value="old('birthday', $user->birthday)" required autofocus autocomplete="birthday" />
             <x-input-error class="mt-2" :messages="$errors->get('birthday')" />
-        </div>
+        </div> --}}
 
         <div>
             <x-input-label for="avatar" :value="__('Avatar')" />
@@ -63,12 +63,11 @@
             <x-input-error class="mt-2" :messages="$errors->get('avatar')" />
         </div>
 
-        <div>
+        {{-- <div>
             <x-input-label for="aboutme" :value="__('Aboutme')" />
-            {{-- <textarea id="aboutme" name="aboutme" class="block w-full mt-1" name="about" required autofocus autocomplete="aboutme">{{ old('description') }}</textarea> --}}
             <x-text-input id="aboutme" name="aboutme" type="text" class="block w-full mt-1" :value="old('aboutme', $user->aboutme)" required autofocus autocomplete="aboutme" />
             <x-input-error class="mt-2" :messages="$errors->get('aboutme')" />
-        </div>
+        </div> --}}
 
 
         <div class="flex items-center gap-4">

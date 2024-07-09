@@ -101,7 +101,7 @@ class PostController extends Controller
 
         return redirect()
         //  ->route('posts.show',['post'=>$post->id]) done by laravel (route model binding)
-            ->route('posts.show',[$post])//id gets extraced from $post and used
+            ->back()
             ->with('success','Post is Updated!');
     }
 
@@ -115,7 +115,7 @@ class PostController extends Controller
         $post->delete();
 
         return redirect()
-        ->route('home2')
+        ->route('kalender')
         ->with('success','Post has been deleted!');
     }
 }

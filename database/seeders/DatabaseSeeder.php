@@ -20,27 +20,19 @@ class DatabaseSeeder extends Seeder
             'name' => 'admin',
             'email' => 'admin@ehb.be',
             'password'=>'Password!321',
-            'birthday'=>'1111-11-11',
-            'aboutme'=>"i'm an admin",
             'role'=>'admin',
         ]);
         \App\Models\User::factory()->create([
             'name' => 'Robbe',
             'email' => 'robbe.poedts@hotmail.be',
             'password'=>'111111111',
-            'birthday'=>'1111-11-11',
-            'aboutme'=>"i'm a dev",
             'role'=>'admin',
         ]);
         \App\Models\User::factory()->create([
             'name' => 'test',
             'email' => 'test.user@hotmail.be',
             'password'=>'111111111',
-            'birthday'=>'1111-11-11',
-            'aboutme'=>"i'm a pleb",
         ]);
-
-
 
         \App\Models\Post::factory()->create([
             'title' => 'Groot Concert',
