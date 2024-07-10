@@ -3,12 +3,12 @@ import datetime
 from spond import spond  # Assuming spond is a package you have installed
 import json
 import sys
+from dotenv import load_dotenv
+import os
 
-import details
-
-username = details.USERNAME
-password = details.PASSWORD
-group_id = details.GROUP_ID
+username = os.getenv('SPOND_USERNAME')
+password = os.getenv('SPOND_PASSWORD')
+group_id = os.getenv('SPOND_GROUP_ID')
 
 async def get_events_spond():
     s = spond.Spond(username=username, password=password)
