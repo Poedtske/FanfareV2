@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('location');
             $table->string('poster')->nullable();
             $table->string('spond_id')->unique()->nullable();
+            $table->string('calendar_id')->unique()->nullable();
             $table->timestamps();
         });
     }

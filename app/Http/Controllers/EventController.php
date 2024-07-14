@@ -7,9 +7,11 @@ use App\Models\Event;
 use App\Http\Requests\EventFormRequest;
 use App\Functions\CrudFunctions;
 use App\Logging\EventLogger;
+use App\Services\CalendarService;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 
 
 class EventController extends Controller
@@ -42,8 +44,15 @@ class EventController extends Controller
             // Update validated data with the file path
             $event['poster'] = '/storage/' . $path;
         }
+        Log::channel('event')->info('IETS',[
+            'event'=>$validated
+            ]);
+
+        $event->calendar_id=CalendarService::create($event);
 
         $event->save();
+
+
         // $ip=request()->getClientIp();
         EventLogger::create($event,Auth::user(),request()->getClientIp());
         // CrudFunctions::crudLogger("Event {$event->title} has been created: \nUser who did action: \nip:{$ip} \nusername: ".Auth::user()->name." \nid: ".Auth::user()->id."\nObjectInfo:",$event);
@@ -113,6 +122,8 @@ class EventController extends Controller
 
        $event->update($validated);
 
+
+
        // Get the updated attributes
         $changes = $event->getChanges();
 
@@ -123,6 +134,9 @@ class EventController extends Controller
             $differences[] = "{$attribute}: '{$oldValue}' => '{$newValue}'";
         }
         $differencesString = implode(", ", $differences);
+        if($event->calendar_id){
+            CalendarService::update($event);
+           }
        EventLogger::update($event,$differencesString,Auth::user(),request()->getClientIp());
 
 
@@ -151,6 +165,11 @@ class EventController extends Controller
        }
     //    $ip=request()->getClientIp();
        $event->delete();
+       if(empty($tempEvent->calender_id)){
+        CalendarService::delete($tempEvent);
+       }
+
+
        EventLogger::delete($tempEvent,Auth::user(),request()->getClientIp());
     //    CrudFunctions::crudLogger("Event {$tempEvent->title} has been deleted: \nUser who did action: \nip: {$ip} \nusername: ".Auth::user()->name." \nid: ".Auth::user()->id."\nObjectInfo:",$tempEvent);
 
