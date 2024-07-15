@@ -53,12 +53,10 @@ class SponsorController extends Controller
         }
 
         $sponsor->save();
-        // $sponsor->sponsored='classified';
 
-        // $ip =  request()->getClientIp(true);
-        // CrudFunctions::crudLogger("Sponsor {$sponsor->title} has been {$message}: \nUser who did action: \nip: {$ip} \nusername: ".Auth::user()->name." \nid: ".Auth::user()->id."\nObjectInfo:", $sponsor);
         SponsorLogger::changeState($sponsor,Auth::user(),$state,request()->getClientIp(true));
         CrudFunctions::firstRankChecker();
+
         return redirect()
         ->back()
         ->with('success', "Sponsor {$sponsor->title} is nu {$flashMessage}!");
@@ -99,10 +97,7 @@ class SponsorController extends Controller
         $sponsor->save();
         CrudFunctions::firstRankChecker();
 
-        // $ip=request()->getClientIp();
         SponsorLogger::create($sponsor,Auth::user(),request()->getClientIp());
-        // CrudFunctions::crudLogger("Sponsor {$sponsor->title} has been created: \nUser who did action: \nip: {$ip} \nusername: ".Auth::user()->name." \nid: ".Auth::user()->id."\nObjectInfo:",$sponsor);
-
 
         return redirect()
             ->route('sponsors.show', [$sponsor])
@@ -205,8 +200,6 @@ class SponsorController extends Controller
 
         $sponsor->delete();
 
-        // $ip=request()->getClientIp();
-        // CrudFunctions::crudLogger("Sponsor {$tempSponsor->title} has been deleted: \nUser who did action: \nip: {$ip} \nusername: ".Auth::user()->name." \nid: ".Auth::user()->id."\nObjectInfo:",$tempSponsor);
         SponsorLogger::delete($sponsor,Auth::user(),request()->getClientIp());
 
         return redirect()

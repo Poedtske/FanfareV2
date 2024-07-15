@@ -50,4 +50,31 @@ class EventLogger{
             'object'=>$object
             ]);
     }
+
+    public static function calendarCreate($json,$title){
+        $message="Calendar Event {$title} has been created\nContext:";
+        Log::channel('event')->info($message,[
+            'json'=>$json
+            ]);
+    }
+
+    public static function calendarUpdate($json,$title){
+        $message="Calendar Event {$title} has been updated\nContext:";
+        Log::channel('event')->info($message,[
+            'json'=>$json,
+            ]);
+    }
+
+    public static function calendarDelete($json,$title){
+        $message="Calendar Event {$title} has been deleted\nContext:";
+        Log::channel('event')->info($message,[
+            'json'=>$json
+            ]);
+    }
+
+    public static function calendarError($message,$json){
+        Log::channel('api_errors')->warning($message,[
+            'json'=>$json,
+            ]);
+    }
 }

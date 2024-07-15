@@ -142,10 +142,10 @@ return [
             'level'=> 'debug'
         ],
 
-        'sponderrors'=>[
+        'api_errors'=>[
             'driver'=>'single',
             'tap'=>[SimpleFormatter::class],
-            'path'=>storage_path('logs/sponderrors.log'),
+            'path'=>storage_path('logs/api_errors.log'),
             'level'=>'debug'
         ],
 
