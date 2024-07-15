@@ -14,7 +14,7 @@ from googleapiclient.errors import HttpError
 
 
 class Calendar_api:
-    def __init__(self):
+    def __init__(self,json):
 
         self.FILE_PATH='Calendar.json'
         SCOPES = ["https://www.googleapis.com/auth/calendar"]
@@ -42,7 +42,7 @@ class Calendar_api:
             with open("token.json", "w") as token:
                 token.write(self.creds.to_json())
 
-        object=self.readJson()
+        object=json
         # print(object.get('event'))
         if(object['action']=='create'):
             self.id=self.create(object.get("event"))
@@ -86,10 +86,11 @@ class Calendar_api:
             # print(event)
             event=service.events().insert(calendarId="k.f.demoedigevrienden@gmail.com",body=event).execute()
 
-            json_output = json.dumps(event.get('id'), ensure_ascii=False, indent=4)
-            sys.stdout.buffer.write(json_output.encode('utf-8'))
-            return
-            print(f"Event updated {event.get('htmlLink')}")
+            print(event.get('id'))
+            # json_output = json.dumps(event.get('id'), ensure_ascii=False, indent=4)
+            # sys.stdout.buffer.write(json_output.encode('utf-8'))
+            # return
+            # print(f"Event updated {event.get('htmlLink')}")
         except HttpError as error:
             print(f"An error occurred: {error}")
             return
@@ -115,7 +116,7 @@ class Calendar_api:
 
             event=service.events().patch(calendarId="k.f.demoedigevrienden@gmail.com",eventId=calendar_id,body=event).execute()
 
-            print(f"Event updated {event.get('htmlLink')}")
+            print(event)
         except HttpError as error:
             print(f"An error occurred: {error}")
             return
@@ -161,9 +162,12 @@ class Calendar_api:
 
 
 
-
-def main():
-    Calendar_api()
-
 if __name__ == "__main__":
-    main()
+    if len(sys.argv) != 2:
+        print("Usage: python test.py '<json_string>'")
+    else:
+        json_str = sys.argv[1]
+        json_str = json_str.replace('*', '"')
+        Calendar_api(json.loads(json_str))
+
+

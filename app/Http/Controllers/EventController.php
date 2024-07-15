@@ -50,6 +50,7 @@ class EventController extends Controller
 
         $event->calendar_id=CalendarService::create($event);
 
+
         $event->save();
 
 
