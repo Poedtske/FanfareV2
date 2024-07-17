@@ -6,9 +6,21 @@ import sys
 from dotenv import load_dotenv
 import os
 
+load_dotenv()
+
 username = os.getenv('SPOND_USERNAME')
 password = os.getenv('SPOND_PASSWORD')
 group_id = os.getenv('SPOND_GROUP_ID')
+
+def add_two_hours_to_timestamp(timestamp):
+    # Parse the timestamp
+    dt = datetime.datetime.fromisoformat(timestamp.replace('Z', '+00:00'))
+
+    # Add 2 hours
+    dt += datetime.timedelta(hours=2)
+
+    # Convert back to ISO format with 'Z'
+    return dt.isoformat().replace('+00:00', 'Z')
 
 async def get_events_spond():
     s = spond.Spond(username=username, password=password)
@@ -25,8 +37,8 @@ async def get_events_spond():
         event_details = {
             "ID":event['id'],
             "title": event['heading'],
-            "start": event['startTimestamp'],
-            "end": event['endTimestamp'],
+            "start": add_two_hours_to_timestamp(event['startTimestamp']),
+            "end": add_two_hours_to_timestamp(event['endTimestamp']),
             "location": event['location']['feature']
         }
 
