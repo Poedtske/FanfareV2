@@ -13,7 +13,7 @@ group_id = os.getenv('SPOND_GROUP_ID')
 async def get_events_spond():
     s = spond.Spond(username=username, password=password)
     group = await s.get_group(group_id)
-    events = await s.get_events(group_id=group_id, min_start=datetime.datetime.now())
+    events = await s.get_events(group_id=group_id,include_scheduled=True, min_start=datetime.datetime.now())
     eventlist = []
 
     for event in events:
