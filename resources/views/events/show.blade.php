@@ -24,6 +24,7 @@
         <p>Locatie: {{ $event->location }}</p>
         <p>Begin: {{ substr($event->start_time,0,-3) }}</p>
         <p>Einde: {{ substr($event->end_time,0,-3) }}</p>
+        @auth
         @if ($event->spond_id)
         <br>
         <button style="border: none;">
@@ -32,6 +33,8 @@
               </a>
         </button>
         @endif
+        @endauth
+
         <br>
         @can('update',$event)
         <a href="{{ route('events.edit',[$event]) }}"><button class="update">Aanpassen</button></a>
@@ -51,10 +54,12 @@
 
 
         @endcan
+        @auth
         <small>Aangemaakt: <b>{{ $event->created_at }}</b></small><br>
         @if ($event->updated_at!=$event->created_at )
         <small>Laatst aangepast: <b>{{ $event->updated_at }}</b></small>
         @endif
+        @endauth
 
     </div>
 </div>

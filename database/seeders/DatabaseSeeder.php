@@ -17,54 +17,50 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory(37)->create();
 
         \App\Models\User::factory()->create([
-            'name' => 'admin',
-            'email' => 'admin@ehb.be',
+            'name' => 'Seppe Mariën',
+            'email' => 'seppe3008@gmail.com',
             'password'=>'Password!321',
             'role'=>'admin',
         ]);
         \App\Models\User::factory()->create([
-            'name' => 'Robbe',
+            'name' => 'Robbe Poedts',
             'email' => 'robbe.poedts@hotmail.be',
             'password'=>'111111111',
             'role'=>'admin',
         ]);
-        \App\Models\User::factory()->create([
-            'name' => 'test',
-            'email' => 'test.user@hotmail.be',
-            'password'=>'111111111',
-        ]);
 
-        \App\Models\Post::factory()->create([
-            'title' => 'Groot Concert',
-            'description' => 'The concert is in xxxx location',
-            'cover'=>'images/covers/1.jpg',
-            'date'=>'2024-03-24',
-            'time'=>'19:00',
-        ]);
 
-        \App\Models\Post::factory()->create([
-            'title' => 'Concert 11/03/2024',
-            'description' => 'doors open at 19:00',
-        ]);
+        // \App\Models\Post::factory()->create([
+        //     'title' => 'Groot Concert',
+        //     'description' => 'The concert is in xxxx location',
+        //     'cover'=>'images/covers/1.jpg',
+        //     'date'=>'2024-03-24',
+        //     'time'=>'19:00',
+        // ]);
 
-        \App\Models\Post::factory(3)->create();
+        // \App\Models\Post::factory()->create([
+        //     'title' => 'Concert 11/03/2024',
+        //     'description' => 'doors open at 19:00',
+        // ]);
 
-        \App\Models\Category::factory()->create([
-            'name' => 'Posts',
-        ]);
+        // \App\Models\Post::factory(3)->create();
 
-        \App\Models\Category::factory(12)->create();
+        // \App\Models\Category::factory()->create([
+        //     'name' => 'Posts',
+        // ]);
 
-        \App\Models\Question::factory()->create([
-            'title' => 'How do I make a post',
-            'question'=>"i've looked everywhere how to make a post but i can't find it!!!",
-            'anwser'=>'Only admins are allowed to make posts',
-            'category_id'=>1,
-        ]);
+        // \App\Models\Category::factory(12)->create();
 
-        \App\Models\Contact::factory(5)->create();
+        // \App\Models\Question::factory()->create([
+        //     'title' => 'How do I make a post',
+        //     'question'=>"i've looked everywhere how to make a post but i can't find it!!!",
+        //     'anwser'=>'Only admins are allowed to make posts',
+        //     'category_id'=>1,
+        // ]);
 
-        \App\Models\Question::factory(20)->create();
+        // \App\Models\Contact::factory(5)->create();
+
+        // \App\Models\Question::factory(20)->create();
         $instrumentCategories = [
             ['name' => 'Koperblazers'],
             ['name' => 'Houtblazers'],
@@ -176,10 +172,10 @@ class DatabaseSeeder extends Seeder
             $instrumentsArray
         );
 
-        \App\Models\User::all()->each(function($user){
-            $instruments=\App\Models\Instrument::all()->random(rand(1,4))->pluck('id');
-            $user->instruments()->attach($instruments);
-        });
+        // \App\Models\User::all()->each(function($user){
+        //     $instruments=\App\Models\Instrument::all()->random(rand(1,4))->pluck('id');
+        //     $user->instruments()->attach($instruments);
+        // });
 
         Artisan::call('app:add-sponsors');
         Artisan::call('app:spond-api');

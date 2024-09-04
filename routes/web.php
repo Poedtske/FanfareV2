@@ -54,17 +54,6 @@ Route::name('praktischeInfo.')->prefix('praktischeInfo')->group(function(){
 
 // Route::get('/members', [HomeController::class, 'members'])->name('members');
 
-Route::resource('posts',PostController::class)
-->except(['index'])
-->middleware(('admin'));
-
-Route::resource('categories',CategoryController::class)
-->except(['index'])
-->middleware(('admin'));
-
-Route::resource('questions',QuestionController::class)
-->except(['index'])
-->middleware(('admin'));
 
 // Route::get('contact/create',[ContactController::class,'create'])->name('contact.create')->middleware(('guest'));
 // Route::post('contact/store',[ContactController::class,'store'])->name('contact.store')->middleware(('guest'));

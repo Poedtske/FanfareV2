@@ -5,7 +5,7 @@
 
 
 @section('content')
-<img src="{{ asset('images/banner.jpg') }}" alt="banner" id="banner">
+<img src="{{ asset('images/banner.jpeg') }}" alt="banner" id="banner">
 
     @if (!$events->isEmpty())
     @php
@@ -13,22 +13,33 @@
     @endphp
     @if ($first->poster)
         <section style="background-color:black;">
-            <a style="margin-inline: auto; width:60%;" href="{{ route('events.show', $first) }}">
-                <img id="poster" src="{{ asset($first->poster) }}" alt="{{ $first->title . '_poster' }}">
+            <a style="margin-inline: auto; width:30%;" href="{{ route('events.show', $first) }}">
+                <img width="100%" id="poster" src="{{ asset($first->poster) }}" alt="{{ $first->title . '_poster' }}">
             </a>
         </section>
     @endif
     @endif
 
-    <section class="video-section" style="background-color:black;">
+    {{-- <section class="video-section" style="background-color:black;">
         <video width="100%" src="{{ asset('videos/demo.mkv') }}" controls></video>
-    </section>
+    </section> --}}
+
+
+
+
+
+
+
+
+
+
 
 
     <section style="background-color: gray;">
     <p>
-        Wij zijn een groep enthousiaste amateurmuzikanten bestaande uit momenteel een dertigtal spelende leden waarvan de leeftijden uiteenlopend zijn, gaande van kinderen tot gepensioneerden.
-        Jong of oud, het maakt voor ons niet uit !!!
+        Wij zijn een groep enthousiaste amateurmuzikanten bestaande uit momenteel een dertigtal spelende leden waarvan de leeftijden uiteenlopend zijn,
+        gaande van kinderen tot gepensioneerden.
+        Jong of oud, het maakt voor ons niet uit!!!
     </p>
     <p>
         Het bestuur bestaat uit gemotiveerde leden, die allen instaan voor de bevordering van onze fanfare.
@@ -38,13 +49,19 @@
     <p></p>
     <p>
         Onze fanfare is altijd op zoek naar nieuwe leden, die interesse hebben in muziek.
-        Ben je -18, beginnende muzikanten of een ervaren speler, wees er dan maar zeker van dat je altijd welkom bent om onze rangen te komen bijvullen.
+        Ben je -18, beginnende muzikant of een ervaren speler,
+        wees er dan maar zeker van dat je altijd welkom bent om onze rangen te komen bijvullen.
     </p>
     <p>
-        Indien je niets of bijna niets van muziek kent, geen nood, dan is er de mogelijkheid om lessen aan te bieden alsook een instrument gratis in bruikleen te krijgen.
+        Indien je niets of bijna niets van muziek kent, geen nood,
+        dan is er de mogelijkheid om lessen aan te bieden alsook een instrument gratis in bruikleen te krijgen.
     </p>
     <p>
-        Het belangrijkste voor onze fanfare is dat deze hobby een unieke kijk op de samenleving geeft, jong en oud die samenspelen en samen plezier hebben met de muziek die ze maken.
+        Het belangrijkste voor onze fanfare is dat deze hobby een unieke kijk op de samenleving geeft,
+        jong en oud die samenspelen en samen plezier hebben met de muziek die ze maken.
+    </p>
+    <p>
+        We repeteren op vrijdagavond in de feestzaal van de Borgt van 20 tot 22 uur. Geïnteresseerden zijn altijd welkom om langs te komen!
     </p>
     </section>
 

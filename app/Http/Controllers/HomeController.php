@@ -7,6 +7,7 @@ use App\Models\Event;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\User;
+use Illuminate\Support\Facades\File;
 
 class HomeController extends Controller
 {
@@ -61,7 +62,9 @@ class HomeController extends Controller
     }
 
     public function belangrijkeDocumenten(){
-        return view('praktischeInfo.belangrijkeDocumenten');
+        $pdfDirectory=public_path("pdfs");
+        $pdfFiles=File::files($pdfDirectory);
+        return view('praktischeInfo.belangrijkeDocumenten',compact('pdfFiles'));
     }
 
     public function privacyverklaring(){

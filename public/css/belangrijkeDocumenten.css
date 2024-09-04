@@ -92,3 +92,50 @@ main button {
 main :is(a, button):hover {
     scale: 1.15;
 }
+.document-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: auto;
+}
+
+.document-link {
+    display: block;
+    width: 100%; /* Make the link fill the width of its container */
+    text-decoration: none; /* Remove underline from links */
+    color: inherit; /* Inherit text color from parent */
+}
+
+.document {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: white;
+    border-radius: 5px;
+    border: none;
+    padding: 10px;
+    transition: transform 0.3s ease;
+    width: 100%; /* Make sure the document fills the link's space */
+    box-sizing: border-box; /* Ensure padding is included in the width */
+}
+
+.document:hover {
+    transform: scale(1.05);
+}
+
+.pdf-thumbnail {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
+
+.pdf-name {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #333;
+    max-width: 150px;
+    word-wrap: break-word;
+    text-align: center;
+}

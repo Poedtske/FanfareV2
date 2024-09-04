@@ -45,7 +45,7 @@ class EventController extends Controller
             $event['poster'] = '/storage/' . $path;
         }
 
-        $event->calendar_id=CalendarService::create($event);
+        //$event->calendar_id=CalendarService::create($event);
 
         $event->save();
 
@@ -127,9 +127,9 @@ class EventController extends Controller
         }
         $differencesString = implode(", ", $differences);
 
-        if($event->calendar_id){
-            CalendarService::update($event);
-           }
+        // if($event->calendar_id){
+        //     CalendarService::update($event);
+        //    }
 
        EventLogger::update($event,$differencesString,Auth::user(),request()->getClientIp());
 
@@ -158,9 +158,9 @@ class EventController extends Controller
        }
 
        $event->delete();
-       if(empty($tempEvent->calender_id)){
-        CalendarService::delete($tempEvent);
-       }
+    //    if(empty($tempEvent->calender_id)){
+    //     CalendarService::delete($tempEvent);
+    //    }
 
        EventLogger::delete($tempEvent,Auth::user(),request()->getClientIp());
 
