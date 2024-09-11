@@ -179,12 +179,5 @@ class DatabaseSeeder extends Seeder
 
         Artisan::call('app:add-sponsors');
         Artisan::call('app:spond-api');
-
-//kud tinder tiran
-
-
-
-
-
     }
 }

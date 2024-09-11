@@ -208,7 +208,7 @@
   },
 
   {
-    "naam":"JoVelo zwart",
+    "naam":"JoVelo",
     "link":"https://www.fietsreparateur.be/",
     "logo":"joVelo.png",
     "rang":4,
@@ -365,6 +365,46 @@
     "logo":"studioDermaux.png",
     "rang":4,
     "geld":25
+  },
+
+  {
+    "naam":"'t Tuintje",
+    "link":"https://www.ttuintje.be/",
+    "logo":"tuintje.png",
+    "rang":2,
+    "geld":150
+  },
+
+  {
+    "naam":"Carrefour Market Grimbergen",
+    "link":"https://winkels.carrefour.be/nl/s/carrefour/carrefour-market-grimbergen/204",
+    "logo":"carrefourMarketGrimbergen.png",
+    "rang":2,
+    "geld":0
+  },
+
+  {
+    "naam":"Planten en potterie Van Doorslaer",
+    "link":"https://www.plantenvandoorslaer.be/",
+    "logo":"PlantenEnPotterieVanDoorslaer.png",
+    "rang":3,
+    "geld":0
+  },
+
+  {
+    "naam":"Kapsalon Sven",
+    "link":"https://kapsalonsven.be/",
+    "logo":"kapsalonSven.png",
+    "rang":3,
+    "geld":0
+  },
+
+  {
+    "naam":"Keuken Dovy Grimbergen",
+    "link":"https://www.dovykeukens.be/toonzalen/keukens-vlaams-brabant/keukens-grimbergen/",
+    "logo":"keukenDovyGrimbergen.png",
+    "rang":2,
+    "geld":100
   }
 
 ]
