@@ -25,9 +25,6 @@
             <div style="margin-left:auto;">
                 <a href="{{ route('events.create') }}"><button class="createBtn">Aanmaken</button></a>
             </div>
-        </section>
-
-        <section>
             <table id="events-table">
                 <thead>
                     <tr>
@@ -48,10 +45,11 @@
                     @foreach ($events as $event)
                         <tr>
                             <td>
-                                <div class="date-container">
-                                    <div class="date-day">{{ \Carbon\Carbon::parse($event->date)->format('d') }}</div>
-                                    <div class="date-month">{{ \Carbon\Carbon::parse($event->date)->format('M') }}</div>
-                                </div>
+                                @if ($event->poster)
+                                    Ja
+                                @else
+                                    Nee
+                                @endif
                             </td>
                             <td>{{ $event->id }}</td>
                             <td>{{ $event->title }}</td>
