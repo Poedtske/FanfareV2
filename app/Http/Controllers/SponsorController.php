@@ -85,7 +85,7 @@ class SponsorController extends Controller
 
         $sponsor=new Sponsor();
         $sponsor->fill($validated);
-
+        $sponsor->active=true;
         // Handle file upload
         $file = $request->file('logo');
         $fileName = CrudFunctions::camelcaseTransformer($file->getClientOriginalName());
@@ -93,7 +93,7 @@ class SponsorController extends Controller
         $sponsor->rank=CrudFunctions::rankFilter($sponsor);
         // Update validated data with the file path
         $sponsor['logo'] = '/storage/' . $path;
-        $sponsor->active=true;
+
         $sponsor->save();
         CrudFunctions::firstRankChecker();
 
