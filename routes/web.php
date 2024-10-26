@@ -69,8 +69,7 @@ Route::get('/logout',[AuthenticatedSessionController::class, 'destroy'])->name('
 ->middleware(('auth'));
 
 Route::get('/dashboard', function () {
-    $messages=Contact::all();
-    return view('dashboard',['messages'=>$messages]);
+    return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
